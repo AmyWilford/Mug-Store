@@ -17,7 +17,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     product: async (parent, { _id }, context) => {
-      return await Product.findById(_id).populate('category');
+      return await Product.findById(_id);
     },
     user: async (parent, args, context) => {
       if (context.user) {
