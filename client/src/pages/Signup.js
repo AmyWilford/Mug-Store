@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import Auth from "../utils/auth";
-import { ADD_USER } from "../utils/mutations";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+import { ADD_USER } from '../utils/mutations';
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -12,10 +12,12 @@ function Signup(props) {
     event.preventDefault();
     console.log("event prevent default");
 
+
     const mutationResponse = await addUser({
       variables: {
         firstName: formState.firstName,
         lastName: formState.lastName,
+        city: formState.city,
         address: formState.address,
         city: formState.city,
         province: formState.province,
@@ -24,11 +26,10 @@ function Signup(props) {
         password: formState.password,
       },
     });
-    console.log("set variables");
 
     const token = mutationResponse.data.addUser.token;
+    console.log('Got token');
     Auth.login(token);
-    console.log("we did it!");
   };
 
   const handleChange = (event) => {
@@ -83,6 +84,16 @@ function Signup(props) {
             name="password"
             type="password"
             id="pwd"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">City:</label>
+          <input
+            placeholder="Toronto"
+            name="city"
+            type="text"
+            id="city"
             onChange={handleChange}
           />
         </div>

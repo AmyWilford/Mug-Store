@@ -10,7 +10,10 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 // import "font-awesome/css/font-awesome.min.css";
 
-const stripePromise = loadStripe(process.env.STRIPE_PK);
+
+// require('dotenv').config();
+// const stripePromise = loadStripe(process.env.STRIPE_PK);
+
 
 function Cart() {
   const [state, dispatch] = useStoreContext();
@@ -96,5 +99,6 @@ function Cart() {
     </div>
   );
 }
+
 
 export default Cart;
