@@ -1,8 +1,6 @@
 import React from "react";
 import '../styles/home.css'
 
-
-
 const Home = () => {
     return (
       <div className="container w-50  m-auto mt-5 justify-space-between home-page ">

@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import Auth from '../utils/auth';
-// import { ADD_USER } from '../utils/mutations'; //IMPORT MUTATION
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth";
+import { ADD_USER } from "../utils/mutations";
 
 function Signup(props) {
-    // QUESTION - WHY DOES ONLY EMAIL AND PASSWORD GET BROUGHT IN HERE?
-    const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({
+    firstName: "",
+    email: "",
+    password: "",
+  });
   const [addUser] = useMutation(ADD_USER); //IMPORT MUTATION
-
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -18,9 +20,9 @@ function Signup(props) {
         password: formState.password,
         firstName: formState.firstName,
         lastName: formState.lastName,
-        address:formState.address,
+        address: formState.address,
         province: formState.province,
-        country:formState.country
+        country: formState.country,
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -100,16 +102,16 @@ function Signup(props) {
             id="province"
             onChange={handleChange}
           />
-           <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Country:</label>
-          <input
-            placeholder="country"
-            name="country"
-            type="text"
-            id="country"
-            onChange={handleChange}
-          />
-        </div>
+          <div className="flex-row space-between my-2">
+            <label htmlFor="pwd">Country:</label>
+            <input
+              placeholder="country"
+              name="country"
+              type="text"
+              id="country"
+              onChange={handleChange}
+            />
+          </div>
         </div>
         <div className="flex-row flex-end">
           <button type="submit">Signup</button>

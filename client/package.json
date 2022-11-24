@@ -4,9 +4,14 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.8",
+<<<<<<< HEAD
+=======
+    "@stripe/stripe-js": "^1.3.1",
+>>>>>>> 6e95ce4874ac455816b59c81950cb9778a288d8b
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^13.5.0",
+    "graphql": "^14.6.0",
     "jwt-decode": "^2.2.0",
     "bootstrap": "^5.2.2",
 
