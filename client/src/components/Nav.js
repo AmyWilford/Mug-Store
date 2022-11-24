@@ -52,10 +52,11 @@ function Nav() {
   }
   return (
     <header>
+    
+      <nav className="navbar navbar-expand-lg shadow navbar-light bg-light ">
       <Link to="/">
-        <div>HOME</div>
+        <img src="./assets/images/logo.png" alt="logo" height="50px"/>
       </Link>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light ">
         {showNavigation()}
       </nav>
     </header>
