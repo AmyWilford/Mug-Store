@@ -48,7 +48,7 @@ function Signup(props) {
 
   return (
     <div className=" d-flex flex-column main-content ">
-      <div className="container m-auto w-50">
+      <div className="container mt-5 w-50">
         <Link to="/login">← Go to Login</Link>
 
       <h2>Signup</h2>

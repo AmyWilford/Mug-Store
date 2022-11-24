@@ -16,18 +16,18 @@ function UserInfo() {
     <>
       <div className="container my-1">
        
-          <>
+        
             <h2>
               {user.name} dashboard
             </h2>
-            <h2>
+            <h3>
               Email Address : {user.email}
-            </h2>
-            <h2>
+            </h3>
+            <h3>
               Shipping Address : {user.address}
-            </h2>
+            </h3>
                   
-        </>
+      
         <button>Edit Profile (to open editing section)</button> 
     </div>
     </>
