@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import UserDashboard from "./pages/UserDashboard";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,10 +44,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            {/*   <Route
-        path="/profile"
-        element={<UserDashboard />}
-        /> */}
+            <Route path="/profile" element={<UserDashboard />} />
             {/* <Route
         path="/create"
         element={<Create />}
@@ -60,7 +58,6 @@ function App() {
         element={<OrderHistory />} 
       /> */}
           </Routes>
-          <p>TEST T E S T </p>
         </Router>
       </div>
     </ApolloProvider>

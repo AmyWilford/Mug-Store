@@ -21,7 +21,7 @@ function Nav() {
       );
     } else {
       return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <button
             class="navbar-toggler"
             type="button"
@@ -32,7 +32,7 @@ function Nav() {
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link to="/signup" className="nav-link">
