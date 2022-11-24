@@ -4,11 +4,12 @@ export const QUERY_PRODUCTS = gql`
   query getProducts($productId: ID) {
     products(_id: $productId) {
       _id
-      name
-      description
+      mugColor
+      customizedColor
+      customText
+      imageIcon
       price
-      quantity
-      image
+      count
     }
   }
 `;
@@ -30,6 +31,7 @@ export const QUERY_ALL_PRODUCTS = gql`
       customText
       imageIcon
       price
+      count
     }
   }
 `;
@@ -50,11 +52,12 @@ export const QUERY_USER = gql`
         orderStatus
         products {
           _id
-          name
-          description
+          mugColor
+          customizedColor
+          customText
+          imageIcon
           price
-          quantity
-          image
+          count
         }
       }
     }
