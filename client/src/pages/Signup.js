@@ -5,28 +5,30 @@ import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 
 function Signup(props) {
-  const [formState, setFormState] = useState({
-    firstName: "",
-    email: "",
-    password: "",
-  });
-  const [addUser] = useMutation(ADD_USER); //IMPORT MUTATION
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [addUser] = useMutation(ADD_USER); 
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log("event prevent default");
+
     const mutationResponse = await addUser({
       variables: {
-        email: formState.email,
-        password: formState.password,
         firstName: formState.firstName,
         lastName: formState.lastName,
         address: formState.address,
+        city: formState.city,
         province: formState.province,
         country: formState.country,
+        email: formState.email,
+        password: formState.password,
       },
     });
+    console.log("set variables");
+
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
+    console.log("we did it!");
   };
 
   const handleChange = (event) => {
@@ -35,6 +37,7 @@ function Signup(props) {
       ...formState,
       [name]: value,
     });
+    console.log("change handled");
   };
 
   return (
@@ -88,6 +91,16 @@ function Signup(props) {
           <input
             placeholder="123 street st."
             name="address"
+            type="text"
+            id="address"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">City:</label>
+          <input
+            placeholder="123 street st."
+            name="city"
             type="text"
             id="address"
             onChange={handleChange}
