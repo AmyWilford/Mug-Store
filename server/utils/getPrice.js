@@ -1,7 +1,20 @@
 module.exports = {
   getProductPrice: (product) => {
-    // TEMP
-    // TODO: Make this actually check the price for each possible price
-    return 15;
+    let price = 0;
+
+    if (product.mugColor != null) {
+      price += 10;
+    }
+    if (product.customizedColor != null) {
+      price += 5;
+    }
+    if (product.customText != null) {
+      price += 7;
+    }
+    if (product.imageIcon != null) {
+      price += 10;
+    }
+
+    return price * product.count;
   },
 };
