@@ -8,7 +8,8 @@
 // // import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 // import "font-awesome/css/font-awesome.min.css";
 
-// const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+// require('dotenv').config();
+// const stripePromise = loadStripe(process.env.STRIPE_PK);
 
 // const Cart = () => {
 //   const [state, dispatch] = useStoreContext();
@@ -66,27 +67,26 @@
 //     );
 //   }
 
-  // return(
-  //   <div className="cart">
-  //       <div className="close" onClick={toggleCart}>
-  //           x
-  //       </div>
-  //       <p>your cart:</p>
-  //       {state.cart.length ? (
-  //       <div>
-  //       {state.cart.map((item)=>(
-  //           <CartItem key={item._id} item={item}/>
-  //       ))}
+//   return(
+//     <div className="cart">
+//         <div className="close" onClick={toggleCart}>
+//             x
+//         </div>
+//         <p>your cart:</p>
+//         {state.cart.length ? (
+//         <div>
+//         {state.cart.map((item)=>(
+//             <CartItem key={item._id} item={item}/>
+//         ))}
 
-  //       <div> Total: ${calculateTotal()}
-  //       <button onClick={submitCheckout}>Checkout</button>
-  //       </div>
-  //       </div>
-  //       ) : (
-  //           <div>Your cart is empty</div>
-  //       )
-  //   </div>
-  // )
-
+//         <div> Total: ${calculateTotal()}
+//         <button onClick={submitCheckout}>Checkout</button>
+//         </div>
+//         </div>
+//         ) : (
+//             <div>Your cart is empty</div>
+//         )
+//     </div>
+//   )
 
 // export default Cart;
