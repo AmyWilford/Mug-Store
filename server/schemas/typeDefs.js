@@ -58,6 +58,12 @@ const typeDefs = gql`
       password: String!
     ): Auth
     addOrder(products: [ID]!): Order
+    addProduct(
+      mugColor: String
+      customizedColor: String
+      customText: String
+      imageIcon: String
+    ): Product
     updateUser(
       firstName: String
       lastName: String

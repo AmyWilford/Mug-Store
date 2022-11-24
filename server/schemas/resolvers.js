@@ -98,6 +98,13 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    addProduct: async (parent, args, context) => {
+      if (context.user) {
+        return await Product.create(args);
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
     updateUser: async (parent, args, context) => {
       if (context.user) {
         args.isAdmin = null;
