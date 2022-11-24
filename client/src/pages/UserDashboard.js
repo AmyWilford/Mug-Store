@@ -1,13 +1,14 @@
 import React from "react";
-import prevOrder from "../components/prevOrder";
-import userInfo from "../components/userInfo";
+import PrevOrder from "../components/PrevOrder";
+import UserInfo from "../components/UserInfo";
 
 
 const UserDashboard = () => {
     return (
       <div className="container">
-        <userInfo />
-        <prevOrder />
+        <UserInfo />
+        <PrevOrder />
+        <img src='./assets/images/paintingmug.jpg'>Create A Mug</img>
       </div>
     );
   };

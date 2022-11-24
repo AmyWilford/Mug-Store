@@ -19,14 +19,11 @@ function prevOrder() {
        
           <>
             <h2>
-              Order History 
+              Your order History 
             </h2>
         
             {orderSummary.map((order) => (
               <div key={order._id} className="my-2">
-                <h3>
-                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                </h3>
                 <div className="flex-row">
                 <Link to={`/orders/${_id}`}>
                     <p>#{order._id}</p> 
