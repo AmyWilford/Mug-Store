@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Login from './pages/Login';
-import Signup from "./pages/Signup";
-import UserDashboard from './pages/UserDashboard';
+// import Signup from "./pages/Signup";
+// import UserDashboard from './pages/UserDashboard';
 function App() {
   return (
     <div className="App">
@@ -20,14 +20,14 @@ function App() {
         path="/login" 
         element={<Login />} 
       />
-      <Route 
+    <Route 
         path="/signup" 
         element={<Signup />} 
       />
-        <Route
+        {/*   <Route
         path="/profile"
         element={<UserDashboard />}
-        />
+        /> */}
         {/* <Route
         path="/create"
         element={<Create />}
