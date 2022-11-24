@@ -41,8 +41,9 @@ function Signup(props) {
   };
 
   return (
-    <div className=" main-content">
-      <Link to="/login">← Go to Login</Link>
+    <div className=" d-flex flex-column main-content ">
+      <div className="container m-auto w-50">
+        <Link to="/login">← Go to Login</Link>
 
       <h2>Signup</h2>
       <form onSubmit={handleFormSubmit}>
@@ -120,6 +121,7 @@ function Signup(props) {
           <button type="submit">Signup</button>
         </div>
       </form>
+      </div>
     </div>
   );
 }

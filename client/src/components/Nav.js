@@ -53,7 +53,7 @@ function Nav() {
   return (
     <header>
       <Link to="/">
-        <div>LOGO</div>
+        <div>HOME</div>
       </Link>
       <nav className="navbar navbar-expand-lg navbar-light bg-light ">
         {showNavigation()}
