@@ -10,9 +10,6 @@ function Nav() {
       return (
         <ul>
           <li>
-            <Link to="/dashboard">LOGO</Link>
-          </li>
-          <li>
             <Cart />
           </li>
           <li>
@@ -22,8 +19,27 @@ function Nav() {
           </li>
         </ul>
       );
+    } else {
+      return (
+        <ul>
+          <li>
+            <Link to="/signup">Signup</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </ul>
+      );
     }
   }
+  return (
+    <header>
+      <Link to="/">
+        <div>LOGO</div>
+      </Link>
+      <nav>{showNavigation()}</nav>
+    </header>
+  );
 }
 
 export default Nav;
