@@ -3,6 +3,8 @@ import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
+import '../styles/home.css'
+
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -30,7 +32,8 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <div className="main-content">
+
     <div>Don't have an account?</div>
       <Link to="/signup">Signup</Link>
 

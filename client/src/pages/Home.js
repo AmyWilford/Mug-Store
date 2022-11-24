@@ -3,11 +3,12 @@ import '../styles/home.css'
 
 const Home = () => {
     return (
-      <div className="container w-50  m-auto mt-5 justify-space-between home-page ">
-        <img class = " ui image circular small" src='./assets/images/paintingmug.jpg' alt='someone painting on aa mug'/>
-        <button className="massive circular yellow ui button">Go to your dashboard</button>
+      <div className="main-content">
+      <div className="container w-75   mt-5 home-buttons">
+        <img className = " ui image circular small m-2" src='./assets/images/paintingmug.jpg' alt='someone painting on aa mug'/>
+        <button className="massive circular yellow ui button m-2">Go to your dashboard</button>
       </div>
-      
+      </div>
     );
   };
   
