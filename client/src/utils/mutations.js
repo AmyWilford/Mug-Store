@@ -23,6 +23,7 @@ export const ADD_ORDER = gql`
         customText
         imageIcon
         price
+        count
       }
     }
   }
@@ -34,12 +35,14 @@ export const ADD_PRODUCT = gql`
     $customizedColor: String
     $customText: String
     $imageIcon: String
+    $count: Number
   ) {
     addProduct(
       mugColor: $mugColor
       customizedColor: $customizedColor
       customText: $customText
       imageIcon: $imageIcon
+      count: $count
     )
   }
 `;
