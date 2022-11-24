@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { ADD_USER } from '../utils/mutations'; //IMPORT MUTATION
+// import { ADD_USER } from '../utils/mutations'; //IMPORT MUTATION
 
 function Signup(props) {
     // QUESTION - WHY DOES ONLY EMAIL AND PASSWORD GET BROUGHT IN HERE?

@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+// import { QUERY_USER } from '../utils/queries';
 
 function PrevOrder() {
-  const { data } = useQuery(QUERY_USER);
+  // const { data } = useQuery(QUERY_USER);
   let user;
 
-  if (data) {
-    user = data.user;
-  }
+  // if (data) {
+  //   user = data.user;
+  // }
   const orderSummary= user.orders.slice(0, 3)
 
   return (
