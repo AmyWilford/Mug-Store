@@ -21,6 +21,10 @@ const productSchema = new Schema({
     // This is a string representing our image
     type: String,
   },
+  count: {
+    type: Number,
+    default: 1,
+  },
 });
 
 productSchema.virtual('price').get(() => {
