@@ -6,7 +6,7 @@ import Home from './pages/Home'
 function App() {
   return (
     <div className="App">
-      <Nav/>
+      {/* <Nav/> */}
       <Home/>
       <p>TEST T E S T </p>
     </div>
