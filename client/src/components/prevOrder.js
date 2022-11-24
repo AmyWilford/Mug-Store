@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
-function prevOrder() {
+function PrevOrder() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
@@ -21,7 +21,7 @@ function prevOrder() {
             <h2>
               Your order History 
             </h2>
-        
+            {/* ({ _id, image, name, price }, index) */}
             {orderSummary.map((order) => (
               <div key={order._id} className="my-2">
                 <div className="flex-row">
@@ -41,4 +41,4 @@ function prevOrder() {
   );}
 
 
-export default prevOrder;
+export default PrevOrder;

@@ -8,7 +8,7 @@ const UserDashboard = () => {
       <div className="container">
         <UserInfo />
         <PrevOrder />
-        <img src='./assets/images/paintingmug.jpg'>Create A Mug</img>
+        <img src='./assets/images/paintingmug.jpg' alt='handing painting on a mg'>Create A Mug</img>
       </div>
     );
   };
