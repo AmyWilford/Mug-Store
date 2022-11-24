@@ -1,10 +1,10 @@
 import React from "react";
-import CustomizeInput from "../components/CustomizeInput";
+import CustomizeProduct from "../components/CustomizeProduct";
 
 function Create() {
   return (
     <div>
-      <CustomizeInput />
+      <CustomizeProduct />
     </div>
   );
 }
