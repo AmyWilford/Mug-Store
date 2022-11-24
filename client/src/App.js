@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Create from "./pages/Create";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -31,7 +32,6 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-// addint this as a test
 // import UserDashboard from './pages/UserDashboard';
 function App() {
   return (
@@ -47,11 +47,8 @@ function App() {
         path="/profile"
         element={<UserDashboard />}
         /> */}
-            {/* <Route
-        path="/create"
-        element={<Create />}
-      />
-      <Route 
+            <Route path="/create" element={<Create />} />
+            {/* <Route 
         path="/success" 
         element={<Success />} 
       />
