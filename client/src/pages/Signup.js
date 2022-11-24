@@ -5,42 +5,41 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations'; //IMPORT MUTATION
 
 function Signup(props) {
-    // QUESTION - WHY DOES ONLY EMAIL AND PASSWORD GET BROUGHT IN HERE?
-    const [formState, setFormState] = useState({ email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER); //IMPORT MUTATION
+//     const [formState, setFormState] = useState({ email: '', password: '' });
+//   const [addUser] = useMutation(ADD_USER); //IMPORT MUTATION
 
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        email: formState.email,
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-        address:formState.address,
-        province: formState.province,
-        country:formState.country
-      },
-    });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
-  };
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+//     const mutationResponse = await addUser({
+//       variables: {
+//         email: formState.email,
+//         password: formState.password,
+//         firstName: formState.firstName,
+//         lastName: formState.lastName,
+//         address:formState.address,
+//         province: formState.province,
+//         country:formState.country
+//       },
+//     });
+//     const token = mutationResponse.data.addUser.token;
+//     Auth.login(token);
+//   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
+//     setFormState({
+//       ...formState,
+//       [name]: value,
+//     });
+//   };
 
   return (
     <div className="container my-1">
       <Link to="/login">← Go to Login</Link>
 
       <h2>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
+      {/* <form onSubmit={handleFormSubmit}> */}
         <div className="flex-row space-between my-2">
           <label htmlFor="firstName">First Name:</label>
           <input
@@ -114,7 +113,7 @@ function Signup(props) {
         <div className="flex-row flex-end">
           <button type="submit">Signup</button>
         </div>
-      </form>
+      {/* </form> */}
     </div>
   );
 }
