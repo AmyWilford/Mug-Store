@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type Product {
@@ -7,6 +7,7 @@ const typeDefs = gql`
     customizedColor: String
     customText: String
     imageIcon: String
+    count: Int
     price: Float
   }
 
@@ -63,6 +64,7 @@ const typeDefs = gql`
       customizedColor: String
       customText: String
       imageIcon: String
+      count: Int
     ): Product
     updateUser(
       firstName: String

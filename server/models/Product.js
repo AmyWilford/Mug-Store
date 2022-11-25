@@ -1,6 +1,6 @@
-const { getProductPrice } = require('../utils/getPrice');
+const { getProductPrice } = require("../utils/getPrice");
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -21,17 +21,17 @@ const productSchema = new Schema({
     // This is a string representing our image
     type: String,
   },
-
   count: {
     type: Number,
     default: 1,
   },
 });
 
-productSchema.virtual('price').get(() => {
+productSchema.virtual("price").get(function () {
+  console.log(this);
   return getProductPrice(this);
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
