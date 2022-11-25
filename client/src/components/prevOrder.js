@@ -15,11 +15,10 @@ function PrevOrder() {
 
   return (
     <>
-      <div className="container my-1">
+      <div className="container ui segment raised">
         <h2>Your order History:</h2>
         {user ? (
           <>
-            {/* ({ _id, image, name, price }, index) */}
             {orderSummary.map((order) => (
               <div key={order._id} className="my-2">
                 <div className="flex-row">
@@ -33,7 +32,10 @@ function PrevOrder() {
               </div>
             ))}
 
-            <button>More (to open order history component)</button>
+            <Link to="/orderhistory">
+              {" "}
+              <button>See more orders </button>
+            </Link>
           </>
         ) : null}
       </div>

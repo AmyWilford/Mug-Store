@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+// import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
@@ -14,7 +14,7 @@ function OrderHistory() {
 
   return (
     <>
-      <div className="container my-1">
+      <div className="container ui segment raised">
         <Link to="/">← Back to Products</Link>
 
         {user ? (
@@ -24,10 +24,7 @@ function OrderHistory() {
             </h2>
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
-                <h3>
-                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                </h3>
-                <div className="flex-row">
+                                <div className="flex-column">
                   {order.products.map(({ _id, mugColor, customText, count, price }, index) => (
                     <div key={index} className="card px-1 py-1">
                       <p>order id: {_id} </p>
@@ -37,7 +34,7 @@ function OrderHistory() {
                       <p>Total Order Price: ${price}</p>
                       <span>${price}</span>
                       </div>
-=                  ))}
+                 ))}
                 </div>
               </div>
             ))}
