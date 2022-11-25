@@ -84,6 +84,12 @@ const resolvers = {
 
       return { token, user };
     },
+    editUser: async (parent, args) => {
+      const user = await User.updateOne(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
     addOrder: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {
