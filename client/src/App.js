@@ -19,6 +19,7 @@ import UserDashboard from './pages/UserDashboard';
 
 import Create from './pages/Create';
 import Success from './pages/Success';
+import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
