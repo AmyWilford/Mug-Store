@@ -33,7 +33,7 @@ function Login(props) {
 
   return (
     <div className=" d-flex flex-column main-content">
-            <div className="container mt-5 w-50">
+            <div className="container ui raised segment  mt-5 w-25">
 
     <div>Don't have an account?</div>
       <Link to="/signup">Signup</Link>
