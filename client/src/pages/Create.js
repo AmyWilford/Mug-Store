@@ -7,7 +7,7 @@ function Create() {
   return (
     <div className="d-flex main-content">
       <CustomMug />
-      {/* <CustomizeProduct /> */}
+      <CustomizeProduct />
     </div>
   );
 }

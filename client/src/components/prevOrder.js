@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+// import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
@@ -16,23 +16,26 @@ function PrevOrder() {
   return (
     <>
       <div className="container my-1">
-        <>
-          <h2>Your order History</h2>
-          {/* ({ _id, image, name, price }, index) */}
-          {orderSummary.map((order) => (
-            <div key={order._id} className="my-2">
-              <div className="flex-row">
-                <Link to={`/orders/${order._id}`}>
-                  <p>#{order._id}</p>
-                </Link>
-                <p>{order.status}</p>
-                <p>{order.date}</p>
-                <p>{order.total}</p>
+        <h2>Your order History:</h2>
+        {user ? (
+          <>
+            {/* ({ _id, image, name, price }, index) */}
+            {orderSummary.map((order) => (
+              <div key={order._id} className="my-2">
+                <div className="flex-row">
+                  <Link to={`/orders/${order._id}`}>
+                    <p>#{order._id}</p>
+                  </Link>
+                  <p>{order.status}</p>
+                  <p>{order.date}</p>
+                  <p>{order.total}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </>
-        <button>More (to open order history component)</button>
+            ))}
+
+            <button>More (to open order history component)</button>
+          </>
+        ) : null}
       </div>
     </>
   );

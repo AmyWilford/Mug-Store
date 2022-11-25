@@ -139,4 +139,4 @@ function CustomizeProduct(item) {
   );
 }
 
-// export default CustomizeProduct;
+export default CustomizeProduct;
