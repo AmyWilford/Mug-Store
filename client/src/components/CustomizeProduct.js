@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_PRODUCT } from "../utils/mutations";
-import { useStoreContext } from "../utils/GlobalState";
-import CustomMug from "../components/CustomMug";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_PRODUCT } from '../utils/mutations';
+import { useStoreContext } from '../utils/GlobalState';
+import CustomMug from '../components/CustomMug';
 // import "font-awesome/css/font-awesome.min.css";
 
 // import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
@@ -13,18 +13,18 @@ import CustomMug from "../components/CustomMug";
 // import "react-colorful/dist/index.css";
 
 function CustomizeProduct(item) {
-  // const [color, setColor] = useState("#aabbcc");
+  // const [color, setColor] = useState("#aabbcc");dw
 
   const [newProduct, setNewProduct] = useState({
-    mugColor: "",
-    customizedColor: "",
-    customText: "",
-    imageIcon: "",
-    count: "",
+    mugColor: '',
+    customizedColor: '',
+    customText: '',
+    imageIcon: '',
+    count: '',
   });
 
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   // const [state, dispatch] = useStoreContext();
 
   // const { cart } = state;
@@ -52,23 +52,23 @@ function CustomizeProduct(item) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "mugColor") {
+    if (name === 'mugColor') {
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     }
-    if (name === "customizedColor") {
+    if (name === 'customizedColor') {
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     }
-    if (name === "customText") {
+    if (name === 'customText') {
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     }
-    if (name === "imageIcon") {
+    if (name === 'imageIcon') {
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     }
-    if (name === "count") {
+    if (name === 'count') {
       setNewProduct({ ...newProduct, [name]: parseInt(value) });
       console.log(newProduct);
     }
@@ -77,18 +77,18 @@ function CustomizeProduct(item) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("I am working");
+    console.log('I am working');
     try {
       const { data } = await addProduct({
         variables: { ...newProduct },
       });
       console.log(newProduct);
       setNewProduct({
-        mugColor: "",
-        customizedColor: "",
-        customText: "",
-        imageIcon: "",
-        count: "",
+        mugColor: '',
+        customizedColor: '',
+        customText: '',
+        imageIcon: '',
+        count: '',
       });
     } catch (err) {
       console.error(err);
