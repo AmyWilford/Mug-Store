@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-import { EDIT_USER } from "../utils/mutations";
+import { UPDATE_USER } from "../utils/mutations";
 
 function UserInfo() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
-  const [editUser] = useMutation(EDIT_USER);
+  const [editUser] = useMutation(UPDATE_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
