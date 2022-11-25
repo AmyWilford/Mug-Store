@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
-    "react-image-overlay": "^1.0.5"
+    "react-color": "^2.19.3",
+    "react-image-overlay": "^1.0.5",
+    "styled-components": "^5.3.6"
   }
 }

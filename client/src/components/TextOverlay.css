@@ -29,5 +29,6 @@
     z-index: 10;
     line-height: 1em;
     max-height: 3em;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    overflow-wrap: break-word;
        } 

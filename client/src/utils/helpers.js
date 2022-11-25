@@ -55,7 +55,9 @@ export function idbPromise(storeName, method, object) {
   });
 }
 
-export function validateHexCode(input) {
-  const reg = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
-  return reg.text(String(input));
+export function validateCustomText(input) {
+  if (input.length > 27) {
+    return false;
+  }
+  return true;
 }

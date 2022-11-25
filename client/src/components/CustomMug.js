@@ -1,16 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import "./TextOverlay.css";
+
 import WhiteMug from "../assets/whitemug.jpg";
 import BlackMug from "../assets/blackmug.jpg";
 
-function CustomMug({ mugText, mugSrc }) {
+function CustomMug({ mugText, mugSrc, color }) {
+  console.log(color);
   console.log(mugSrc);
-  // const WhiteMug = "./whitemug.jpg"
-  // const BlackMug = "./blackmug.jpg"
   //   const [customText, setNewText] = useState("Your Text Here");
+
   const [mugcolour, setMugColour] = useState(WhiteMug);
-  //   const [typeface, setTypeface] = useState();
+  useEffect(() => {
+    if (mugSrc === "black") {
+      setMugColour(BlackMug);
+    } else {
+      setMugColour(WhiteMug);
+    }
+  });
 
   return (
     <div className="d-flex  m-auto shadow ">
@@ -22,7 +29,9 @@ function CustomMug({ mugText, mugSrc }) {
         />
         <div className="textcontainer">
           {/* <p className="overlay" style={typeface}> */}
-          <p className=" display-5 overlay">{mugText}</p>
+          <p className=" display-5 overlay" style={{ color: color }}>
+            {mugText}
+          </p>
         </div>
       </div>
     </div>
