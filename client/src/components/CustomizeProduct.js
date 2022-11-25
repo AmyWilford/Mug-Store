@@ -1,150 +1,142 @@
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import { useMutation } from "@apollo/client";
-// // import { useStoreContext } from "../utils/GlobalState";
-// import {
-//   ADD_PRODUCT,
-//   ADD_TO_CART,
-//   UPDATE_CART_QUANTITY,
-// } from "../utils/mutations";
-// // import { idbPromise } from "../../utils/helpers";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_PRODUCT } from "../utils/mutations";
+import { useStoreContext } from "../utils/GlobalState";
+// import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
+// import { idbPromise } from "../utils/helpers";
 
+function CustomizeProduct(item) {
+  const [newProduct, setNewProduct] = useState({
+    mugColor: "",
+    customizedColor: "",
+    customText: "",
+    imageIcon: "",
+    count: "",
+  });
 
-// function CustomizeProduct(item) {
-//   // create state varaible to hold state of new product
-//   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-//   const [newProduct, setNewProduct] = useState({});
+  const [addProduct, { error }] = useMutation(ADD_PRODUCT);
+  const [errorMessage, setErrorMessage] = useState("");
+  // const [state, dispatch] = useStoreContext();
 
+  // const { cart } = state;
 
-  
+  // const addToCart = () => {
+  //   const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+  //   if (itemInCart) {
+  //     dispatch({
+  //       type: UPDATE_CART_QUANTITY,
+  //       _id: _id,
+  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+  //     });
+  //     idbPromise("cart", "put", {
+  //       ...itemInCart,
+  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+  //     });
+  //   } else {
+  //     dispatch({
+  //       type: ADD_TO_CART,
+  //       product: { ...item, purchaseQuantity: 1 },
+  //     });
+  //     idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
+  //   }
+  // };
 
-//   // const [customizedColor, setCustomColor] = useState("");
-//   // const [customText, setText] = useState("");
-//   // const [imageIcon, setIcon] = useState("");
-//   // const [quantity, setQuantity] = useState("");
-//   const [errorMessage, setErrorMessage] = useState("");
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "mugColor") {
+      setNewProduct({ ...newProduct, [name]: value });
+      console.log(newProduct);
+    }
+    if (name === "customizedColor") {
+      setNewProduct({ ...newProduct, [name]: value });
+      console.log(newProduct);
+    }
+    if (name === "customText") {
+      setNewProduct({ ...newProduct, [name]: value });
+      console.log(newProduct);
+    }
+    if (name === "imageIcon") {
+      setNewProduct({ ...newProduct, [name]: value });
+      console.log(newProduct);
+    }
+    if (name === "count") {
+      setNewProduct({ ...newProduct, [name]: parseInt(value) });
+      console.log(newProduct);
+    }
+    console.log(newProduct);
+  };
 
-//   // Create state to hold state of store
-//   // const [state, dispatch] = useStoreContext();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log("I am working");
+    try {
+      const { data } = await addProduct({
+        variables: { ...newProduct },
+      });
+      console.log(newProduct);
+      setNewProduct({
+        mugColor: "",
+        customizedColor: "",
+        customText: "",
+        imageIcon: "",
+        count: "",
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+// test
+  return (
+    <div>
+      <Link to="/profile">Back to profile</Link>
 
-//   // Add product mutation
+      <div>Customize Your Mug</div>
+      <form onSubmit={handleFormSubmit}>
+        <select
+          placeholder="mugcolor - DROPDOWN"
+          name="mugColor"
+          type="text"
+          onChange={handleChange}
+        >
+          <option>select a color</option>
+          <option value="white">white</option>
+          <option value="black">black</option>
+        </select>
+        <input
+          placeholder="customizedColor"
+          name="customizedColor"
+          type="text"
+          onChange={handleChange}
+        />
 
-//   // const { mugColor, customizedColor, customText, imageIcon } = item;
-//   // const {cart} = state
-
-//   const handleChange = async (event) => {
-//     event.preventDefault();
-//     const { name, value } = event.target;
-//     // if (name === "mugcolor") {
-//     //   setColor(value);
-//     //   console.log("mug color set");
-//     // } else if (name === "customizedColor") {
-//     //   setCustomColor(value);
-//     //   console.log("customizedColor set");
-//     // } else if (name === "cutomText") {
-//     //   setText(value);
-//     //   console.log("cutomText set");
-//     // } else if (name === "ImageIcon") {
-//     //   setIcon(value);
-//     //   console.log("ImageIcon set");
-//     // } else {
-//     //   setQuantity(value);
-//     //   console.log("quantity set");
-
-//     //   if (!mugColor || !customText || !quantity) {
-//     //     setErrorMessage("You are missing some details.");
-//     //     return;
-//     //   }
-//     // }
-
-    
-//   };
-
-//   const handleFormSubmit = (event) => {
-//     event.preventDefault();
-
-
-//     newProduct.mugColor = value;
-//     newProduct.mugColor = value;
-
-//     newProduct.mugColor = value;
-
-//     newProduct.mugColor = value;
-
-//     newProduct.mugColor = value;
-
-
-
-//     try {
-//       const { data } = await addProduct({
-//         variables: {
-//           newProduct
-//         },
-//       });
-//       console.log("newproduct created");
-//       setNewProduct({});
-//     } catch (err) {
-//       console.error(err);
-//     }
-//     // Grab information form the elements
-    
-
-//     }
-
-
-//     console.log("forminputed");
-//   };
-
-//   return (
-//     <div>
-//       <Link to="/profile">Back to profile</Link>
-
-//       <div>Make your mug</div>
-//       <form onSubmit={handleFormSubmit}>
-//         <select
-//           placeholder="mugcolor - DROPDOWN"
-//           name="mugcolor"
-//           type="text"
-//           id="mugcolor"
-//           onChange={handleChange}
-//         >
-//           <option value="white">white</option>
-//           <option value="black">black</option>
-//         </select>
-//         <input
-//           placeholder="customizedColor"
-//           name="customizedColor"
-//           type="text"
-//           id="customizedColor"
-//           onChange={handleChange}
-//         />
-//         <input
-//           placeholder="cutomText"
-//           name="cutomText"
-//           type="text"
-//           id="cutomText"
-//           onChange={handleChange}
-//         />
-//         <input
-//           placeholder="ImageIcon"
-//           name="ImageIcon"
-//           type="text"
-//           id="ImageIcon"
-//           onChange={handleChange}
-//         />
-//         <input
-//           placeholder="quantity"
-//           name="quantity"
-//           type="number"
-//           id="quantity"
-//           onChange={handleChange}
-//         />
-//         <div>
-//           <button type="submit">Create My Mug</button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
+        <input
+          placeholder="cutomText"
+          name="customText"
+          type="text"
+          onChange={handleChange}
+        />
+        <input
+          placeholder="ImageIcon"
+          name="imageIcon"
+          type="text"
+          onChange={handleChange}
+        />
+        <input
+          placeholder="quantity"
+          name="count"
+          type="number"
+          onChange={handleChange}
+        />
+        <div>
+          <button onSubmit={handleFormSubmit} type="submit">
+            Create My Mug
+          </button>
+        </div>
+        {error && <div>Something went wrong...</div>}
+      </form>
+    </div>
+  );
+}
 
 // export default CustomizeProduct;

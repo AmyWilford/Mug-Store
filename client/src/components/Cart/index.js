@@ -6,6 +6,8 @@
 // import CartItem from "../CartItem";
 // import Auth from "../../utils/auth";
 // import { useStoreContext } from "../../utils/GlobalState";
+// import "font-awesome/css/font-awesome.min.css";
+
 
 // import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 // // import "font-awesome/css/font-awesome.min.css";
@@ -66,7 +68,7 @@
 //   if (!state.cartOpen) {
 //     return (
 //       <div className="cart-closed" onClick={toggleCart}>
-//         {/* <i className="fa-regular fa-basket-shopping"></i> */}
+// {/* <i className="fa fa-shopping-basket" aria-hidden="true"></i> */}
 //       </div>
 //     );
 //   }

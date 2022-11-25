@@ -1,7 +1,7 @@
 module.exports = {
   getProductPrice: (product) => {
     let price = 0;
-
+    console.log(product);
     if (product.mugColor != null) {
       price += 10;
     }
@@ -14,7 +14,7 @@ module.exports = {
     if (product.imageIcon != null) {
       price += 10;
     }
-
+    console.log("hello");
     return price * product.count;
   },
 };

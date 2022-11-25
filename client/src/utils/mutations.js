@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -30,12 +30,12 @@ export const ADD_ORDER = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation addProduct(
+  mutation Mutation(
     $mugColor: String
     $customizedColor: String
     $customText: String
     $imageIcon: String
-    $count: Number
+    $count: Int
   ) {
     addProduct(
       mugColor: $mugColor
@@ -43,7 +43,9 @@ export const ADD_PRODUCT = gql`
       customText: $customText
       imageIcon: $imageIcon
       count: $count
-    )
+    ) {
+      price
+    }
   }
 `;
 
