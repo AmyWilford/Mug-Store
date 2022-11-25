@@ -55,7 +55,7 @@ function Nav() {
     
       <nav className="navbar navbar-expand-lg shadow navbar-light bg-light ">
       <Link to="/">
-        <img src="./assets/images/logo.png" alt="logo" height="50px"/>
+        <img src="./assets/images/logo.png" alt="logo" height="80px"/>
       </Link>
         {showNavigation()}
       </nav>
