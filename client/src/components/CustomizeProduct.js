@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_PRODUCT } from "../utils/mutations";
-import { useStoreContext } from "../utils/GlobalState";
-import CustomMug from "../components/CustomMug";
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_PRODUCT } from '../utils/mutations';
+import { useStoreContext } from '../utils/GlobalState';
+import CustomMug from '../components/CustomMug';
 // import "font-awesome/css/font-awesome.min.css";
 
 // import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
@@ -13,18 +14,23 @@ import CustomMug from "../components/CustomMug";
 // import "react-colorful/dist/index.css";
 
 function CustomizeProduct(item) {
-  // const [color, setColor] = useState("#aabbcc");
+  // const [color, setColor] = useState("#aabbcc");dw
 
   const [newProduct, setNewProduct] = useState({
-    mugColor: "",
-    customizedColor: "",
-    customText: "",
-    imageIcon: "",
-    count: "",
+    mugColor: '',
+    customizedColor: '',
+    customText: '',
+    imageIcon: '',
+    count: '',
   });
 
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [mugText, setMugText] = useState("Your Text");
+  const [mugSRC, setMugSrc] = useState("../assets/whitemug.jpg");
+
+  // const [errorMessage, setErrorMessage] = useState("");
+
+ 
   // const [state, dispatch] = useStoreContext();
 
   // const { cart } = state;
@@ -49,26 +55,30 @@ function CustomizeProduct(item) {
   //     idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
   //   }
   // };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "mugColor") {
+      if (value === "black") {
+        setMugSrc("../assets/blackmug.jpg");
+      }
+
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     }
-    if (name === "customizedColor") {
+    if (name === 'customizedColor') {
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     }
-    if (name === "customText") {
+    if (name === 'customText') {
+      setNewProduct({ ...newProduct, [name]: value });
+      setMugText(value);
+      console.log(newProduct);
+    }
+    if (name === 'imageIcon') {
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     }
-    if (name === "imageIcon") {
-      setNewProduct({ ...newProduct, [name]: value });
-      console.log(newProduct);
-    }
-    if (name === "count") {
+    if (name === 'count') {
       setNewProduct({ ...newProduct, [name]: parseInt(value) });
       console.log(newProduct);
     }
@@ -77,18 +87,18 @@ function CustomizeProduct(item) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("I am working");
+    console.log('I am working');
     try {
       const { data } = await addProduct({
         variables: { ...newProduct },
       });
       console.log(newProduct);
       setNewProduct({
-        mugColor: "",
-        customizedColor: "",
-        customText: "",
-        imageIcon: "",
-        count: "",
+        mugColor: '',
+        customizedColor: '',
+        customText: '',
+        imageIcon: '',
+        count: '',
       });
     } catch (err) {
       console.error(err);
@@ -103,7 +113,7 @@ function CustomizeProduct(item) {
           <div className="col-sm-6">
             <div>Customize Your Mug</div>
             <form onSubmit={handleFormSubmit}>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="exampleFormControlSelect1">
                   Pick your mug color
                 </label>
@@ -113,33 +123,31 @@ function CustomizeProduct(item) {
                   onChange={handleChange}
                 >
                   <option selected>Choose...</option>
-                  <option value="white">White</option>
-                  <option value="black">Black</option>
+                  <option value="../assets/whitemug.jpg">White</option>
+                  <option value="./assets/blackmug.jpg">Black</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="exampleInputEmail1">
                   Write out your customized Text
                 </label>
                 <input
-                  placeholder="customizedColor"
+                  className="form-control"
+                  name="customText"
+                  type="text"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label for="exampleInputEmail1">Pick your color text</label>
+                <input
                   className="form-control"
                   name="customizedColor"
                   type="text"
                   onChange={handleChange}
                 />
               </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Pick your color text</label>
-                <input
-                  className="form-control"
-                  placeholder="cutomText"
-                  name="customText"
-                  type="text"
-                  onChange={handleChange}
-                />
-              </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="exampleInputEmail1">
                   Select an image (optional)
                 </label>
@@ -152,13 +160,15 @@ function CustomizeProduct(item) {
                   onChange={handleChange}
                 >
                   <option selected>Choose...</option>
-                  <option value="image1">image one</option>
+                  <option value="image1"></option>
                   <option value="image2">Image Two</option>
                   <option value="image3">image Three</option>
                   <option value="image4">Image Four</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div className="form-group">
+                <label for="exampleInputEmail1">How Many Mugs?</label>
+
                 <select
                   className="form-control"
                   placeholder="quantity"
@@ -175,13 +185,16 @@ function CustomizeProduct(item) {
                 </select>
               </div>
               <div>
-                <button type="submit">Create My Mug</button>
+                <button className="btn btn-primary" type="submit">
+                  Create My Mug
+                </button>
               </div>
               {error && <div>Something went wrong...</div>}
             </form>
           </div>
           <div className="col-sm-6">
-            <CustomMug />
+            {/* <div>{mugText}</div> */}
+            <CustomMug mugText={mugText} mugSrc={mugSRC} />
           </div>
         </div>
       </div>

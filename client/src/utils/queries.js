@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($productId: ID) {
+export const QUERY_PRODUCT = gql`
+  query getProduct($productId: ID) {
     products(_id: $productId) {
       _id
       mugColor

@@ -15,9 +15,8 @@
     "graphql": "^14.6.0",
     "jwt-decode": "^2.2.0",
     "react": "^17.0.1",
-    "react-color": "^2.19.3",
-    "react-colorful": "^5.6.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.6.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.1",
     "web-vitals": "^2.1.4"
