@@ -10,7 +10,7 @@ function Nav() {
       return (
         <ul>
           <li>
-            <Cart />
+            {/* <Cart /> */}
           </li>
           <li>
             <a href="/" onClick={() => Auth.logout()}>
