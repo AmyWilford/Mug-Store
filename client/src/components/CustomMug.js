@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import { Link } from "react-router-dom";
-
 import './TextOverlay.css'
 
 
@@ -13,7 +12,7 @@ function CustomMug () {
 return(
     <div className="d-flex  m-auto shadow ">
     <div className="ui raised  segment">
-        <img className = "ui large image mug d-flex" src ={mugcolour} alt="custom mug with text" />
+        <img className = "ui large image  d-flex" src ={mugcolour} alt="custom mug with text" />
         <h2 className="overlay" >{customText}</h2>
    </div>
      </div>

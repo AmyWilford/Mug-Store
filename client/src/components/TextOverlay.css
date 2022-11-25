@@ -1,20 +1,24 @@
-.mug {
+/* .mug {
     height: 10%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     display: grid;
     place-items: center;
-}
+} */
 
 .overlay {
+    /* display: flex;
+    flex-wrap: wrap; */
     font-size: 60px;
+    word-wrap: normal;
+    opacity: 65%;
     color: black;
     text-align: center;
     position: absolute;
     top: 23%;
     left: 32%;
     width: 50%;
-    height: 100%;
+    height: 80%;
     z-index: 10;
         }
