@@ -77,3 +77,33 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+
+export const EDIT_USER = gql`
+  mutation editUser(
+    $firstName: String!
+    $lastName: String!
+    $address: String!
+    $city: String!
+    $province: String!
+    $country: String!
+    $email: String!
+    $password: String!
+  ) {
+    editUser(
+      firstName: $firstName
+      lastName: $lastName
+      address: $address
+      city: $city
+      province: $province
+      country: $country
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;

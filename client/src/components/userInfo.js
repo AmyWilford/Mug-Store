@@ -1,12 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
+import { EDIT_USER } from "../utils/mutations";
 
 function UserInfo() {
   const { data } = useQuery(QUERY_USER);
   let user;
+
+  const [editUser] = useMutation(EDIT_USER);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const mutationResponse = await editUser({
+      variables: {
+        email: document.getElementById("inputEmail4").value,
+        address: document.getElementById("inputAddress").value,
+        // city: city,
+        // address: address,
+        // province: province,
+        // country: country,
+        // email: email,
+        // password: password,
+      },
+    });
+    const token = mutationResponse.data.editUser.token;
+    console.log("Got token");
+    Auth.login(token);
+  };
 
   if (data) {
     user = data.user;
@@ -24,7 +47,7 @@ function UserInfo() {
           <p>{user.city}</p>
           <p>{user.province}</p>
           <p>{user.country}</p>
-
+          {/* MODAL AND BUTTON  */}
           <button
             type="button"
             class="btn btn-primary"
@@ -40,7 +63,29 @@ function UserInfo() {
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
-              <form className="modal-content modal-body">
+              <form
+                className="modal-content modal-body"
+                onSubmit={handleFormSubmit}>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputFirstName">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputFirstName"
+                      value={user.firstName}
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputLastName">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputLastName"
+                      value={user.lastName}
+                    />
+                  </div>
+                </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
