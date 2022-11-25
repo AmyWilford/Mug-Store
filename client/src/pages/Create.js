@@ -5,6 +5,7 @@ function Create() {
   return (
     <div>
       <CustomizeProduct />
+      {/* rendered image */}
     </div>
   );
 }
