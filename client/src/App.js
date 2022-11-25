@@ -8,6 +8,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import { StoreProvider } from './utils/GlobalState';
+
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -41,15 +43,16 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <Router>
-          <Nav />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<UserDashboard />} />
-            <Route path="/create" element={<Create />} />
-            {/*<Route 
+        <StoreProvider>
+          <Router>
+            <Nav />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/profile" element={<UserDashboard />} />
+              <Route path="/create" element={<Create />} />
+              {/*<Route 
 
         path="/success" 
         element={<Success />} 
@@ -59,8 +62,9 @@ function App() {
         path="/orderHistory" 
         element={<OrderHistory />} 
       /> */}
-          </Routes>
-        </Router>
+            </Routes>
+          </Router>
+        </StoreProvider>
       </div>
     </ApolloProvider>
   );

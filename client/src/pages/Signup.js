@@ -108,16 +108,6 @@ function Signup(props) {
             />
           </div>
           <div className="flex-row space-between my-2">
-            <label htmlFor="pwd">City:</label>
-            <input
-              placeholder="123 street st."
-              name="city"
-              type="text"
-              id="address"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row space-between my-2">
             <label htmlFor="pwd">Province:</label>
             <input
               placeholder="ON"
