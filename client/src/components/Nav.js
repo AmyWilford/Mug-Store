@@ -1,7 +1,7 @@
-import React from "react";
-import Auth from "../utils/auth";
-import { Link } from "react-router-dom";
-import Cart from "./Cart";
+import React from 'react';
+import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
+import Cart from './Cart';
 
 function Nav() {
   function showNavigation() {
@@ -10,7 +10,7 @@ function Nav() {
       return (
         <ul>
           <li>
-            {/* <Cart /> */}
+            <Cart />
           </li>
           <li>
             <a href="/" onClick={() => Auth.logout()}>
@@ -22,15 +22,16 @@ function Nav() {
     } else {
       return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <button
-            class="navbar-toggler"
+          <button
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
@@ -52,11 +53,10 @@ function Nav() {
   }
   return (
     <header>
-    
       <nav className="navbar navbar-expand-lg shadow navbar-light bg-light ">
-      <Link to="/">
-        <img src="./assets/images/logo.png" alt="logo" height="80px"/>
-      </Link>
+        <Link to="/">
+          <img src="./assets/images/logo.png" alt="logo" height="80px" />
+        </Link>
         {showNavigation()}
       </nav>
     </header>
