@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+
 import UserDashboard from "./pages/UserDashboard";
 
 import Create from "./pages/Create";
@@ -47,9 +48,22 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<UserDashboard />} />
+<<<<<<< HEAD
+             <Route
+        path="/create"
+        element={<Create />}
+      />
+      {/*<Route 
+
+        path="/success" 
+        element={<Success />} 
+      />
+      <Route 
+=======
             <Route path="/create" element={<Create />} />
             <Route path="/success" element={<Success />} />
             {/*  <Route 
+>>>>>>> 295ac69092c64dbed188370feb64c3bc4f779b65
         path="/orderHistory" 
         element={<OrderHistory />} 
       /> */}

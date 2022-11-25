@@ -3,6 +3,8 @@ import React from "react";
 // import UserInfo from "../components/UserInfo";
 import Auth from "../utils/auth";
 import "../styles/home.css";
+import { Link } from "react-router-dom";
+
 
 const UserDashboard = () => {
   return (
@@ -24,10 +26,11 @@ const UserDashboard = () => {
               <h5>PREVIOUS ORDER</h5>
             </div>
           </div>
-          <img
+          <Link to="/create">  <img
             className=" ui image rounded shadow  medium m-2"
             src="./assets/images/paintingmug.jpg"
             alt="handing painting on a mg"></img>
+            </Link>
         </div>
       </div>
     </div>
