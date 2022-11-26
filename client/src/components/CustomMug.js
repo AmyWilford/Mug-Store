@@ -20,15 +20,10 @@ function CustomMug({ mugText, mugSrc, color }) {
   });
 
   return (
-    <div>
-      <div className="d-flex justify-content-end">
-        <button className="btn btn-primary">
-          <Link to="/profile">Back to profile</Link>
-        </button>
-      </div>
+    <div className="d-flex justify-content-center">
       <div className="image-container">
         <img
-          className="ui image align-middle "
+          className="ui image align-middle"
           src={mugcolour}
           alt="custom mug with text"
         />

@@ -96,19 +96,15 @@ function CustomizeProduct(item) {
         setCharacterCount(value.length);
         console.log(newProduct);
       }
-    }
-    // if (name === "customText" && value.length > 27) {
-    //   setNewProduct({ ...newProduct, [name]: value });
-    // }
-    else if (name === "imageIcon") {
-      console.log("I am working");
+    } else if (name === "imageIcon") {
+      console.log("I am the image icon");
+      console.log(value);
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     } else if (name === "count") {
       setNewProduct({ ...newProduct, [name]: parseInt(value) });
       console.log(newProduct);
     } else {
-      console.log("this is working");
       setNewProduct({ ...newProduct, customizedColor: blockPickerColor });
       console.log(blockPickerColor);
       console.log(newProduct);
@@ -117,7 +113,6 @@ function CustomizeProduct(item) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("I am working");
     try {
       const { data } = await addProduct({
         variables: { ...newProduct },
@@ -138,10 +133,10 @@ function CustomizeProduct(item) {
     }
   };
   return (
-    <div className="card mt-5 p-5">
+    <div>
       <div className="container">
-        <div className="row">
-          <div className="col-md-6">
+        <div className="row justify-content-center">
+          <div className="col-md-5">
             <h5 className="display-6">customize your creation</h5>
             <form onSubmit={handleFormSubmit}>
               <div className="form-group mt-3">
@@ -153,7 +148,7 @@ function CustomizeProduct(item) {
                   name="mugColor"
                   onChange={handleChange}
                 >
-                  <option selected>Choose...</option>
+                  <option selected>select...</option>
                   <option value="white">White</option>
                   <option value="black">Black</option>
                 </select>
@@ -191,17 +186,20 @@ function CustomizeProduct(item) {
               </div>
               <div className="form-group mt-3">
                 <label for="exampleInputEmail1">Pick an Icon (optional)</label>
-                <div>
+                <div name="imageIcon">
+                  {/* <select> */}
                   {icons.map((icon) => (
-                    <button
-                      key={icon.key}
-                      className="btn"
-                      name="imageIcon"
-                      value={icon.value}
-                    >
-                      <i className={icon.className} aria-hidden="true"></i>
+                    <button className="btn">
+                      <i
+                        key={icon.key}
+                        className={icon.className}
+                        name="imageIcon"
+                        value={icon.value}
+                        onChange={handleChange}
+                      ></i>
                     </button>
                   ))}
+                  {/* </select> */}
                 </div>
 
                 {/* <option value="afont">Icon one</option>
@@ -209,7 +207,7 @@ function CustomizeProduct(item) {
                   <option value="font2">Icon three</option>
                   <option value="font3">Icon four</option> */}
               </div>
-              <div className="row">
+              <div className="row m-2 align-items-end">
                 <div className="col-6">
                   <div className="form-group mt-3">
                     <label for="exampleInputEmail1">How Many Mugs?</label>
@@ -218,22 +216,21 @@ function CustomizeProduct(item) {
                       className="form-control"
                       placeholder="quantity"
                       name="count"
-                      type="number"
                       onChange={handleChange}
                     >
-                      <option selected>Choose...</option>
+                      <option selected>select...</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
-                      <option value="3">Four</option>
-                      <option value="3">Five</option>
+                      <option value="4">Four</option>
+                      <option value="5">Five</option>
                     </select>
                   </div>
                 </div>
                 <div className="col-6">
                   <div>
                     <button className="btn btn-primary" type="submit">
-                      Create My Mug
+                      add to cart
                     </button>
                   </div>
                 </div>
@@ -243,7 +240,7 @@ function CustomizeProduct(item) {
               {error && <div>Something went wrong...</div>}
             </form>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-7">
             <CustomMug
               mugText={mugText}
               mugSrc={mugSrc}
