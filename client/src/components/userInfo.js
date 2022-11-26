@@ -31,14 +31,15 @@ function UserInfo() {
       variables: {
         firstName: formState.firstName,
         lastName: formState.lastName,
-        city: formState.city,
         address: formState.address,
+        city: formState.city,
         province: formState.province,
         country: formState.country,
         email: formState.email,
         password: formState.password,
       },
     });
+    console.log(mutationResponse);
     const token = mutationResponse.data.updateUser.token;
     console.log("Got token");
     Auth.login(token);
@@ -182,7 +183,7 @@ function UserInfo() {
                   </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary mt-3">
+                <button type="submit" className="btn btn-outline-success mt-3">
                   Update profile
                 </button>
               </form>

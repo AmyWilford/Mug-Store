@@ -6,7 +6,7 @@ import Cart from './Cart';
 function Nav() {
   function showNavigation() {
     return (    
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-sm  navbar-light bg-light ">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -18,25 +18,25 @@ function Nav() {
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
+              <div className="collapse navbar-collapse " id="navbarNav">
+                <ul className="navbar-nav mr-auto">
     
         {Auth.loggedIn() ? (
           <>
-                    <li className="nav-item">
+                    <li className="nav-item ">
                 {/* <Cart /> */}
               </li>
               <li className="nav-item">
-                <a href="/" onClick={() => Auth.logout()}>
-                  Logout
-                </a>
+                <button className="btn btn-lg btn-outline-danger" type="button" href="/" onClick={() => Auth.logout()}>
+                  Log out
+                </button>
               </li>
               </>
           ) :
           (<>
                   <li className="nav-item">
                     <Link to="/signup" className="nav-link">
-                      Signup
+                      Sign up
                     </Link>
                   </li>
                   <li className="nav-item">

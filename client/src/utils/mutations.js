@@ -81,14 +81,14 @@ export const ADD_USER = gql`
 
 export const UPDATE_USER = gql`
   mutation updateUser(
-    $firstName: String
-    $lastName: String
-    $address: String
-    $city: String
-    $province: String
-    $country: String
-    $email: String
-    $password: String
+    $firstName: String!
+    $lastName: String!
+    $address: String!
+    $city: String!
+    $province: String!
+    $country: String!
+    $email: String!
+    $password: String!
   ) {
     updateUser(
       firstName: $firstName
