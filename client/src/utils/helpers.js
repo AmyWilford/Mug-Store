@@ -56,7 +56,7 @@ export function idbPromise(storeName, method, object) {
 }
 
 export function validateCustomText(input) {
-  if (input.length > 27) {
+  if (input.length > 25) {
     return false;
   }
   return true;

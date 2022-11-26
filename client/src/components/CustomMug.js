@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./TextOverlay.css";
 
 import WhiteMug from "../assets/whitemug.jpg";
@@ -20,17 +20,22 @@ function CustomMug({ mugText, mugSrc, color }) {
   });
 
   return (
-    <div className="d-flex  m-auto shadow ">
-      <div className="ui raised segment">
+    <div>
+      <div className="d-flex justify-content-end">
+        <button className="btn btn-primary">
+          <Link to="/profile">Back to profile</Link>
+        </button>
+      </div>
+      <div className="image-container">
         <img
-          className="ui large image  d-flex"
+          className="ui image align-middle "
           src={mugcolour}
           alt="custom mug with text"
         />
-        <div className="textcontainer">
-          {/* <p className="overlay" style={typeface}> */}
-          <p className=" display-5 overlay" style={{ color: color }}>
+        <div>
+          <p className="overlay" style={{ color: color }}>
             {mugText}
+            <i className=" fa fa-mars mx-2" aria-hidden="true"></i>
           </p>
         </div>
       </div>
@@ -39,3 +44,28 @@ function CustomMug({ mugText, mugSrc, color }) {
 }
 
 export default CustomMug;
+
+{
+  /* <div className="d-flex  m-auto shadow "> */
+}
+{
+  /* <div className="ui raised segment"> */
+}
+{
+  /* <img
+    className="ui large image  d-flex"
+    src={mugcolour}
+    alt="custom mug with text"
+  />
+  <div className="textcontainer"> */
+}
+{
+  /* <p className="overlay" style={typeface}> */
+}
+{
+  /* <p className=" display-5 overlay" style={{ color: color }}>
+      {mugText}
+    </p>
+  </div>
+</div> */
+}

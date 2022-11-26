@@ -6,10 +6,66 @@ import { ADD_PRODUCT } from "../utils/mutations";
 import { validateCustomText } from "../utils/helpers";
 import CustomMug from "../components/CustomMug";
 import { CirclePicker } from "react-color";
+import "font-awesome/css/font-awesome.min.css";
+
+const icons = [
+  {
+    id: 1,
+    value: "basket",
+    className: "fa fa-2x fa-graduation-cap",
+  },
+  {
+    id: 2,
+    value: "one",
+    className: "fa fa-2x fa-snowflake-o",
+  },
+  {
+    id: 3,
+    value: "two",
+    className: "fa fa-2x fa-lightbulb-o",
+  },
+  {
+    id: 4,
+    value: "three",
+    className: "fa fa-2x fa-heart-o",
+  },
+  {
+    id: 5,
+    value: "four",
+    className: "fa fa-2x fa-bicycle",
+  },
+  {
+    id: 6,
+    value: "five",
+    className: "fa fa-2x fa-thumbs-o-up",
+  },
+  {
+    id: 7,
+    value: "five",
+    className: "fa fa-2x fa-mars",
+  },
+
+  {
+    id: 7,
+    value: "five",
+    className: "fa fa-2x fa-genderless",
+  },
+  {
+    id: 9,
+    value: "five",
+    className: "fa fa-2x fa-venus",
+  },
+  {
+    id: 10,
+    value: "five",
+    className: "fa  fa-2x fa-transgender",
+  },
+];
 
 function CustomizeProduct(item) {
   const [blockPickerColor, setBlockPickerColor] = useState("#37d67a");
   const [errorMessage, setErrorMessage] = useState("");
+  const [confirmationMessage, setconfirmationMessage] = useState("");
 
   const [newProduct, setNewProduct] = useState({
     mugColor: "",
@@ -45,6 +101,7 @@ function CustomizeProduct(item) {
     //   setNewProduct({ ...newProduct, [name]: value });
     // }
     else if (name === "imageIcon") {
+      console.log("I am working");
       setNewProduct({ ...newProduct, [name]: value });
       console.log(newProduct);
     } else if (name === "count") {
@@ -66,6 +123,9 @@ function CustomizeProduct(item) {
         variables: { ...newProduct },
       });
       console.log(newProduct);
+      setconfirmationMessage(
+        "Great Choice! Your selection has been added to your cart"
+      );
       setNewProduct({
         mugColor: "",
         customizedColor: "",
@@ -78,14 +138,13 @@ function CustomizeProduct(item) {
     }
   };
   return (
-    <div>
-      <Link to="/profile">Back to profile</Link>
+    <div className="card mt-5 p-5">
       <div className="container">
         <div className="row">
-          <div className="col-sm-6">
-            <div>Customize Your Mug</div>
+          <div className="col-md-6">
+            <h5 className="display-6">customize your creation</h5>
             <form onSubmit={handleFormSubmit}>
-              <div className="form-group">
+              <div className="form-group mt-3">
                 <label for="exampleFormControlSelect1">
                   Pick your mug color
                 </label>
@@ -99,7 +158,7 @@ function CustomizeProduct(item) {
                   <option value="black">Black</option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="form-group mt-3">
                 <label for="exampleInputEmail1">
                   Write out your customized Text
                 </label>
@@ -107,7 +166,7 @@ function CustomizeProduct(item) {
                   name="customText"
                   type="text"
                   className={`m-0 ${
-                    characterCount === 27 || error
+                    characterCount === 25 || error
                       ? "text-danger form-control"
                       : "form-control"
                   }`}
@@ -115,9 +174,10 @@ function CustomizeProduct(item) {
                 />
                 <p>{errorMessage}</p>
               </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">Pick your color text</label>
+              <div className="form-group mt-3">
+                <label for="exampleInputEmail1">Pick your color text:</label>
                 <CirclePicker
+                  className="pt-3"
                   name="customizedColor"
                   color={blockPickerColor}
                   onChange={(color) => {
@@ -129,49 +189,61 @@ function CustomizeProduct(item) {
                   }}
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mt-3">
                 <label for="exampleInputEmail1">Pick an Icon (optional)</label>
-                <select
-                  className="form-control"
-                  placeholder="imageIcon"
-                  name="imageIcon"
-                  type="text"
-                  onChange={handleChange}
-                >
-                  <option selected>Choose...</option>
-                  <option value="afont">Icon one</option>
+                <div>
+                  {icons.map((icon) => (
+                    <button
+                      key={icon.key}
+                      className="btn"
+                      name="imageIcon"
+                      value={icon.value}
+                    >
+                      <i className={icon.className} aria-hidden="true"></i>
+                    </button>
+                  ))}
+                </div>
+
+                {/* <option value="afont">Icon one</option>
                   <option value="font1">Icon two</option>
                   <option value="font2">Icon three</option>
-                  <option value="font3">Icon four</option>
-                </select>
+                  <option value="font3">Icon four</option> */}
               </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">How Many Mugs?</label>
+              <div className="row">
+                <div className="col-6">
+                  <div className="form-group mt-3">
+                    <label for="exampleInputEmail1">How Many Mugs?</label>
 
-                <select
-                  className="form-control"
-                  placeholder="quantity"
-                  name="count"
-                  type="number"
-                  onChange={handleChange}
-                >
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                  <option value="3">Four</option>
-                  <option value="3">Five</option>
-                </select>
+                    <select
+                      className="form-control"
+                      placeholder="quantity"
+                      name="count"
+                      type="number"
+                      onChange={handleChange}
+                    >
+                      <option selected>Choose...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                      <option value="3">Four</option>
+                      <option value="3">Five</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div>
+                    <button className="btn btn-primary" type="submit">
+                      Create My Mug
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div>
-                <button className="btn btn-primary" type="submit">
-                  Create My Mug
-                </button>
-              </div>
+
+              <p>{confirmationMessage}</p>
               {error && <div>Something went wrong...</div>}
             </form>
           </div>
-          <div className="col-sm-6">
+          <div className="col-md-6">
             <CustomMug
               mugText={mugText}
               mugSrc={mugSrc}
