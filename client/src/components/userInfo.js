@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
@@ -8,27 +8,36 @@ import { UPDATE_USER } from "../utils/mutations";
 function UserInfo() {
   const { data } = useQuery(QUERY_USER);
   let user;
-
-  const [editUser] = useMutation(UPDATE_USER);
+  const [formState, setFormState] = useState();
+  const [updateUser] = useMutation(UPDATE_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const mutationResponse = await editUser({
+    const mutationResponse = await updateUser({
       variables: {
-        email: document.getElementById("inputEmail4").value,
-        address: document.getElementById("inputAddress").value,
-        // city: city,
-        // address: address,
-        // province: province,
-        // country: country,
-        // email: email,
-        // password: password,
+        firstName: formState.firstName,
+        lastName: formState.lastName,
+        city: formState.city,
+        address: formState.address,
+        province: formState.province,
+        country: formState.country,
+        email: formState.email,
+        password: formState.password,
       },
     });
     const token = mutationResponse.data.editUser.token;
     console.log("Got token");
     Auth.login(token);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+    console.log('change handled');
   };
 
   if (data) {
@@ -47,7 +56,7 @@ function UserInfo() {
           <p>{user.city}</p>
           <p>{user.province}</p>
           <p>{user.country}</p>
-          {/* MODAL AND BUTTON  */}
+          {/* MODAL BUTTON  */}
           <button
             type="button"
             class="btn btn-primary"
@@ -63,6 +72,7 @@ function UserInfo() {
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
+              {/* MODAL FORM */}
               <form
                 className="modal-content modal-body"
                 onSubmit={handleFormSubmit}>
@@ -73,8 +83,9 @@ function UserInfo() {
                       type="text"
                       class="form-control"
                       id="inputFirstName"
-                      value={user.firstName}
-                    />
+                      placeholder={user.firstName}
+                      onChange={handleChange}
+                       />
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputLastName">Last Name</label>
@@ -82,7 +93,8 @@ function UserInfo() {
                       type="text"
                       class="form-control"
                       id="inputLastName"
-                      value={user.lastName}
+                      placeholder={user.lastName}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -93,7 +105,8 @@ function UserInfo() {
                       type="email"
                       class="form-control"
                       id="inputEmail4"
-                      value={user.email}
+                      placeholder={user.email}
+                      onChange={handleChange}
                     />
                   </div>
                   <div class="form-group col-md-6">
@@ -103,6 +116,7 @@ function UserInfo() {
                       class="form-control"
                       id="inputPassword4"
                       placeholder="Enter New Password"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -112,7 +126,8 @@ function UserInfo() {
                     type="text"
                     class="form-control"
                     id="inputAddress"
-                    value={user.address}
+                    placeholder={user.address}
+                    onChange={handleChange}
                   />
                 </div>
                 <div class="form-row">
@@ -122,7 +137,8 @@ function UserInfo() {
                       type="text"
                       class="form-control"
                       id="inputCity"
-                      value={user.city}
+                      placeholder={user.city}
+                      onChange={handleChange}
                     />
                   </div>
                   <div class="form-group col-md-4">
@@ -130,7 +146,8 @@ function UserInfo() {
                     <input
                       id="inputState"
                       class="form-control"
-                      value={user.province}
+                      placeholder={user.province}
+                      onChange={handleChange}
                     />
                   </div>
                   <div class="form-group col-md-2">
@@ -139,7 +156,8 @@ function UserInfo() {
                       type="text"
                       class="form-control"
                       id="inputCountry"
-                      value={user.country}
+                      placeholder={user.country}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>

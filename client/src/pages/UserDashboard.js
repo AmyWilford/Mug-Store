@@ -25,7 +25,7 @@ const UserDashboard = () => {
               <UserInfo /> 
               
             </div>
-            <div className="ui raised tertiary segment ">
+            <div className="ui raised tertiary  segment ">
               <PrevOrder /> 
                      </div>
                     

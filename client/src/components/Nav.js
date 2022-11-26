@@ -5,52 +5,56 @@ import Cart from './Cart';
 
 function Nav() {
   function showNavigation() {
-    // if user is logged in
-    if (Auth.loggedIn()) {
-      return (
-        <ul>
-          <li>
-            {/* <Cart /> */}
-          </li>
-          <li>
-            <a href="/" onClick={() => Auth.logout()}>
-              Logout
-            </a>
-          </li>
-        </ul>
-      );
-    } else {
-      return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link to="/signup" className="nav-link">
-                  Signup
-                </Link>
+    return (    
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+    
+        {Auth.loggedIn() ? (
+          <>
+                    <li className="nav-item">
+                {/* <Cart /> */}
               </li>
               <li className="nav-item">
-                <Link to="/login" className="nav-link">
-                  Login
-                </Link>
+                <a href="/" onClick={() => Auth.logout()}>
+                  Logout
+                </a>
               </li>
-            </ul>
+              </>
+          ) :
+          (<>
+                  <li className="nav-item">
+                    <Link to="/signup" className="nav-link">
+                      Signup
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/login" className="nav-link">
+                      Login
+                    </Link>
+                  </li>
+               
+            </>
+          )}
+          </ul>
           </div>
         </nav>
-      );
-    }
-  }
+        )}
+    
+    
+
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg shadow navbar-light bg-light ">
