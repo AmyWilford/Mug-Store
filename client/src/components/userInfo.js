@@ -8,12 +8,25 @@ import { UPDATE_USER } from "../utils/mutations";
 function UserInfo() {
   const { data } = useQuery(QUERY_USER);
   let user;
-  const [formState, setFormState] = useState();
+  if (data) {
+    user = data.user;
+  }
+  const [formState, setFormState] = useState(
+   { firstName:`${user.firstName}`,
+   lastName:`${user.lastName}`,
+   city:`${user.city}`,
+   address:`${user.address}`,
+   province:`${user.province}`,
+   country:`${user.country}`,
+   email:`${user.email}`,
+   password:`${user.password}`,}
+  );
+  console.log(formState)
   const [updateUser] = useMutation(UPDATE_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    console.log("update user button clicked");
     const mutationResponse = await updateUser({
       variables: {
         firstName: formState.firstName,
@@ -26,7 +39,7 @@ function UserInfo() {
         password: formState.password,
       },
     });
-    const token = mutationResponse.data.editUser.token;
+    const token = mutationResponse.data.updateUser.token;
     console.log("Got token");
     Auth.login(token);
   };
@@ -40,9 +53,7 @@ function UserInfo() {
     console.log('change handled');
   };
 
-  if (data) {
-    user = data.user;
-  }
+
 
   return (
     <div className="container my-1">
@@ -59,102 +70,111 @@ function UserInfo() {
           {/* MODAL BUTTON  */}
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             data-toggle="modal"
             data-target="#exampleModalCenter">
             Edit user details
           </button>
           <div
-            class="modal fade"
+            className="modal fade"
             id="exampleModalCenter"
             tabindex="-1"
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-dialog modal-dialog-centered" role="document">
               {/* MODAL FORM */}
               <form
                 className="modal-content modal-body"
                 onSubmit={handleFormSubmit}>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
+                <div className="form-row">
+                  <div className="form-group col-md-6">
                     <label for="inputFirstName">First Name</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
+                      name="firstName"
                       id="inputFirstName"
                       placeholder={user.firstName}
                       onChange={handleChange}
                        />
                   </div>
-                  <div class="form-group col-md-6">
+                  <div className="form-group col-md-6">
                     <label for="inputLastName">Last Name</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
+                      name="lastName"
                       id="inputLastName"
                       placeholder={user.lastName}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
+                <div className="form-row">
+                  <div className="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
                     <input
                       type="email"
-                      class="form-control"
+                      name="email"
+                      className="form-control"
                       id="inputEmail4"
                       placeholder={user.email}
                       onChange={handleChange}
                     />
                   </div>
-                  <div class="form-group col-md-6">
+                  <div className="form-group col-md-6">
                     <label for="inputPassword4">Password</label>
                     <input
                       type="password"
-                      class="form-control"
+                      name="password"
+                      className="form-control"
                       id="inputPassword4"
                       placeholder="Enter New Password"
                       onChange={handleChange}
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="inputAddress">Address</label>
                   <input
                     type="text"
-                    class="form-control"
+                    name="address"
+                    className="form-control"
                     id="inputAddress"
                     placeholder={user.address}
                     onChange={handleChange}
                   />
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
+                <div className="form-row">
+                  <div className="form-group col-md-6">
                     <label for="inputCity">City</label>
                     <input
                       type="text"
-                      class="form-control"
+                      name="city"
+                      className="form-control"
                       id="inputCity"
                       placeholder={user.city}
                       onChange={handleChange}
                     />
                   </div>
-                  <div class="form-group col-md-4">
+                  <div className="form-group col-md-4">
                     <label for="inputState">State/Province</label>
                     <input
                       id="inputState"
-                      class="form-control"
+                      type="text"
+                      name="province"
+                      className="form-control"
                       placeholder={user.province}
                       onChange={handleChange}
                     />
                   </div>
-                  <div class="form-group col-md-2">
+                  <div className="form-group col-md-2">
                     <label for="inputCountry">Country</label>
                     <input
                       type="text"
-                      class="form-control"
+                      name="country"
+                      className="form-control"
                       id="inputCountry"
                       placeholder={user.country}
                       onChange={handleChange}
@@ -162,7 +182,7 @@ function UserInfo() {
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3">
+                <button type="submit" className="btn btn-primary mt-3">
                   Update profile
                 </button>
               </form>

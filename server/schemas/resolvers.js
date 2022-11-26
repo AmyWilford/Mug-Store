@@ -109,7 +109,6 @@ const resolvers = {
     updateUser: async (parent, args, context) => {
       if (context.user) {
         args.isAdmin = null;
-
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
         });

@@ -57,7 +57,7 @@ function Nav() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg shadow navbar-light bg-light ">
+      <nav className="navbar m-auto navbar-expand-lg shadow navbar-light bg-light ">
         <Link to="/">
           <img src="./assets/images/logo.png" alt="logo" height="80px" />
         </Link>
