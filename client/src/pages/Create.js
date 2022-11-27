@@ -8,11 +8,11 @@ import "../styles/home.css";
 
 function Create() {
   return (
-    <div class="container">
-      <div className="card mt-5 p-2">
+    <div>
+      <div className="mt-5 p-4">
         <CustomizeProduct />
         <div className="mt-3">
-          <Link to="/profile">Back to profile</Link>
+          <Link to="/profile">← Back to profile</Link>
         </div>
       </div>
     </div>

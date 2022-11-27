@@ -18,20 +18,24 @@
       margin: 5px;
     }
 
-.overlay, .overlay p {
-    display: flex;
+.overlay {
+    display: inline-block;
     flex-wrap: wrap; 
-    font-size: 2.5rem;
-    word-wrap: break-word;
+    /* font-size: 2.75rem; */
+    font-size: 2.6rem;
+    word-wrap:break-word;
     text-align: center;
+    max-width: 400px;
     position: absolute;
     margin-bottom: 0px;
     top: 25%;
     left: 40%;
     width: 40%;
-    /* height: 80%; */
-    /* z-index: 10; */
     line-height: 1.2em;
-    /* max-height: 3em; */
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-       } 
+       }
+       
+       @media only screen and (max-width: 450px) {
+        .overlay {
+            font-size: 2.1rem;
+        }
+       }
