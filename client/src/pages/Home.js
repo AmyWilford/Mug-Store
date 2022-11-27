@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
-      <div className="d-flex main-content">
-      <div className="container d-flex w-50  m-auto mt-5 align-items-center ">
+      <div className="d-flex  main-content">
+      <div className="container d-flex flex-column w-50  m-auto mt-5 align-items-center ">
       <Link to="/create"> <img className = " ui image shadow rounded medium m-5" src='./assets/images/paintingmug.jpg' alt='someone painting on aa mug'/>
       </Link>
         <Link to="/profile">

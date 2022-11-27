@@ -17,7 +17,7 @@ const UserDashboard = () => {
 
   return (
     <div className="main-content d-flex" >
-      <div className="flex-column white m-auto ui raised segment" id="user-dash">
+      <div className="flex-column white m-auto mt-5 ui raised  segment" id="user-dash">
         <div className="container d-flex flex-column align-items-center  m-auto  ">
         {user ? (
           <div className="d-flex  ui horizontal  segments" id="userdetails">
