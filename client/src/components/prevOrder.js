@@ -33,7 +33,7 @@ function PrevOrder() {
             ))}
 
             <Link to="/orderhistory">
-              <button>See more orders </button>
+              <button  className="btn btn-primary" >See more orders </button>
             </Link>
           </>
         ) : null}

@@ -36,7 +36,7 @@ function UserInfo() {
         province: formState.province,
         country: formState.country,
         email: formState.email,
-        // password: formState.password,
+        password: formState.password,
       },
     });
     const token = mutationResponse.data.updateUser.token;
