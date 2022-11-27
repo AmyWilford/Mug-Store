@@ -109,9 +109,16 @@ const resolvers = {
     updateUser: async (parent, args, context) => {
       if (context.user) {
         args.isAdmin = null;
-        return await User.findByIdAndUpdate(context.user._id, args, {
+        let user = await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
         });
+        let token = signToken(user);
+        let response = {
+          user: user,
+          token: token
+        }
+        console.log(response);
+        return response;
       }
 
       throw new AuthenticationError('Not logged in');

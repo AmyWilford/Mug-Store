@@ -2,7 +2,7 @@ import React from "react";
 import PrevOrder from "../components/PrevOrder";
 import UserInfo from "../components/UserInfo";
 import { useQuery } from '@apollo/client';
-import Auth from "../utils/auth";
+// import Auth from "../utils/auth";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";

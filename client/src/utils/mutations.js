@@ -78,7 +78,6 @@ export const ADD_USER = gql`
   }
 `;
 
-
 export const UPDATE_USER = gql`
   mutation updateUser(
     $firstName: String!

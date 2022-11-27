@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
@@ -11,17 +11,17 @@ function UserInfo() {
   if (data) {
     user = data.user;
   }
-  const [formState, setFormState] = useState(
-   { firstName:`${user.firstName}`,
-   lastName:`${user.lastName}`,
-   city:`${user.city}`,
-   address:`${user.address}`,
-   province:`${user.province}`,
-   country:`${user.country}`,
-   email:`${user.email}`,
-   password:`${user.password}`,}
-  );
-  console.log(formState)
+  const [formState, setFormState] = useState({
+    firstName: `${user.firstName}`,
+    lastName: `${user.lastName}`,
+    city: `${user.city}`,
+    address: `${user.address}`,
+    province: `${user.province}`,
+    country: `${user.country}`,
+    email: `${user.email}`,
+    password: `${user.password}`,
+  });
+  console.log(formState);
   const [updateUser] = useMutation(UPDATE_USER);
 
   const handleFormSubmit = async (event) => {
@@ -39,10 +39,12 @@ function UserInfo() {
         password: formState.password,
       },
     });
-    console.log(mutationResponse);
+    console.log(mutationResponse.data);
     const token = mutationResponse.data.updateUser.token;
-    console.log("Got token");
-    Auth.login(token);
+    console.log("Got new? token");
+    console.log(token);
+    Auth.update(token);
+    // window.location.reload();
   };
 
   const handleChange = (event) => {
@@ -51,10 +53,8 @@ function UserInfo() {
       ...formState,
       [name]: value,
     });
-    console.log('change handled');
+    console.log("change handled");
   };
-
-
 
   return (
     <div className="container my-1">
@@ -87,7 +87,8 @@ function UserInfo() {
               {/* MODAL FORM */}
               <form
                 className="modal-content modal-body"
-                onSubmit={handleFormSubmit}>
+                onSubmit={handleFormSubmit}
+                autocomplete="off">
                 <div className="form-row">
                   <div className="form-group col-md-6">
                     <label for="inputFirstName">First Name</label>
@@ -98,7 +99,7 @@ function UserInfo() {
                       id="inputFirstName"
                       placeholder={user.firstName}
                       onChange={handleChange}
-                       />
+                    />
                   </div>
                   <div className="form-group col-md-6">
                     <label for="inputLastName">Last Name</label>
@@ -122,6 +123,7 @@ function UserInfo() {
                       id="inputEmail4"
                       placeholder={user.email}
                       onChange={handleChange}
+                      autocomplete="off"
                     />
                   </div>
                   <div className="form-group col-md-6">

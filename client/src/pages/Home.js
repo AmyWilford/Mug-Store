@@ -10,7 +10,7 @@ const Home = () => {
       <Link to="/create"> <img className = " ui image shadow rounded medium m-5" src='./assets/images/paintingmug.jpg' alt='someone painting on aa mug'/>
       </Link>
         <Link to="/profile">
- <button className="massive rounded yellow ui button m-2">Go to your dashboard</button>
+ <button className="massive rounded grey ui button m-2">Go to your dashboard</button>
  </Link>
       </div>
       </div>

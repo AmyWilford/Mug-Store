@@ -1,15 +1,16 @@
 * {
   box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
+
 }
 
 
 .nav-item {
   font-size: x-large;
-  font-family: "Nerko One";
 }
 
 .nav-item:hover {
-  filter: drop-shadow(0 0mm 1mm rgb(136, 136, 136));
+  filter: drop-shadow(0 0mm .5mm rgb(136, 136, 136));
 
 }
 
@@ -21,7 +22,7 @@
   background-size:auto;
 }
 
-@media (max-width:460px) {
+@media (max-width:600px) {
   .main-content {
     height: 100vh;
     width: 100vw;

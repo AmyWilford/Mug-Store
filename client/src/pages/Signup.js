@@ -29,6 +29,8 @@ function Signup(props) {
     const token = mutationResponse.data.addUser.token;
     console.log('Got token');
     Auth.login(token);
+    console.log(token);
+
   };
 
   const handleChange = (event) => {
@@ -44,6 +46,8 @@ function Signup(props) {
     
     <div className=" d-flex flex-column main-content ">
       <div className="container ui raised segment  mt-5 w-25">
+      <div>Already have an account?</div>
+
         <Link to="/login">← Go to Login</Link>
 
         <h2>Signup</h2>
