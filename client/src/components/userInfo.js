@@ -36,13 +36,11 @@ function UserInfo() {
         province: formState.province,
         country: formState.country,
         email: formState.email,
-        password: formState.password,
+        // password: formState.password,
       },
     });
-    console.log(mutationResponse.data);
     const token = mutationResponse.data.updateUser.token;
     console.log("Got new? token");
-    console.log(token);
     Auth.update(token);
     // window.location.reload();
   };
@@ -88,7 +86,7 @@ function UserInfo() {
               <form
                 className="modal-content modal-body"
                 onSubmit={handleFormSubmit}
-                autocomplete="off">
+                autoComplete="off">
                 <div className="form-row">
                   <div className="form-group col-md-6">
                     <label for="inputFirstName">First Name</label>
@@ -123,7 +121,7 @@ function UserInfo() {
                       id="inputEmail4"
                       placeholder={user.email}
                       onChange={handleChange}
-                      autocomplete="off"
+                      autoComplete="off"
                     />
                   </div>
                   <div className="form-group col-md-6">
@@ -135,6 +133,7 @@ function UserInfo() {
                       id="inputPassword4"
                       placeholder="Enter New Password"
                       onChange={handleChange}
+                      autoComplete="off"
                     />
                   </div>
                 </div>
