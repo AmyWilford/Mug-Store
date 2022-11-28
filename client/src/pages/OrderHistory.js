@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-// import "../styles/home.css";
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -13,6 +11,8 @@ function OrderHistory() {
   if (data) {
     user = data.user;
   }
+console.log(user.orders)
+console.log(user.products)
 
   return (
     <div className="main-content d-flex ">
