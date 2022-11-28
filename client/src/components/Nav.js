@@ -1,8 +1,7 @@
-import React from "react";
-import Auth from "../utils/auth";
-import { Link } from "react-router-dom";
-import Cart from "./Cart";
-
+import React from 'react';
+import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
+import Cart from './Cart';
 
 function Nav() {
   function showNavigation() {
@@ -15,20 +14,24 @@ function Nav() {
           data-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation">
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav mr-auto">
             {Auth.loggedIn() ? (
               <>
-                <li className="nav-item ">{/* <Cart /> */}</li>
+                <li className="nav-item ">
+                  <Cart />
+                </li>
                 <li className="nav-item">
                   <button
                     className="btn btn-lg btn-outline-danger"
                     type="button"
                     href="/"
-                    onClick={() => Auth.logout()}>
+                    onClick={() => Auth.logout()}
+                  >
                     Log out
                   </button>
                 </li>
@@ -39,18 +42,20 @@ function Nav() {
                   <Link to="/signup" className="nav-link">
                     <button
                       className="btn btn-lg btn-outline-secondary"
-                      type="button">
+                      type="button"
+                    >
                       Sign up
-                    </button>{" "}
+                    </button>{' '}
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/login" className="nav-link">
                     <button
                       className="btn btn-lg btn-outline-success"
-                      type="button">
+                      type="button"
+                    >
                       Login
-                    </button>{" "}
+                    </button>{' '}
                   </Link>
                 </li>
               </>
@@ -65,7 +70,12 @@ function Nav() {
     <header>
       <nav className="navbar m-auto navbar-expand-lg shadow  navbar-light bg-light ">
         <Link to="/">
-          <img className="animate__bounceIn " src="./assets/images/logo.png" alt="logo" height="80px" />
+          <img
+            className="animate__bounceIn "
+            src="./assets/images/logo.png"
+            alt="logo"
+            height="80px"
+          />
         </Link>
         {showNavigation()}
       </nav>

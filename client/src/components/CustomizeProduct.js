@@ -1,63 +1,111 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_PRODUCT } from "../utils/mutations";
-import { validateCustomText, pluralize } from "../utils/helpers";
-import CustomMug from "../components/CustomMug";
-import { CirclePicker } from "react-color";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_PRODUCT } from '../utils/mutations';
+import { validateCustomText, pluralize } from '../utils/helpers';
+import CustomMug from '../components/CustomMug';
+import { CirclePicker } from 'react-color';
 
-// importing cart things
+import { useStoreContext } from '../utils/GlobalState';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
+import { idbPromise } from '../utils/helpers';
 
-import { useStoreContext } from "../utils/GlobalState";
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
-import { idbPromise } from "../utils/helpers";
+function AreProductsSame(product1, product2) {
+  if (
+    product1.mugColor === product2.mugColor &&
+    product1.customizedColor === product2.customizedColor &&
+    product1.customText === product2.customText &&
+    product1.imageIcon === product2.imageIcon
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function CustomizeProduct(item) {
-  const [state, dispatch] = useStoreContext();
-  const addToCart = () => {
-    dispatch({
-      type: ADD_TO_CART,
-      product: { ...newProduct },
-    });
-    idbPromise("cart", "put", { ...newProduct });
-  };
-  ///
-
-  const [blockPickerColor, setBlockPickerColor] = useState("black");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [confirmationMessage, setconfirmationMessage] = useState("");
+  const [blockPickerColor, setBlockPickerColor] = useState('black');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [confirmationMessage, setconfirmationMessage] = useState('');
 
   const [newProduct, setNewProduct] = useState({
-    mugColor: "White",
-    customizedColor: "",
-    customText: "",
-    customFont: "Trebuchet MS",
-    count: "",
+    mugColor: 'White',
+    customizedColor: '',
+    customText: '',
+    customFont: 'Trebuchet MS',
+    count: '',
   });
 
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-  const [mugText, setMugText] = useState("");
-  const [mugSrc, setMugSrc] = useState("");
-  const [mugFont, setMugFont] = useState("");
+  const [mugText, setMugText] = useState('');
+  const [mugSrc, setMugSrc] = useState('');
+  const [mugFont, setMugFont] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-  const [newButton, setNewButton] = useState("");
+  const [newButton, setNewButton] = useState('');
+
+  const [state, dispatch] = useStoreContext();
+
+  const { cart } = state;
+  const addToCart = async (product) => {
+    const itemInCart = cart.find((cartItem) => {
+      return AreProductsSame(cartItem, product);
+    });
+
+    if (itemInCart) {
+      dispatch({
+        products: [
+          {
+            type: UPDATE_CART_QUANTITY,
+            _id: itemInCart._id,
+            count: parseInt(itemInCart.count) + 1,
+          },
+        ],
+      });
+      idbPromise('cart', 'put', {
+        products: [
+          {
+            ...itemInCart,
+            count: parseInt(itemInCart.count) + 1,
+          },
+        ],
+      });
+    } else {
+      dispatch({
+        products: [
+          {
+            type: ADD_TO_CART,
+            product: { ...product, count: 1 },
+          },
+        ],
+      });
+      idbPromise('cart', 'put', { products: [{ ...product, count: 1 }] });
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "mugColor") {
+    if (name === 'mugColor') {
+      if (value === 'black') {
+        setMugSrc('../assets/blackmug.jpg');
+      }
+
       setNewProduct({ ...newProduct, [name]: value });
-      setconfirmationMessage("");
+      console.log(newProduct);
+    }
+    if (name === 'customizedColor') {
+      setNewProduct({ ...newProduct, [name]: value });
+      setconfirmationMessage('');
       setMugSrc(value);
-    } else if (name === "customText") {
+    } else if (name === 'customText') {
       if (validateCustomText(value)) {
         setNewProduct({ ...newProduct, [name]: value });
         setMugText(value);
         setCharacterCount(value.length);
       }
-    } else if (name === "customFont") {
+    } else if (name === 'customFont') {
       setNewProduct({ ...newProduct, [name]: value });
       setMugFont(value);
-    } else if (name === "count") {
+    } else if (name === 'count') {
       setNewProduct({ ...newProduct, [name]: parseInt(value) });
     } else {
       setNewProduct({ ...newProduct, customizedColor: blockPickerColor });
@@ -73,37 +121,37 @@ function CustomizeProduct(item) {
       !newProduct.count
     ) {
       setErrorMessage(
-        "Something is missing. Please review and make sure your custom choices have been selected"
+        'Something is missing. Please review and make sure your custom choices have been selected'
       );
     } else {
       try {
         const { data } = await addProduct({
           variables: { ...newProduct },
         });
-        setNewButton(" Create a new mug");
+        setNewButton(' Create a new mug');
         setconfirmationMessage(
           `${newProduct.count} ${pluralize(
-            "mug",
+            'mug',
             newProduct.count
           )} added to cart.`
         );
         addToCart();
-        let mugselector = document.getElementById("mugselector");
-        let fontselector = document.getElementById("fontselector");
-        fontselector.value = "Trebuchet MS";
-        mugselector.value = "white";
-        setBlockPickerColor("black");
-        setMugSrc("");
-        setMugFont("Trebuchet MS");
-        setMugText("");
-        setErrorMessage("");
-        setCharacterCount("0");
+        let mugselector = document.getElementById('mugselector');
+        let fontselector = document.getElementById('fontselector');
+        fontselector.value = 'Trebuchet MS';
+        mugselector.value = 'white';
+        setBlockPickerColor('black');
+        setMugSrc('');
+        setMugFont('Trebuchet MS');
+        setMugText('');
+        setErrorMessage('');
+        setCharacterCount('0');
         setNewProduct({
-          mugColor: "white",
-          customizedColor: "",
-          customText: "",
-          customFont: "",
-          count: "",
+          mugColor: 'white',
+          customizedColor: '',
+          customText: '',
+          customFont: '',
+          count: '',
         });
       } catch (err) {
         console.error(err);
@@ -114,8 +162,8 @@ function CustomizeProduct(item) {
   const clearConfirmation = (event) => {
     event.preventDefault();
 
-    setconfirmationMessage("");
-    setNewButton("");
+    setconfirmationMessage('');
+    setNewButton('');
   };
   return (
     <div>
@@ -135,6 +183,7 @@ function CustomizeProduct(item) {
                   name="mugColor"
                   id="mugselector"
                   onChange={handleChange}
+                  defaultValue="1"
                 >
                   <option value="white">White</option>
                   <option value="black">Black</option>
@@ -148,13 +197,13 @@ function CustomizeProduct(item) {
                   value={newProduct.customText}
                   type="text"
                   className={`form-control ${
-                    characterCount === 26 || error ? "text-danger " : ""
+                    characterCount === 26 || error ? 'text-danger ' : ''
                   }`}
                   onChange={handleChange}
                 />
                 <small
                   className={`d-flex justify-content-end ${
-                    characterCount === 25 || error ? "text-danger" : ""
+                    characterCount === 25 || error ? 'text-danger' : ''
                   }`}
                 >
                   max character count: {characterCount}/25
@@ -182,6 +231,7 @@ function CustomizeProduct(item) {
                   name="customFont"
                   className="form-control"
                   onChange={handleChange}
+                  defaultValue="1"
                 >
                   <option>Trebuchet MS</option>
                   <option>Amatic SC</option>
