@@ -64,7 +64,7 @@ function Nav() {
     <header>
       <nav className="navbar m-auto navbar-expand-lg shadow  navbar-light bg-light ">
         <Link to="/">
-          <img src="./assets/images/logo.png" alt="logo" height="80px" />
+          <img className="animate__bounceIn " src="./assets/images/logo.png" alt="logo" height="80px" />
         </Link>
         {showNavigation()}
       </nav>

@@ -57,13 +57,13 @@ const UpdateUser = () => {
 
   return (
     <div className="main-content d-flex ">
-      <div className="container d-flex flex-column ui segment align-items-center  m-auto animate__animated animate__fadeIn mt-5">
+      <div className="container d-flex flex-column ui segment align-items-center w-25 m-auto animate__animated animate__fadeIn mt-5">
         <form
           className="modal-content modal-body "
           onSubmit={handleFormSubmit}
           autoComplete="off">
           <div className="form-row">
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-8">
               <label htmlFor="inputFirstName">First Name</label>
               <input
                 type="text"
@@ -74,7 +74,7 @@ const UpdateUser = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-8">
               <label htmlFor="inputLastName">Last Name</label>
               <input
                 type="text"
@@ -87,7 +87,7 @@ const UpdateUser = () => {
             </div>
           </div>
           <div className="form-row">
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-8">
               <label htmlFor="inputEmail4">Email</label>
               <input
                 type="email"
@@ -99,7 +99,7 @@ const UpdateUser = () => {
                 autoComplete="off"
               />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-8">
               <label htmlFor="inputPassword4">Password</label>
               <input
                 type="password"
@@ -112,7 +112,7 @@ const UpdateUser = () => {
               />
             </div>
           </div>
-          <div className="form-group">
+          <div className="form-group col-md-8">
             <label htmlFor="inputAddress">Address</label>
             <input
               type="text"
@@ -135,7 +135,7 @@ const UpdateUser = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group col-md-4">
+            <div className="form-group col-md-6">
               <label htmlFor="inputState">State/Province</label>
               <input
                 id="inputState"
@@ -146,7 +146,7 @@ const UpdateUser = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group col-md-2">
+            <div className="form-group col-md-6">
               <label htmlFor="inputCountry">Country</label>
               <input
                 type="text"
@@ -158,10 +158,14 @@ const UpdateUser = () => {
               />
             </div>
           </div>
-
-          <button type="submit" className="btn btn-success mt-3">
+        <div>
+          <button type="submit" className="btn  btn-success mt-3">
             Update profile
           </button>
+         <Link to="/profile"> <button className="btn btn-secondary  mt-3">  
+            Back to dashboard
+          </button></Link> 
+          </div>
         </form>
       </div>
     </div>
