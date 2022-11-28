@@ -2,6 +2,7 @@ import React from "react";
 import PrevOrder from "../components/PrevOrder";
 import UserInfo from "../components/UserInfo";
 import { useQuery } from "@apollo/client";
+
 // import Auth from "../utils/auth";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
@@ -16,6 +17,7 @@ const UserDashboard = () => {
   }
   
   return (
+
     <div className="main-content d-flex ">
       <div
         className="container d-flex flex-column white m-auto mt-5 "
@@ -32,6 +34,7 @@ const UserDashboard = () => {
             </div>
           ) : (
             <Link to="/login">
+
               <button className="massive rounded grey ui button m-2">Click here to login and see your details</button>
             </Link>
           )}
@@ -40,6 +43,7 @@ const UserDashboard = () => {
             <img
               className=" ui image rounded shadow  medium m-2"
               src="./assets/images/paintingmug.jpg"
+
               alt="handing painting on a mg"></img>
           </Link>
         </div>

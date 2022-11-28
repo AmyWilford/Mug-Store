@@ -11,7 +11,7 @@ module.exports = {
     if (product.customText != null) {
       price += 7;
     }
-    if (product.imageIcon != null) {
+    if (product.customFont != null) {
       price += 10;
     }
     return price * product.count;

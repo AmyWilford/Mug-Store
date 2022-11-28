@@ -1,17 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useMutation, useQuery } from "@apollo/client";
+// import { Link } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
-import { QUERY_PRODUCT } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
 
 function ProductItem(item) {
-  const [singleProduct, { error }] = useQuery(QUERY_PRODUCT);
+  // const [singleProduct, { error }] = useQuery(QUERY_PRODUCT);
 
   const [state, dispatch] = useStoreContext();
 
-  const { _id, mugColor, customizedColor, customText, imageIcon, count } = item;
+  const { _id, mugColor, customizedColor, customText, customFont, count } = item;
 
   const { cart } = state;
 
@@ -41,7 +39,8 @@ function ProductItem(item) {
       {/* <Link to={`/products/${_id}`}>
         <p>This your mug</p>
       </Link> */}
-      <div>{singleProduct.customText}</div>
+
+      <div>{customText} | {_id} </div>
       <button onClick={addToCart}>Add to cart</button>
     </div>
   );

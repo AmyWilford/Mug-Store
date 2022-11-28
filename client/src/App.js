@@ -9,20 +9,21 @@ import {
 import { setContext } from "@apollo/client/link/context";
 // import background from "./assets/background.jpg";
 
+import { StoreProvider } from "./utils/GlobalState";
 
-import { StoreProvider } from './utils/GlobalState';
-
-import Nav from './components/Nav';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import UserDashboard from "./pages/UserDashboard";
+import Create from "./pages/Create";
+import Success from "./pages/Success";
+import OrderHistory from "./pages/OrderHistory";
+import About from "./pages/About";
+import Cart from "./components/Cart";
+
 import UpdateUser from "./pages/UpdateUser";
 
-
-import Create from './pages/Create';
-import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -52,21 +53,19 @@ function App() {
         <StoreProvider>
           <Router>
             <Nav />
+            <Cart />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/profile" element={<UserDashboard />} />
               <Route path="/create" element={<Create />} />
+              <Route path="/success" element={<Success />} />
               <Route path="/updateuser" element={<UpdateUser />} />
 
               {/*<Route 
 
-        path="/success" 
-        element={<Success />} 
-      />
-            <Route path="/success" element={<Success />} />
-            {/*  <Route 
+              {/*  <Route 
         path="/orderHistory" 
         element={<OrderHistory />} 
       /> */}

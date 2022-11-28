@@ -1,200 +1,246 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_PRODUCT } from "../utils/mutations";
+import { validateCustomText, pluralize } from "../utils/helpers";
+import CustomMug from "../components/CustomMug";
+import { CirclePicker } from "react-color";
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { ADD_PRODUCT } from '../utils/mutations';
-import { useStoreContext } from '../utils/GlobalState';
-import CustomMug from '../components/CustomMug';
-// import "font-awesome/css/font-awesome.min.css";
+// importing cart things
 
-// import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
-// import { idbPromise } from "../utils/helpers";
-
-// import { HexColorPicker } from "react-colorful";
-// import "react-colorful/dist/index.css";
+import { useStoreContext } from "../utils/GlobalState";
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
+import { idbPromise } from "../utils/helpers";
 
 function CustomizeProduct(item) {
-  // const [color, setColor] = useState("#aabbcc");dw
+  const [state, dispatch] = useStoreContext();
+  const addToCart = () => {
+    dispatch({
+      type: ADD_TO_CART,
+      product: { ...newProduct },
+    });
+    idbPromise("cart", "put", { ...newProduct });
+  };
+  ///
+
+  const [blockPickerColor, setBlockPickerColor] = useState("black");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [confirmationMessage, setconfirmationMessage] = useState("");
 
   const [newProduct, setNewProduct] = useState({
-    mugColor: '',
-    customizedColor: '',
-    customText: '',
-    imageIcon: '',
-    count: '',
+    mugColor: "White",
+    customizedColor: "",
+    customText: "",
+    customFont: "Trebuchet MS",
+    count: "",
   });
 
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-  const [mugText, setMugText] = useState("Your Text");
-  const [mugSRC, setMugSrc] = useState("../assets/whitemug.jpg");
+  const [mugText, setMugText] = useState("");
+  const [mugSrc, setMugSrc] = useState("");
+  const [mugFont, setMugFont] = useState("");
+  const [characterCount, setCharacterCount] = useState(0);
+  const [newButton, setNewButton] = useState("");
 
-  // const [errorMessage, setErrorMessage] = useState("");
-
- 
-  // const [state, dispatch] = useStoreContext();
-
-  // const { cart } = state;
-
-  // const addToCart = () => {
-  //   const itemInCart = cart.find((cartItem) => cartItem._id === _id);
-  //   if (itemInCart) {
-  //     dispatch({
-  //       type: UPDATE_CART_QUANTITY,
-  //       _id: _id,
-  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-  //     });
-  //     idbPromise("cart", "put", {
-  //       ...itemInCart,
-  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-  //     });
-  //   } else {
-  //     dispatch({
-  //       type: ADD_TO_CART,
-  //       product: { ...item, purchaseQuantity: 1 },
-  //     });
-  //     idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
-  //   }
-  // };
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "mugColor") {
-      if (value === "black") {
-        setMugSrc("../assets/blackmug.jpg");
+      setNewProduct({ ...newProduct, [name]: value });
+      setconfirmationMessage("");
+      setMugSrc(value);
+    } else if (name === "customText") {
+      if (validateCustomText(value)) {
+        setNewProduct({ ...newProduct, [name]: value });
+        setMugText(value);
+        setCharacterCount(value.length);
       }
-
+    } else if (name === "customFont") {
       setNewProduct({ ...newProduct, [name]: value });
-      console.log(newProduct);
-    }
-    if (name === 'customizedColor') {
-      setNewProduct({ ...newProduct, [name]: value });
-      console.log(newProduct);
-    }
-    if (name === 'customText') {
-      setNewProduct({ ...newProduct, [name]: value });
-      setMugText(value);
-      console.log(newProduct);
-    }
-    if (name === 'imageIcon') {
-      setNewProduct({ ...newProduct, [name]: value });
-      console.log(newProduct);
-    }
-    if (name === 'count') {
+      setMugFont(value);
+    } else if (name === "count") {
       setNewProduct({ ...newProduct, [name]: parseInt(value) });
-      console.log(newProduct);
+    } else {
+      setNewProduct({ ...newProduct, customizedColor: blockPickerColor });
+      console.log(blockPickerColor);
     }
-    console.log(newProduct);
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('I am working');
-    try {
-      const { data } = await addProduct({
-        variables: { ...newProduct },
-      });
-      console.log(newProduct);
-      setNewProduct({
-        mugColor: '',
-        customizedColor: '',
-        customText: '',
-        imageIcon: '',
-        count: '',
-      });
-    } catch (err) {
-      console.error(err);
+    if (
+      !newProduct.customText ||
+      !newProduct.customizedColor ||
+      !newProduct.count
+    ) {
+      setErrorMessage(
+        "Something is missing. Please review and make sure your custom choices have been selected"
+      );
+    } else {
+      try {
+        const { data } = await addProduct({
+          variables: { ...newProduct },
+        });
+        setNewButton(" Create a new mug");
+        setconfirmationMessage(
+          `${newProduct.count} ${pluralize(
+            "mug",
+            newProduct.count
+          )} added to cart.`
+        );
+        addToCart();
+        let mugselector = document.getElementById("mugselector");
+        let fontselector = document.getElementById("fontselector");
+        fontselector.value = "Trebuchet MS";
+        mugselector.value = "white";
+        setBlockPickerColor("black");
+        setMugSrc("");
+        setMugFont("Trebuchet MS");
+        setMugText("");
+        setErrorMessage("");
+        setCharacterCount("0");
+        setNewProduct({
+          mugColor: "white",
+          customizedColor: "",
+          customText: "",
+          customFont: "",
+          count: "",
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
-  // test
+
+  const clearConfirmation = (event) => {
+    event.preventDefault();
+
+    setconfirmationMessage("");
+    setNewButton("");
+  };
   return (
     <div>
-      <Link to="/profile">Back to profile</Link>
       <div className="container">
         <div className="row">
-          <div className="col-sm-6">
-            <div>Customize Your Mug</div>
-            <form onSubmit={handleFormSubmit}>
-              <div className="form-group">
+          <h3>customize your creation</h3>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-md-5">
+            <form onSubmit={handleFormSubmit} autocomplete="off">
+              <div className="form-group mt-3">
                 <label for="exampleFormControlSelect1">
-                  Pick your mug color
+                  *Pick your mug color (white/black):
                 </label>
                 <select
                   className="form-control"
                   name="mugColor"
+                  id="mugselector"
                   onChange={handleChange}
                 >
-                  <option selected>Choose...</option>
-                  <option value="../assets/whitemug.jpg">White</option>
-                  <option value="./assets/blackmug.jpg">Black</option>
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">
-                  Write out your customized Text
-                </label>
+              <div className="form-group mt-3">
+                <label for="exampleInputEmail1">*Your custom message:</label>
                 <input
-                  className="form-control"
                   name="customText"
+                  placeholder="I love coffee & tea"
+                  value={newProduct.customText}
                   type="text"
+                  className={`form-control ${
+                    characterCount === 26 || error ? "text-danger " : ""
+                  }`}
                   onChange={handleChange}
                 />
+                <small
+                  className={`d-flex justify-content-end ${
+                    characterCount === 25 || error ? "text-danger" : ""
+                  }`}
+                >
+                  max character count: {characterCount}/25
+                </small>
               </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">Pick your color text</label>
-                <input
-                  className="form-control"
+              <div className="form-group mt-3">
+                <label for="exampleInputEmail1">*Select a text colour:</label>
+                <CirclePicker
+                  className="pt-3 w-100"
                   name="customizedColor"
-                  type="text"
-                  onChange={handleChange}
+                  color={blockPickerColor}
+                  onChange={(color) => {
+                    setBlockPickerColor(color.hex);
+                    setNewProduct({
+                      ...newProduct,
+                      customizedColor: color.hex,
+                    });
+                  }}
                 />
               </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">
-                  Select an image (optional)
-                </label>
-
+              <div className="form-group mt-3">
+                <label for="exampleInputEmail1">*Select A Font:</label>
                 <select
+                  id="fontselector"
+                  name="customFont"
                   className="form-control"
-                  placeholder="imageIcon"
-                  name="imageIcon"
-                  type="text"
                   onChange={handleChange}
                 >
-                  <option selected>Choose...</option>
-                  <option value="image1"></option>
-                  <option value="image2">Image Two</option>
-                  <option value="image3">image Three</option>
-                  <option value="image4">Image Four</option>
+                  <option>Trebuchet MS</option>
+                  <option>Amatic SC</option>
+                  <option>Bungee Outline</option>
+                  <option>Cinzel</option>
+                  <option>Cutive Mono</option>
+                  <option>Eater</option>
+                  <option>Erica One</option>
+                  <option>Manrope</option>
+                  <option>Monoton</option>
+                  <option>Pacifico</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">How Many Mugs?</label>
+              <div className=" d-flex flex-row my-2 align-items-end">
+                <div className="form-group mt-3">
+                  <label for="exampleInputEmail1">*Select quantity:</label>
 
-                <select
-                  className="form-control"
-                  placeholder="quantity"
-                  name="count"
-                  type="number"
-                  onChange={handleChange}
-                >
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                  <option value="3">Four</option>
-                  <option value="3">Five</option>
-                </select>
+                  <input
+                    className="form-control"
+                    placeholder="quantity"
+                    value={newProduct.count}
+                    name="count"
+                    type="number"
+                    min="0"
+                    onChange={handleChange}
+                  ></input>
+                </div>
+                <div>
+                  <button className="btn btn-warning mx-2" type="submit">
+                    add to cart
+                  </button>
+                </div>
               </div>
               <div>
-                <button className="btn btn-primary" type="submit">
-                  Create My Mug
-                </button>
+                <p className="text-danger font-italic">{errorMessage}</p>
+                <span>{confirmationMessage}</span>
+                <span
+                  role="button"
+                  className="text-primary"
+                  onClick={clearConfirmation}
+                >
+                  {newButton}
+                </span>
               </div>
-              {error && <div>Something went wrong...</div>}
+              {error && (
+                <div className="text-danger">
+                  Something went wrong. To place an order, make sure you are
+                  <Link to="/login"> logged in.</Link>
+                </div>
+              )}
             </form>
           </div>
-          <div className="col-sm-6">
-            {/* <div>{mugText}</div> */}
-            <CustomMug mugText={mugText} mugSrc={mugSRC} />
+          <div className="col-md-7">
+            <CustomMug
+              mugText={mugText}
+              mugSrc={mugSrc}
+              color={blockPickerColor}
+              font={mugFont}
+            />
           </div>
         </div>
       </div>

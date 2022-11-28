@@ -1,28 +1,50 @@
-import React, { useState, useContext } from "react";
-// import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./TextOverlay.css";
 import WhiteMug from "../assets/whitemug.jpg";
 import BlackMug from "../assets/blackmug.jpg";
+import styled from "styled-components";
 
-function CustomMug({ mugText, mugSrc }) {
-  console.log(mugSrc);
-  // const WhiteMug = "./whitemug.jpg"
-  // const BlackMug = "./blackmug.jpg"
-  //   const [customText, setNewText] = useState("Your Text Here");
+const StyledOverlay = styled.p`
+  display: inline-block;
+  flex-wrap: wrap;
+  font-size: 2.7rem;
+  word-wrap: break-word;
+  text-align: center;
+  max-width: 400px;
+  position: absolute;
+  margin-bottom: 0px;
+  top: 25%;
+  left: 40%;
+  width: 40%;
+  line-height: 1.2em;
+
+  @media only screen and (max-width: 450px) {
+    font-size: 2.1rem;
+  }
+`;
+
+function CustomMug({ mugText, mugSrc, color, font }) {
   const [mugcolour, setMugColour] = useState(WhiteMug);
-  //   const [typeface, setTypeface] = useState();
+  useEffect(() => {
+    if (mugSrc === "black") {
+      setMugColour(BlackMug);
+    } else {
+      setMugColour(WhiteMug);
+    }
+  });
 
   return (
-    <div className="d-flex  m-auto shadow ">
-      <div className="ui raised segment">
+    <div className="d-flex justify-content-center">
+      <div className="image-container">
         <img
-          className="ui large image  d-flex"
+          className="ui image align-middle"
           src={mugcolour}
           alt="custom mug with text"
         />
-        <div className="textcontainer">
-          {/* <p className="overlay" style={typeface}> */}
-          <p className=" display-5 overlay">{mugText}</p>
+        <div>
+          <StyledOverlay style={{ color: color, fontFamily: font }}>
+            {mugText}
+          </StyledOverlay>
         </div>
       </div>
     </div>

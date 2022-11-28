@@ -25,6 +25,110 @@ function UserInfo() {
           <p>{user.country}</p>
         <Link to="/updateuser">  <button
             type="button"
+            class="btn btn-warning"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Edit user details
+          </button>
+          <div
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <form
+                className="modal-content modal-body"
+                onSubmit={handleFormSubmit}
+              >
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputFirstName">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputFirstName"
+                      value={user.firstName}
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputLastName">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputLastName"
+                      value={user.lastName}
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="inputEmail4"
+                      value={user.email}
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="inputPassword4"
+                      placeholder="Enter New Password"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress">Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress"
+                    value={user.address}
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputCity"
+                      value={user.city}
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState">State/Province</label>
+                    <input
+                      id="inputState"
+                      class="form-control"
+                      value={user.province}
+                    />
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputCountry">Country</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputCountry"
+                      value={user.country}
+                    />
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-warning mt-3">
+                  Update profile
+                </button>
+              </form>
+            </div>
+          </div>
+
             className="btn btn-primary"
             >
             Edit user details

@@ -21,7 +21,7 @@ export const ADD_ORDER = gql`
         mugColor
         customizedColor
         customText
-        imageIcon
+        customFont
         price
         count
       }
@@ -34,14 +34,14 @@ export const ADD_PRODUCT = gql`
     $mugColor: String
     $customizedColor: String
     $customText: String
-    $imageIcon: String
+    $customFont: String
     $count: Int
   ) {
     addProduct(
       mugColor: $mugColor
       customizedColor: $customizedColor
       customText: $customText
-      imageIcon: $imageIcon
+      customFont: $customFont
       count: $count
     ) {
       price

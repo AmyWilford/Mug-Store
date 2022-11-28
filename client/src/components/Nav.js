@@ -3,6 +3,7 @@ import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 
+
 function Nav() {
   function showNavigation() {
     return (

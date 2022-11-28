@@ -1,14 +1,19 @@
 import React from "react";
-import CustomizeProduct from "../components/CustomizeProduct";
-import ProductItem from "../components/ProductItem";
+import { Link } from "react-router-dom";
 
+import CustomizeProduct from "../components/CustomizeProduct";
 
 import "../styles/home.css";
 
 function Create() {
   return (
-    <div className="d-flex main-content">
-      <CustomizeProduct />
+    <div>
+      <div className="mt-5 p-4">
+        <CustomizeProduct />
+        <div className="mt-3">
+          <Link to="/profile">← Back to profile</Link>
+        </div>
+      </div>
     </div>
   );
 }
