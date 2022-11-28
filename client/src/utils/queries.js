@@ -14,6 +14,24 @@ export const QUERY_PRODUCT = gql`
   }
 `;
 
+export const QUERY_ORDER = gql`
+  query getProduct($orderId: ID) {
+    order(_id: $orderId) {
+      _id
+      orderStatus
+      products {
+        _id
+        mugColor
+        customizedColor
+        customText
+        customFont
+        count
+        price
+      }
+    }
+  }
+`;
+
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
     checkout(products: $products) {
