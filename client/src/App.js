@@ -8,7 +8,11 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 // import background from "./assets/background.jpg";
+<<<<<<< HEAD
+import "./App.css";
+=======
 import Auth from "./utils/auth";
+>>>>>>> 4d91c5fbd31dbbdd978d6d46a72427303abde9ca
 
 import { StoreProvider } from './utils/GlobalState';
 
@@ -24,7 +28,6 @@ import About from './pages/About';
 import Cart from './components/Cart';
 
 import UpdateUser from './pages/UpdateUser';
-
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -54,13 +57,17 @@ function App() {
             <Nav />
             {Auth.loggedIn() ? <Cart /> : ""}
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<About />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/profile" element={<UserDashboard />} />
               <Route path="/create" element={<Create />} />
               <Route path="/success" element={<Success />} />
               <Route path="/updateuser" element={<UpdateUser />} />
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4d91c5fbd31dbbdd978d6d46a72427303abde9ca
               <Route path="/orderHistory" element={<OrderHistory />} />
             </Routes>
           </Router>

@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Java Script
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [About this Project](#about-this-Project)
+- [How to Shop](#how-to-shop)
+- [Technologies Used](#Technologies-Used)
+- [Credits](#credits)
+- [License](#license)
 
-In the project directory, you can run:
+## About This Project
+Java script is e-commerce website where users can cstomize mugs with text and purchase them.
 
-### `npm start`
+Customers can add custom text to a selection of different coloured mugs. The text can be different colours of different typefaces as chosen by the customer.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### How to Shop:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+On landing, the customer is given the choice of customizng a mug or going to their profile where shipping information and previous orders can be seen.
 
-### `npm test`
+When customizing a mug, there are inputs for text, colour of mug, typeface, colour of text, and quantity. Once all are chosen, the item can be added to the cart which generated the price. on checkout the Stripe integration takes over and processes the payment.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Technologies Used:
+1. React
+2. MongoDB
+3. GraphQL
+4. Stripe
+5. Heroku
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Screenshot of the page for customizing mugs](assets/img/wordplay.jpg)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Link:
+- [Deployed Page](https://github.com/AmyWilford/Word-Play)
+- [Github Repo](https://github.com/AmyWilford/Mug-Store)
 
-### `npm run eject`
+## Installation
+N/A
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Credits
+Created as a collaboration of [Amy Wilford](https://github.com/AmyWilford), [Jaymen Laton](https://github.com/CanadianMRE), and [Saharsh Cherian](https://github.com/sashdc).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+MIT

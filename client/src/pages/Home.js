@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/home.css'
+// import '../styles/home.css'
 import { Link } from "react-router-dom";
 
 
@@ -10,7 +10,7 @@ const Home = () => {
       <Link to="/profile">
  <button className="massive rounded grey ui button m-2">Go to your dashboard</button>
  </Link>
-      <Link to="/create"> <img className = " ui image shadow rounded medium m-2" src='./assets/images/paintingmug.jpg' alt='someone painting on a mug'/>
+      <Link to="/create"> <img className = " ui image shadow rounded medium " src='./assets/images/paintingmug.jpg' alt='someone painting on a mug'/>
       </Link>
         
       </div>

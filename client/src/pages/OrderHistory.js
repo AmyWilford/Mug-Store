@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import Auth from "../../utils/auth";
-import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
-import '../styles/home.css';
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../utils/queries";
+// import "../styles/home.css";
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -15,8 +15,9 @@ function OrderHistory() {
   }
 
   return (
-    <div className="container ui segment main-content raised">
-      <Link to="/">← Back to Products</Link>
+    <div className="main-content d-flex ">
+      <div className=" ui segment w-75 raised m-auto mt-5">
+        <Link to="/">← Back to Products</Link>
 
       {user ? (
         <>
@@ -43,6 +44,7 @@ function OrderHistory() {
           ))}
         </>
       ) : null}
+    </div>
     </div>
   );
 }

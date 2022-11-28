@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import "../styles/home.css";
+// import "../styles/home.css";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";
@@ -12,6 +12,8 @@ const UpdateUser = () => {
   if (data) {
     user = data.user;
   }
+  console.log(user)
+  console.log(data)
   const [formState, setFormState] = useState({
     firstName: `${user.firstName}`,
     lastName: `${user.lastName}`,
@@ -41,7 +43,6 @@ const UpdateUser = () => {
       },
     });
     const token = mutationResponse.data.updateUser.token;
-    console.log("Got new? token");
     Auth.update(token);
     // window.location.reload();
   };
@@ -52,14 +53,12 @@ const UpdateUser = () => {
       ...formState,
       [name]: value,
     });
-    console.log("change handled");
   };
 
   return (
     <div className="main-content d-flex ">
       <div className="container d-flex flex-column ui segment align-items-center w-25 m-auto animate__animated animate__fadeIn mt-5">
         <form
-          className="modal-content modal-body "
           onSubmit={handleFormSubmit}
           autoComplete="off">
           <div className="form-row">
