@@ -1,40 +1,44 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 // import background from "./assets/background.jpg";
+<<<<<<< HEAD
 import "./App.css";
+=======
+import Auth from "./utils/auth";
+>>>>>>> 4d91c5fbd31dbbdd978d6d46a72427303abde9ca
 
-import { StoreProvider } from "./utils/GlobalState";
+import { StoreProvider } from './utils/GlobalState';
 
-import Nav from "./components/Nav";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import UserDashboard from "./pages/UserDashboard";
-import Create from "./pages/Create";
-import Success from "./pages/Success";
-import OrderHistory from "./pages/OrderHistory";
-import About from "./pages/About";
-import Cart from "./components/Cart";
+import Nav from './components/Nav';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import UserDashboard from './pages/UserDashboard';
+import Create from './pages/Create';
+import Success from './pages/Success';
+import OrderHistory from './pages/OrderHistory';
+import About from './pages/About';
+import Cart from './components/Cart';
 
-import UpdateUser from "./pages/UpdateUser";
+import UpdateUser from './pages/UpdateUser';
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("id_token");
+  const token = localStorage.getItem('id_token');
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -51,7 +55,7 @@ function App() {
         <StoreProvider>
           <Router>
             <Nav />
-            <Cart />
+            {Auth.loggedIn() ? <Cart /> : ""}
             <Routes>
               <Route path="/" element={<About />} />
               <Route path="/login" element={<Login />} />
@@ -60,7 +64,10 @@ function App() {
               <Route path="/create" element={<Create />} />
               <Route path="/success" element={<Success />} />
               <Route path="/updateuser" element={<UpdateUser />} />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d91c5fbd31dbbdd978d6d46a72427303abde9ca
               <Route path="/orderHistory" element={<OrderHistory />} />
             </Routes>
           </Router>
