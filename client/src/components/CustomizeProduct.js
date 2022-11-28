@@ -2,116 +2,149 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_PRODUCT } from "../utils/mutations";
-import { validateCustomText } from "../utils/helpers";
+import { validateCustomText, pluralize } from "../utils/helpers";
 import CustomMug from "../components/CustomMug";
-import { CompactPicker } from "react-color";
+import { CirclePicker } from "react-color";
+
+// importing cart things
+
+import { useStoreContext } from "../utils/GlobalState";
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
+import { idbPromise } from "../utils/helpers";
 
 function CustomizeProduct(item) {
+  const [state, dispatch] = useStoreContext();
+  const addToCart = () => {
+    dispatch({
+      type: ADD_TO_CART,
+      product: { ...newProduct },
+    });
+    idbPromise("cart", "put", { ...newProduct });
+  };
+  ///
+
   const [blockPickerColor, setBlockPickerColor] = useState("black");
   const [errorMessage, setErrorMessage] = useState("");
   const [confirmationMessage, setconfirmationMessage] = useState("");
 
   const [newProduct, setNewProduct] = useState({
-    mugColor: "",
+    mugColor: "White",
     customizedColor: "",
     customText: "",
-    imageIcon: "",
+    customFont: "Trebuchet MS",
     count: "",
   });
 
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
   const [mugText, setMugText] = useState("");
   const [mugSrc, setMugSrc] = useState("");
-  const [mugFont, setMugFont] = useState("Trebuchet MS");
+  const [mugFont, setMugFont] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
+  const [newButton, setNewButton] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "mugColor") {
       setNewProduct({ ...newProduct, [name]: value });
+      setconfirmationMessage("");
       setMugSrc(value);
-      console.log(newProduct);
     } else if (name === "customText") {
       if (validateCustomText(value)) {
         setNewProduct({ ...newProduct, [name]: value });
         setMugText(value);
         setCharacterCount(value.length);
-        console.log(newProduct);
       }
-    } else if (name === "imageIcon") {
-      console.log("I am the image icon");
-      console.log(value);
+    } else if (name === "customFont") {
       setNewProduct({ ...newProduct, [name]: value });
       setMugFont(value);
-      console.log(newProduct);
     } else if (name === "count") {
       setNewProduct({ ...newProduct, [name]: parseInt(value) });
-      console.log(newProduct);
     } else {
       setNewProduct({ ...newProduct, customizedColor: blockPickerColor });
       console.log(blockPickerColor);
-      console.log(newProduct);
     }
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const { data } = await addProduct({
-        variables: { ...newProduct },
-      });
-      console.log(newProduct);
-      setconfirmationMessage(
-        "Great Choice! Your selection has been added to your cart"
+    if (
+      !newProduct.customText ||
+      !newProduct.customizedColor ||
+      !newProduct.count
+    ) {
+      setErrorMessage(
+        "Something is missing. Please review and make sure your custom choices have been selected"
       );
-      setNewProduct({
-        mugColor: "",
-        customizedColor: "",
-        customText: "",
-        imageIcon: "",
-        count: "",
-      });
-
-      setBlockPickerColor("black");
-      setMugSrc("");
-      setMugFont("Trebuchet MS");
-      setMugText("");
-      setErrorMessage("");
-      setCharacterCount("0");
-    } catch (err) {
-      console.error(err);
+    } else {
+      try {
+        const { data } = await addProduct({
+          variables: { ...newProduct },
+        });
+        setNewButton(" Create a new mug");
+        setconfirmationMessage(
+          `${newProduct.count} ${pluralize(
+            "mug",
+            newProduct.count
+          )} added to cart.`
+        );
+        addToCart();
+        let mugselector = document.getElementById("mugselector");
+        let fontselector = document.getElementById("fontselector");
+        fontselector.value = "Trebuchet MS";
+        mugselector.value = "white";
+        setBlockPickerColor("black");
+        setMugSrc("");
+        setMugFont("Trebuchet MS");
+        setMugText("");
+        setErrorMessage("");
+        setCharacterCount("0");
+        setNewProduct({
+          mugColor: "white",
+          customizedColor: "",
+          customText: "",
+          customFont: "",
+          count: "",
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
+  };
+
+  const clearConfirmation = (event) => {
+    event.preventDefault();
+
+    setconfirmationMessage("");
+    setNewButton("");
   };
   return (
     <div>
       <div className="container">
         <div className="row">
-          <h5 className="display-6">customize your creation</h5>
+          <h3>customize your creation</h3>
         </div>
         <div className="row justify-content-center">
           <div className="col-md-5">
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} autocomplete="off">
               <div className="form-group mt-3">
                 <label for="exampleFormControlSelect1">
-                  Pick your mug color
+                  *Pick your mug color (white/black):
                 </label>
                 <select
                   className="form-control"
                   name="mugColor"
+                  id="mugselector"
                   onChange={handleChange}
                 >
-                  <option selected>select...</option>
                   <option value="white">White</option>
                   <option value="black">Black</option>
                 </select>
               </div>
               <div className="form-group mt-3">
-                <label for="exampleInputEmail1">
-                  Write out your customized Text
-                </label>
+                <label for="exampleInputEmail1">*Your custom message:</label>
                 <input
                   name="customText"
-                  placeholder="your custom text"
+                  placeholder="I love coffee & tea"
                   value={newProduct.customText}
                   type="text"
                   className={`form-control ${
@@ -124,12 +157,12 @@ function CustomizeProduct(item) {
                     characterCount === 25 || error ? "text-danger" : ""
                   }`}
                 >
-                  Character Count: {characterCount}/25
+                  max character count: {characterCount}/25
                 </small>
               </div>
               <div className="form-group mt-3">
-                <label for="exampleInputEmail1">Pick your color text:</label>
-                <CompactPicker
+                <label for="exampleInputEmail1">*Select a text colour:</label>
+                <CirclePicker
                   className="pt-3 w-100"
                   name="customizedColor"
                   color={blockPickerColor}
@@ -143,27 +176,28 @@ function CustomizeProduct(item) {
                 />
               </div>
               <div className="form-group mt-3">
-                <label for="exampleInputEmail1">Pick an Icon (optional)</label>
+                <label for="exampleInputEmail1">*Select A Font:</label>
                 <select
-                  name="imageIcon"
+                  id="fontselector"
+                  name="customFont"
                   className="form-control"
                   onChange={handleChange}
                 >
-                  <option value="Trebuchet MS">Trebuchet</option>
-                  <option value="Amatic SC">Amatic SC</option>
-                  <option value="Bungee Outline">Bungee Outline</option>
-                  <option value="Cinzel">Cinzel</option>
-                  <option value="Cutive Mono">Cutive Mono</option>
-                  <option value="Eater">Eater</option>
-                  <option value="Erica One">Erica One</option>
-                  <option value="Manrope">Manrope</option>
-                  <option value="Monoton">Monoton</option>
-                  <option value="Pacifico">Pacifico</option>
+                  <option>Trebuchet MS</option>
+                  <option>Amatic SC</option>
+                  <option>Bungee Outline</option>
+                  <option>Cinzel</option>
+                  <option>Cutive Mono</option>
+                  <option>Eater</option>
+                  <option>Erica One</option>
+                  <option>Manrope</option>
+                  <option>Monoton</option>
+                  <option>Pacifico</option>
                 </select>
               </div>
               <div className=" d-flex flex-row my-2 align-items-end">
                 <div className="form-group mt-3">
-                  <label for="exampleInputEmail1">How Many Mugs?</label>
+                  <label for="exampleInputEmail1">*Select quantity:</label>
 
                   <input
                     className="form-control"
@@ -176,13 +210,22 @@ function CustomizeProduct(item) {
                   ></input>
                 </div>
                 <div>
-                  <button className="btn btn-primary mx-2" type="submit">
+                  <button className="btn btn-warning mx-2" type="submit">
                     add to cart
                   </button>
                 </div>
               </div>
-
-              <p>{confirmationMessage}</p>
+              <div>
+                <p className="text-danger font-italic">{errorMessage}</p>
+                <span>{confirmationMessage}</span>
+                <span
+                  role="button"
+                  className="text-primary"
+                  onClick={clearConfirmation}
+                >
+                  {newButton}
+                </span>
+              </div>
               {error && (
                 <div className="text-danger">
                   Something went wrong. To place an order, make sure you are

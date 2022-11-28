@@ -7,7 +7,7 @@ export const QUERY_PRODUCT = gql`
       mugColor
       customizedColor
       customText
-      imageIcon
+      customFont
       price
       count
     }
@@ -29,7 +29,7 @@ export const QUERY_ALL_PRODUCTS = gql`
       mugColor
       customizedColor
       customText
-      imageIcon
+      customFont
       price
       count
     }
@@ -55,7 +55,7 @@ export const QUERY_USER = gql`
           mugColor
           customizedColor
           customText
-          imageIcon
+          customFont
           price
           count
         }

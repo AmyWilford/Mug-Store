@@ -17,7 +17,7 @@ const productSchema = new Schema({
   customText: {
     type: String,
   },
-  imageIcon: {
+  customFont: {
     // This is a string representing our image
     type: String,
   },

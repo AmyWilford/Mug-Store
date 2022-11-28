@@ -18,6 +18,8 @@ import UserDashboard from "./pages/UserDashboard";
 import Create from "./pages/Create";
 import Success from "./pages/Success";
 import OrderHistory from "./pages/OrderHistory";
+import About from "./pages/About";
+import Cart from "./components/Cart";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -45,6 +47,7 @@ function App() {
         <StoreProvider>
           <Router>
             <Nav />
+            <Cart />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

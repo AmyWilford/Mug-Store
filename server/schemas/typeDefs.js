@@ -6,7 +6,7 @@ const typeDefs = gql`
     mugColor: String
     customizedColor: String
     customText: String
-    imageIcon: String
+    customFont: String
     count: Int
     price: Float
   }
@@ -63,7 +63,7 @@ const typeDefs = gql`
       mugColor: String
       customizedColor: String
       customText: String
-      imageIcon: String
+      customFont: String
       count: Int
     ): Product
     updateUser(

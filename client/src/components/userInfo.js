@@ -50,9 +50,10 @@ function UserInfo() {
           {/* MODAL AND BUTTON  */}
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-warning"
             data-toggle="modal"
-            data-target="#exampleModalCenter">
+            data-target="#exampleModalCenter"
+          >
             Edit user details
           </button>
           <div
@@ -61,11 +62,13 @@ function UserInfo() {
             tabindex="-1"
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
+            aria-hidden="true"
+          >
             <div class="modal-dialog modal-dialog-centered" role="document">
               <form
                 className="modal-content modal-body"
-                onSubmit={handleFormSubmit}>
+                onSubmit={handleFormSubmit}
+              >
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputFirstName">First Name</label>
@@ -144,7 +147,7 @@ function UserInfo() {
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3">
+                <button type="submit" class="btn btn-warning mt-3">
                   Update profile
                 </button>
               </form>

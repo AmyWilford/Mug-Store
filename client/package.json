@@ -19,7 +19,8 @@
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.1",
-    "simple-color-picker": "^1.0.5",
+    "react-color": "^2.19.3",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

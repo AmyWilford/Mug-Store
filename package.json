@@ -15,11 +15,5 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
-  },
-  "dependencies": {
-    "bootstrap": "^5.2.3",
-    "react-color": "^2.19.3",
-    "react-image-overlay": "^1.0.5",
-    "styled-components": "^5.3.6"
   }
 }
