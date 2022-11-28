@@ -4,6 +4,7 @@ import WhiteMug from "../assets/whitemug.jpg";
 import BlackMug from "../assets/blackmug.jpg";
 import styled from "styled-components";
 
+const Overlay = styled
 const StyledOverlay = styled.p`
   display: inline-block;
   flex-wrap: wrap;
