@@ -1,12 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 // import Auth from "../../utils/auth";
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
-import "../styles/home.css";
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
+import '../styles/home.css';
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
+  console.log(data);
   let user;
 
   if (data) {
@@ -14,19 +15,19 @@ function OrderHistory() {
   }
 
   return (
-    
-      <div className="container ui segment main-content raised">
-        <Link to="/">← Back to Products</Link>
+    <div className="container ui segment main-content raised">
+      <Link to="/">← Back to Products</Link>
 
-        {user ? (
-          <>
-            <h2>
-              Order History for {user.firstName} {user.lastName}
-            </h2>
-            {user.orders.map((order) => (
-              <div key={order._id} className="my-2">
-                                <div className="flex-column">
-                  {order.products.map(({ _id, mugColor, customText, count, price }, index) => (
+      {user ? (
+        <>
+          <h2>
+            Order History for {user.firstName} {user.lastName}
+          </h2>
+          {user.orders.map((order) => (
+            <div key={order._id} className="my-2">
+              <div className="flex-column">
+                {order.products.map(
+                  ({ _id, mugColor, customText, count, price }, index) => (
                     <div key={index} className="card px-1 py-1">
                       <p>order id: {_id} </p>
                       <p>Mug Colour: {mugColor} </p>
@@ -34,15 +35,15 @@ function OrderHistory() {
                       <p>Quantity: {count} </p>
                       <p>Total Order Price: ${price}</p>
                       <span>${price}</span>
-                      </div>
-                 ))}
-                </div>
+                    </div>
+                  )
+                )}
               </div>
-            ))}
-          </>
-        ) : null}
-      </div>
-    
+            </div>
+          ))}
+        </>
+      ) : null}
+    </div>
   );
 }
 

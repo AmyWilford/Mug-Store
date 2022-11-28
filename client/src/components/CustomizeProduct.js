@@ -56,39 +56,9 @@ function CustomizeProduct(item) {
     });
     dispatch({
       type: ADD_TO_CART,
-      product: { ...newProduct },
+      product: { ...product },
     });
-    idbPromise('cart', 'put', { ...newProduct });
-    // console.log(product);
-    // if (itemInCart) {
-    //   dispatch({
-    //     products: [
-    //       {
-    //         type: UPDATE_CART_QUANTITY,
-    //         _id: itemInCart._id,
-    //         count: parseInt(itemInCart.count) + product.count,
-    //       },
-    //     ],
-    //   });
-    //   idbPromise("cart", "put", {
-    //     products: [
-    //       {
-    //         ...itemInCart,
-    //         count: parseInt(itemInCart.count) + product.count,
-    //       },
-    //     ],
-    //   });
-    // } else {
-    //   dispatch({
-    //     products: [
-    //       {
-    //         type: ADD_TO_CART,
-    //         product: { ...product },
-    //       },
-    //     ],
-    //   });
-    //   idbPromise("cart", "put", { products: [{ ...product }] });
-    // }
+    idbPromise('cart', 'put', { ...product });
   };
 
   const handleChange = (event) => {
@@ -135,7 +105,7 @@ function CustomizeProduct(item) {
             newProduct.count
           )} added to cart.`
         );
-        addToCart(newProduct);
+        addToCart(data.addProduct);
         let mugselector = document.getElementById('mugselector');
         let fontselector = document.getElementById('fontselector');
         fontselector.value = 'Trebuchet MS';
