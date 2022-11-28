@@ -22,10 +22,12 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('orders');
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders',
+          model: 'Order',
+        });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
         return user;
       }
 
@@ -42,7 +44,10 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      const order = await Order.create({ products: args.products });
+
+      const orders = await Order.find();
+
       const user = await User.findByIdAndUpdate(context.user._id, {
         $push: { orders: order._id },
       });
