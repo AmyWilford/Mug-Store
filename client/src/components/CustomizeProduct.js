@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_PRODUCT } from "../utils/mutations";
-import { validateCustomText, pluralize } from "../utils/helpers";
-import CustomMug from "../components/CustomMug";
-import { CirclePicker } from "react-color";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_PRODUCT } from '../utils/mutations';
+import { validateCustomText, pluralize } from '../utils/helpers';
+import CustomMug from '../components/CustomMug';
+import { CirclePicker } from 'react-color';
 
-import { useStoreContext } from "../utils/GlobalState";
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
-import { idbPromise } from "../utils/helpers";
+import { useStoreContext } from '../utils/GlobalState';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
+import { idbPromise } from '../utils/helpers';
 
 function AreProductsSame(product1, product2) {
-  console.log("product one:", product1, "product two", product2);
+  console.log('product one:', product1, 'product two', product2);
   if (
     product1 &&
     product2 &&
@@ -27,24 +27,24 @@ function AreProductsSame(product1, product2) {
 }
 
 function CustomizeProduct(item) {
-  const [blockPickerColor, setBlockPickerColor] = useState("black");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [confirmationMessage, setconfirmationMessage] = useState("");
+  const [blockPickerColor, setBlockPickerColor] = useState('black');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [confirmationMessage, setconfirmationMessage] = useState('');
 
   const [newProduct, setNewProduct] = useState({
-    mugColor: "White",
-    customizedColor: "",
-    customText: "",
-    customFont: "Trebuchet MS",
-    count: "",
+    mugColor: 'White',
+    customizedColor: '',
+    customText: '',
+    customFont: 'Trebuchet MS',
+    count: '',
   });
 
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-  const [mugText, setMugText] = useState("");
-  const [mugSrc, setMugSrc] = useState("");
-  const [mugFont, setMugFont] = useState("");
+  const [mugText, setMugText] = useState('');
+  const [mugSrc, setMugSrc] = useState('');
+  const [mugFont, setMugFont] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-  const [newButton, setNewButton] = useState("");
+  const [newButton, setNewButton] = useState('');
 
   const [state, dispatch] = useStoreContext();
 
@@ -58,7 +58,7 @@ function CustomizeProduct(item) {
       type: ADD_TO_CART,
       product: { ...newProduct },
     });
-    idbPromise("cart", "put", { ...newProduct });
+    idbPromise('cart', 'put', { ...newProduct });
     // console.log(product);
     // if (itemInCart) {
     //   dispatch({
@@ -93,20 +93,20 @@ function CustomizeProduct(item) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "mugColor") {
+    if (name === 'mugColor') {
       setNewProduct({ ...newProduct, [name]: value });
-      setconfirmationMessage("");
+      setconfirmationMessage('');
       setMugSrc(value);
-    } else if (name === "customText") {
+    } else if (name === 'customText') {
       if (validateCustomText(value)) {
         setNewProduct({ ...newProduct, [name]: value });
         setMugText(value);
         setCharacterCount(value.length);
       }
-    } else if (name === "customFont") {
+    } else if (name === 'customFont') {
       setNewProduct({ ...newProduct, [name]: value });
       setMugFont(value);
-    } else if (name === "count") {
+    } else if (name === 'count') {
       setNewProduct({ ...newProduct, [name]: parseInt(value) });
     } else {
       setNewProduct({ ...newProduct, customizedColor: blockPickerColor });
@@ -121,37 +121,37 @@ function CustomizeProduct(item) {
       !newProduct.count
     ) {
       setErrorMessage(
-        "Something is missing. Please review and make sure your custom choices have been selected"
+        'Something is missing. Please review and make sure your custom choices have been selected'
       );
     } else {
       try {
         const { data } = await addProduct({
           variables: { ...newProduct },
         });
-        setNewButton(" Create a new mug");
+        setNewButton(' Create a new mug');
         setconfirmationMessage(
           `${newProduct.count} ${pluralize(
-            "mug",
+            'mug',
             newProduct.count
           )} added to cart.`
         );
         addToCart(newProduct);
-        let mugselector = document.getElementById("mugselector");
-        let fontselector = document.getElementById("fontselector");
-        fontselector.value = "Trebuchet MS";
-        mugselector.value = "white";
-        setBlockPickerColor("black");
-        setMugSrc("");
-        setMugFont("Trebuchet MS");
-        setMugText("");
-        setErrorMessage("");
-        setCharacterCount("0");
+        let mugselector = document.getElementById('mugselector');
+        let fontselector = document.getElementById('fontselector');
+        fontselector.value = 'Trebuchet MS';
+        mugselector.value = 'white';
+        setBlockPickerColor('black');
+        setMugSrc('');
+        setMugFont('Trebuchet MS');
+        setMugText('');
+        setErrorMessage('');
+        setCharacterCount('0');
         setNewProduct({
-          mugColor: "white",
-          customizedColor: "",
-          customText: "",
-          customFont: "",
-          count: "",
+          mugColor: 'white',
+          customizedColor: '',
+          customText: '',
+          customFont: '',
+          count: '',
         });
       } catch (err) {
         console.error(err);
@@ -162,8 +162,8 @@ function CustomizeProduct(item) {
   const clearConfirmation = (event) => {
     event.preventDefault();
 
-    setconfirmationMessage("");
-    setNewButton("");
+    setconfirmationMessage('');
+    setNewButton('');
   };
   return (
     <div>
@@ -173,9 +173,9 @@ function CustomizeProduct(item) {
         </div>
         <div className="row justify-content-center">
           <div className="col-md-5">
-            <form onSubmit={handleFormSubmit} autocomplete="off">
+            <form onSubmit={handleFormSubmit} autoComplete="off">
               <div className="form-group mt-3">
-                <label for="exampleFormControlSelect1">
+                <label htmlFor="exampleFormControlSelect1">
                   *Pick your mug color (white/black):
                 </label>
                 <select
@@ -190,27 +190,31 @@ function CustomizeProduct(item) {
                 </select>
               </div>
               <div className="form-group mt-3">
-                <label for="exampleInputEmail1">*Your custom message:</label>
+                <label htmlFor="exampleInputEmail1">
+                  *Your custom message:
+                </label>
                 <input
                   name="customText"
                   placeholder="I love coffee & tea"
                   value={newProduct.customText}
                   type="text"
                   className={`form-control ${
-                    characterCount === 26 || error ? "text-danger " : ""
+                    characterCount === 26 || error ? 'text-danger ' : ''
                   }`}
                   onChange={handleChange}
                 />
                 <small
                   className={`d-flex justify-content-end ${
-                    characterCount === 25 || error ? "text-danger" : ""
+                    characterCount === 25 || error ? 'text-danger' : ''
                   }`}
                 >
                   max character count: {characterCount}/25
                 </small>
               </div>
               <div className="form-group mt-3">
-                <label for="exampleInputEmail1">*Select a text colour:</label>
+                <label htmlFor="exampleInputEmail1">
+                  *Select a text colour:
+                </label>
                 <CirclePicker
                   className="pt-3 w-100"
                   name="customizedColor"
@@ -225,7 +229,7 @@ function CustomizeProduct(item) {
                 />
               </div>
               <div className="form-group mt-3">
-                <label for="exampleInputEmail1">*Select A Font:</label>
+                <label htmlFor="exampleInputEmail1">*Select A Font:</label>
                 <select
                   id="fontselector"
                   name="customFont"
@@ -247,7 +251,7 @@ function CustomizeProduct(item) {
               </div>
               <div className=" d-flex flex-row my-2 align-items-end">
                 <div className="form-group mt-3">
-                  <label for="exampleInputEmail1">*Select quantity:</label>
+                  <label htmlFor="exampleInputEmail1">*Select quantity:</label>
 
                   <input
                     className="form-control"
