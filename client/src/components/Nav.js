@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 function Nav() {
   function showNavigation() {
     return (
-      <nav className="navbar navbar-expand-s  navbar-light bg-light ">
+      <nav className="navbar navbar-expand-sm   navbar-light bg-light ">
        
         <div className="navbar " id="navbarNav">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav align-items-left">
             {Auth.loggedIn() ? (
               <>
                 <li className="nav-item">

@@ -30,12 +30,11 @@ console.log(user.products)
                 {order.products.map(
                   ({ _id, mugColor, customText, count, price }, index) => (
                     <div key={index} className="card px-1 py-1">
-                      <p>order id: {_id} </p>
+                      <h4>Order id: {_id} </h4>
                       <p>Mug Colour: {mugColor} </p>
                       <p>Custom Text: {customText} </p>
                       <p>Quantity: {count} </p>
                       <p>Total Order Price: ${price}</p>
-                      <span>${price}</span>
                     </div>
                   )
                 )}
