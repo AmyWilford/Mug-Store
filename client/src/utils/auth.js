@@ -42,12 +42,12 @@ class AuthService {
     window.location.assign("/");
   }
 
-    //   Function to update  user - and save user token to localStroage
-    update(idToken) {
-      // localStorage.getItem("id_token");
-      // localStorage.setItem("id_token", idToken);
-      window.location.assign("/profile");
-    }
+  //   Function to update  user - and save user token to localStroage
+  update(idToken) {
+    // localStorage.getItem("id_token");
+    // localStorage.setItem("id_token", idToken);
+    window.location.assign("/profile");
+  }
 }
 
 export default new AuthService();
