@@ -23,7 +23,7 @@ function Cart() {
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
-        res.redirectToCheckout({ sessionId: data.checkout.session });
+        //res.redirectToCheckout({ sessionId: data.checkout.session });
       });
     }
   }, [data]);
@@ -50,7 +50,7 @@ function Cart() {
     return sum.toFixed(2);
   }
 
-  function submitCheckout() {
+  async function submitCheckout() {
     const productIds = [];
 
     state.cart.forEach((item) => {
@@ -59,9 +59,11 @@ function Cart() {
       }
     });
 
-    getCheckout({
+    await getCheckout({
       variables: { products: productIds },
     });
+
+    console.log(data);
   }
 
   if (!state.cartOpen) {
@@ -81,7 +83,6 @@ function Cart() {
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => {
-            console.log(item);
             return <CartItem key={item._id} item={item} />;
           })}
 
