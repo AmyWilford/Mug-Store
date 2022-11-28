@@ -27,6 +27,8 @@ const resolvers = {
           path: 'orders',
           model: 'Order',
         });
+        console.log(user);
+        console.log(user.orders);
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
         return user;
