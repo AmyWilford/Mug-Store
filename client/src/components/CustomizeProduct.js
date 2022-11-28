@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -7,11 +6,24 @@ import { useStoreContext } from '../utils/GlobalState';
 import CustomMug from '../components/CustomMug';
 // import "font-awesome/css/font-awesome.min.css";
 
-// import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
-// import { idbPromise } from "../utils/helpers";
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
+import { idbPromise } from '../utils/helpers';
 
-// import { HexColorPicker } from "react-colorful";
-// import "react-colorful/dist/index.css";
+// import { HexColorPicker } from 'react-colorful';
+// import 'react-colorful/dist/index.css';
+
+function AreProductsSame(product1, product2) {
+  if (
+    product1.mugColor === product2.mugColor &&
+    product1.customizedColor === product2.customizedColor &&
+    product1.customText === product2.customText &&
+    product1.imageIcon === product2.imageIcon
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function CustomizeProduct(item) {
   // const [color, setColor] = useState("#aabbcc");dw
@@ -25,41 +37,53 @@ function CustomizeProduct(item) {
   });
 
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-  const [mugText, setMugText] = useState("Your Text");
-  const [mugSRC, setMugSrc] = useState("../assets/whitemug.jpg");
+  const [mugText, setMugText] = useState('Your Text');
+  const [mugSRC, setMugSrc] = useState('../assets/whitemug.jpg');
 
-  // const [errorMessage, setErrorMessage] = useState("");
+  const [state, dispatch] = useStoreContext();
 
- 
-  // const [state, dispatch] = useStoreContext();
+  const { cart } = state;
+  const addToCart = async (product) => {
+    const itemInCart = cart.find((cartItem) => {
+      return AreProductsSame(cartItem, product);
+    });
 
-  // const { cart } = state;
+    if (itemInCart) {
+      dispatch({
+        products: [
+          {
+            type: UPDATE_CART_QUANTITY,
+            _id: itemInCart._id,
+            count: parseInt(itemInCart.count) + 1,
+          },
+        ],
+      });
+      idbPromise('cart', 'put', {
+        products: [
+          {
+            ...itemInCart,
+            count: parseInt(itemInCart.count) + 1,
+          },
+        ],
+      });
+    } else {
+      dispatch({
+        products: [
+          {
+            type: ADD_TO_CART,
+            product: { ...product, count: 1 },
+          },
+        ],
+      });
+      idbPromise('cart', 'put', { products: [{ ...product, count: 1 }] });
+    }
+  };
 
-  // const addToCart = () => {
-  //   const itemInCart = cart.find((cartItem) => cartItem._id === _id);
-  //   if (itemInCart) {
-  //     dispatch({
-  //       type: UPDATE_CART_QUANTITY,
-  //       _id: _id,
-  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-  //     });
-  //     idbPromise("cart", "put", {
-  //       ...itemInCart,
-  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-  //     });
-  //   } else {
-  //     dispatch({
-  //       type: ADD_TO_CART,
-  //       product: { ...item, purchaseQuantity: 1 },
-  //     });
-  //     idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
-  //   }
-  // };
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "mugColor") {
-      if (value === "black") {
-        setMugSrc("../assets/blackmug.jpg");
+    if (name === 'mugColor') {
+      if (value === 'black') {
+        setMugSrc('../assets/blackmug.jpg');
       }
 
       setNewProduct({ ...newProduct, [name]: value });
@@ -87,12 +111,14 @@ function CustomizeProduct(item) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('I am working');
     try {
-      const { data } = await addProduct({
+      const temp = await addProduct({
         variables: { ...newProduct },
       });
-      console.log(newProduct);
+
+      console.log(temp);
+      addToCart(temp.data.addProduct);
+
       setNewProduct({
         mugColor: '',
         customizedColor: '',
@@ -114,21 +140,22 @@ function CustomizeProduct(item) {
             <div>Customize Your Mug</div>
             <form onSubmit={handleFormSubmit}>
               <div className="form-group">
-                <label for="exampleFormControlSelect1">
+                <label htmlFor="exampleFormControlSelect1">
                   Pick your mug color
                 </label>
                 <select
                   className="form-control"
                   name="mugColor"
                   onChange={handleChange}
+                  defaultValue="1"
                 >
-                  <option selected>Choose...</option>
+                  <option value="1">Choose...</option>
                   <option value="../assets/whitemug.jpg">White</option>
                   <option value="./assets/blackmug.jpg">Black</option>
                 </select>
               </div>
               <div className="form-group">
-                <label for="exampleInputEmail1">
+                <label htmlFor="exampleInputEmail1">
                   Write out your customized Text
                 </label>
                 <input
@@ -139,7 +166,7 @@ function CustomizeProduct(item) {
                 />
               </div>
               <div className="form-group">
-                <label for="exampleInputEmail1">Pick your color text</label>
+                <label htmlFor="exampleInputEmail1">Pick your color text</label>
                 <input
                   className="form-control"
                   name="customizedColor"
@@ -148,7 +175,7 @@ function CustomizeProduct(item) {
                 />
               </div>
               <div className="form-group">
-                <label for="exampleInputEmail1">
+                <label htmlFor="exampleInputEmail1">
                   Select an image (optional)
                 </label>
 
@@ -158,8 +185,9 @@ function CustomizeProduct(item) {
                   name="imageIcon"
                   type="text"
                   onChange={handleChange}
+                  defaultValue="1"
                 >
-                  <option selected>Choose...</option>
+                  <option value="1">Choose...</option>
                   <option value="image1"></option>
                   <option value="image2">Image Two</option>
                   <option value="image3">image Three</option>
@@ -167,7 +195,7 @@ function CustomizeProduct(item) {
                 </select>
               </div>
               <div className="form-group">
-                <label for="exampleInputEmail1">How Many Mugs?</label>
+                <label htmlFor="exampleInputEmail1">How Many Mugs?</label>
 
                 <select
                   className="form-control"
@@ -175,8 +203,9 @@ function CustomizeProduct(item) {
                   name="count"
                   type="number"
                   onChange={handleChange}
+                  defaultValue="1"
                 >
-                  <option selected>Choose...</option>
+                  <option value="1">Choose...</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
