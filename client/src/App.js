@@ -1,40 +1,41 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 // import background from "./assets/background.jpg";
 import Auth from "./utils/auth";
 
-import { StoreProvider } from "./utils/GlobalState";
+import { StoreProvider } from './utils/GlobalState';
 
-import Nav from "./components/Nav";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import UserDashboard from "./pages/UserDashboard";
-import Create from "./pages/Create";
-import Success from "./pages/Success";
-import OrderHistory from "./pages/OrderHistory";
-import About from "./pages/About";
-import Cart from "./components/Cart";
+import Nav from './components/Nav';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import UserDashboard from './pages/UserDashboard';
+import Create from './pages/Create';
+import Success from './pages/Success';
+import OrderHistory from './pages/OrderHistory';
+import About from './pages/About';
+import Cart from './components/Cart';
 
-import UpdateUser from "./pages/UpdateUser";
+import UpdateUser from './pages/UpdateUser';
+
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("id_token");
+  const token = localStorage.getItem('id_token');
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -60,13 +61,7 @@ function App() {
               <Route path="/create" element={<Create />} />
               <Route path="/success" element={<Success />} />
               <Route path="/updateuser" element={<UpdateUser />} />
-
-              {/*<Route 
-
-              {/*  <Route 
-        path="/orderHistory" 
-        element={<OrderHistory />} 
-      /> */}
+              <Route path="/orderHistory" element={<OrderHistory />} />
             </Routes>
           </Router>
         </StoreProvider>
