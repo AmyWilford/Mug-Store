@@ -33,7 +33,7 @@ class AuthService {
   //   Function to login user - and save user token to localStroage
   login(idToken) {
     localStorage.setItem("id_token", idToken);
-    window.location.assign("/");
+    window.location.assign("/profile");
   }
 
   //   Function to logout user - and clear token and profile data from localStorage and relaod page and reset state of application
@@ -41,6 +41,13 @@ class AuthService {
     localStorage.removeItem("id_token");
     window.location.assign("/");
   }
+
+    //   Function to update  user - and save user token to localStroage
+    update(idToken) {
+      // localStorage.getItem("id_token");
+      // localStorage.setItem("id_token", idToken);
+      window.location.assign("/profile");
+    }
 }
 
 export default new AuthService();

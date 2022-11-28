@@ -33,14 +33,14 @@ function Login(props) {
 
   return (
     <div className=" d-flex flex-column main-content">
-            <div className="container ui raised segment  mt-5 w-25">
+            <div className="container ui raised segment  mt-5 w-25 animate__animated animate__fadeIn">
 
     <div>Don't have an account?</div>
-      <Link to="/signup">Signup</Link>
+      <Link to="/signup">← Signup</Link>
 
-      <h2>Login</h2>
+      <h2 className='mt-3'>Login</h2>
       <form onSubmit={handleFormSubmit}>
-      <div className="flex-row space-between my-2">
+      <div className="d-flex flex-column">
           <label htmlFor="email">Email address:</label>
           <input
             placeholder="youremail@test.com"
@@ -48,9 +48,10 @@ function Login(props) {
             type="email"
             id="email"
             onChange={handleChange}
-          />
+            className="w-75 rounded form-control"
+            />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="d-flex flex-column">
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
@@ -58,7 +59,8 @@ function Login(props) {
             type="password"
             id="pwd"
             onChange={handleChange}
-          />
+            className="w-75 rounded form-control"
+            />
         </div>
         {error ? (
           <div>
@@ -66,7 +68,7 @@ function Login(props) {
           </div>
         ) : null}
         <div>
-          <button type="submit">Signin</button>
+          <button type="submit" className="btn btn-success mt-2">Signin</button>
         </div>
       </form>
       </div>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 // import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
+import "../styles/home.css";
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -13,8 +14,8 @@ function OrderHistory() {
   }
 
   return (
-    <>
-      <div className="container ui segment raised">
+    
+      <div className="container ui segment main-content raised">
         <Link to="/">← Back to Products</Link>
 
         {user ? (
@@ -41,7 +42,7 @@ function OrderHistory() {
           </>
         ) : null}
       </div>
-    </>
+    
   );
 }
 

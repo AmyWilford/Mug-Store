@@ -1,45 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Auth from "../utils/auth";
-import { useQuery, useMutation } from "@apollo/client";
+// import Auth from "../utils/auth";
+import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-import { UPDATE_USER } from "../utils/mutations";
 
 function UserInfo() {
   const { data } = useQuery(QUERY_USER);
   let user;
-
-  const [editUser] = useMutation(UPDATE_USER);
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const mutationResponse = await editUser({
-      variables: {
-        email: document.getElementById("inputEmail4").value,
-        address: document.getElementById("inputAddress").value,
-        // city: city,
-        // address: address,
-        // province: province,
-        // country: country,
-        // email: email,
-        // password: password,
-      },
-    });
-    const token = mutationResponse.data.editUser.token;
-    console.log("Got token");
-    Auth.login(token);
-  };
-
   if (data) {
     user = data.user;
   }
-
+ 
   return (
-    <div className="container my-1">
+    <>
       {user ? (
         <>
-          <h1>{user.firstName}'s dashboard</h1>
+          <h2>{user.firstName}'s dashboard</h2>
           <h3>Email Address</h3>
           <p>{user.email}</p>
           <h3>Shipping Address</h3>
@@ -47,8 +23,7 @@ function UserInfo() {
           <p>{user.city}</p>
           <p>{user.province}</p>
           <p>{user.country}</p>
-          {/* MODAL AND BUTTON  */}
-          <button
+        <Link to="/updateuser">  <button
             type="button"
             class="btn btn-warning"
             data-toggle="modal"
@@ -153,13 +128,20 @@ function UserInfo() {
               </form>
             </div>
           </div>
+
+            className="btn btn-primary"
+            >
+            Edit user details
+          </button></Link>
+    
         </>
       ) : (
         <Link to="/login">
           <p>Click here to login and see your details</p>
         </Link>
+       
       )}
-    </div>
+      </>
   );
 }
 

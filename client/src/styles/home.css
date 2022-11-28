@@ -1,10 +1,34 @@
-.nav-item{
-    font-size: x-large;
-  }
+* {
+  box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
 
-.main-content{
+}
+
+.nav-item {
+  font-size: x-large;
+}
+
+.nav-item:hover {
+  filter: drop-shadow(0 0mm .5mm rgb(136, 136, 136));
+
+}
+
+.main-content {
+  height: 100vh;
+  width: 100vw;
+  /* background-color: lightgrey; */
+  background-image: url("../assets/background.jpg"); 
+  background-size:auto;
+}
+
+@media (max-width:600px) {
+  .main-content {
     height: 100vh;
     width: 100vw;
-    background-color: lightgrey;
-};
-
+    background-color: white;
+    background-image: url("../assets/background-mobile.jpg"); 
+    background-size:contain;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
+}

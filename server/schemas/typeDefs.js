@@ -75,7 +75,7 @@ const typeDefs = gql`
       country: String
       email: String
       password: String
-    ): User
+    ): Auth
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
   }
