@@ -1,7 +1,7 @@
-import React from 'react';
-import Auth from '../utils/auth';
-import { Link } from 'react-router-dom';
-import Cart from './Cart';
+import React from "react";
+import Auth from "../utils/auth";
+import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
 function Nav() {
   function showNavigation() {
@@ -22,9 +22,6 @@ function Nav() {
           <ul className="navbar-nav mr-auto">
             {Auth.loggedIn() ? (
               <>
-                <li className="nav-item ">
-                  <Cart />
-                </li>
                 <li className="nav-item">
                   <button
                     className="btn btn-lg btn-outline-danger"
@@ -45,7 +42,7 @@ function Nav() {
                       type="button"
                     >
                       Sign up
-                    </button>{' '}
+                    </button>{" "}
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -55,7 +52,7 @@ function Nav() {
                       type="button"
                     >
                       Login
-                    </button>{' '}
+                    </button>{" "}
                   </Link>
                 </li>
               </>
