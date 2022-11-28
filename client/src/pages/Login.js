@@ -33,10 +33,10 @@ function Login(props) {
 
   return (
     <div className=" d-flex flex-column main-content">
-            <div className="container ui raised segment  mt-5 w-25">
+            <div className="container ui raised segment  mt-5 w-25 animate__animated animate__fadeIn">
 
     <div>Don't have an account?</div>
-      <Link to="/signup">Signup</Link>
+      <Link to="/signup">← Signup</Link>
 
       <h2 className='mt-3'>Login</h2>
       <form onSubmit={handleFormSubmit}>

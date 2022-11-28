@@ -17,6 +17,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import UserDashboard from "./pages/UserDashboard";
+import UpdateUser from "./pages/UpdateUser";
 
 
 import Create from './pages/Create';
@@ -57,6 +58,8 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/profile" element={<UserDashboard />} />
               <Route path="/create" element={<Create />} />
+              <Route path="/updateuser" element={<UpdateUser />} />
+
               {/*<Route 
 
         path="/success" 

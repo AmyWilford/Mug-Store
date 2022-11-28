@@ -46,10 +46,10 @@ function Signup(props) {
     
     <div className=" d-flex flex-column main-content ">
       <div className="container ui raised 
-  segment  mt-5 w-25">
+  segment  mt-5 w-25 animate__animated animate__fadeIn">
       <div>Already have an account?</div>
 
-        <Link to="/login">← Go to Login</Link>
+        <Link to="/login">← Login</Link>
 
         <h2 className='mt-3'>Signup</h2>
         <form onSubmit={handleFormSubmit}>
@@ -67,7 +67,7 @@ function Signup(props) {
           <div className="d-flex flex-column">
             <label htmlFor="lastName">Last Name:</label>
             <input
-              placeholder="Last"
+              placeholder="Enter last name here"
               name="lastName"
               type="lastName"
               id="lastName"
@@ -78,7 +78,7 @@ function Signup(props) {
           <div className="d-flex flex-column">
             <label htmlFor="email">Email:</label>
             <input
-              placeholder="youremail@test.com"
+              placeholder="address@domain.com"
               name="email"
               type="email"
               id="email"
@@ -100,7 +100,7 @@ function Signup(props) {
           <div className="d-flex flex-column">
             <label htmlFor="pwd">City:</label>
             <input
-              placeholder="Toronto"
+              placeholder="Enter city name here"
               name="city"
               type="text"
               id="city"
@@ -111,7 +111,7 @@ function Signup(props) {
           <div className="d-flex flex-column">
             <label htmlFor="pwd">Address:</label>
             <input
-              placeholder="123 street st."
+              placeholder="Street address and #"
               name="address"
               type="text"
               id="address"
@@ -120,9 +120,9 @@ function Signup(props) {
             />
           </div>
           <div className="d-flex flex-column">
-            <label htmlFor="pwd">Province:</label>
+            <label htmlFor="pwd">Province/State:</label>
             <input
-              placeholder="ON"
+              placeholder="Enter state or province here"
               name="province"
               type="text"
               id="province"
@@ -132,7 +132,7 @@ function Signup(props) {
             <div className="d-flex flex-column">
               <label htmlFor="pwd">Country:</label>
               <input
-                placeholder="country"
+                placeholder="Enter country name here"
                 name="country"
                 type="text"
                 id="country"

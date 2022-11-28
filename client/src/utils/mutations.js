@@ -87,7 +87,7 @@ export const UPDATE_USER = gql`
     $province: String!
     $country: String!
     $email: String!
-    $password: String
+    $password: String!
   ) {
     updateUser(
       firstName: $firstName

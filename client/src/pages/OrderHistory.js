@@ -14,7 +14,7 @@ function OrderHistory() {
   }
 
   return (
-    <>
+    
       <div className="container ui segment main-content raised">
         <Link to="/">← Back to Products</Link>
 
@@ -42,7 +42,7 @@ function OrderHistory() {
           </>
         ) : null}
       </div>
-    </>
+    
   );
 }
 

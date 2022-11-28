@@ -15,8 +15,8 @@ function PrevOrder() {
 
   return (
     <>
-      <div className="container ui piled segment  ">
-        <h2 className="=ui header">Your order History:</h2>
+      <div className="container ui stacked secondary segment  ">
+        <h4 className= "ui header">Your order History:</h4>
         {user ? (
           <>
             {orderSummary.map((order) => (
