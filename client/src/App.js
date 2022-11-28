@@ -8,11 +8,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 // import background from "./assets/background.jpg";
-<<<<<<< HEAD
-import "./App.css";
-=======
-import Auth from "./utils/auth";
->>>>>>> 4d91c5fbd31dbbdd978d6d46a72427303abde9ca
+import './App.css';
+import Auth from './utils/auth';
 
 import { StoreProvider } from './utils/GlobalState';
 
@@ -55,7 +52,7 @@ function App() {
         <StoreProvider>
           <Router>
             <Nav />
-            {Auth.loggedIn() ? <Cart /> : ""}
+            {Auth.loggedIn() ? <Cart /> : ''}
             <Routes>
               <Route path="/" element={<About />} />
               <Route path="/login" element={<Login />} />
