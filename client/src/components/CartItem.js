@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useStoreContext } from "../utils/GlobalState";
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../utils/actions"; //import correct mutations
-import { idbPromise } from "../utils/helpers";
-import styled from "styled-components";
+import React, { useEffect } from 'react';
+import { useStoreContext } from '../utils/GlobalState';
+import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../utils/actions'; //import correct mutations
+import { idbPromise } from '../utils/helpers';
+import styled from 'styled-components';
 
 const StyledItem = styled.div`
   font-size: 0.8rem;
@@ -23,30 +23,30 @@ const CartItem = ({ item }) => {
       type: REMOVE_FROM_CART,
       _id: item._id,
     });
-    idbPromise("cart", "delete", { ...item });
+    idbPromise('cart', 'delete', { ...item });
   };
 
   const onChange = (e) => {
     const value = e.target.value;
-    if (value === "0") {
+    if (value === '0') {
       dispatch({
         type: REMOVE_FROM_CART,
         _id: item._id,
       });
-      idbPromise("cart", "delete", { ...item });
+      idbPromise('cart', 'delete', { ...item });
     } else {
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: item._id,
         purchaseQuantity: parseInt(value),
       });
-      idbPromise("cart", "put", { ...item, purchaseQuantity: parseInt(value) });
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
     }
   };
 
   return (
     <div className="flex-row">
-      <StyledItem key={item.id}>
+      <StyledItem key={item._id}>
         <div className="row">
           <div className="col-1">
             <Remove
