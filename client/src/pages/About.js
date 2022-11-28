@@ -17,13 +17,13 @@ const Styleddiv = styled.img`
 
 const Home = () => {
   return (
-    <div className="container pt-5">
-      <div className="row d-flex align-items-center">
+    <div className="main-content d-flex ">
+      <div className="row d-flex align-items-center ui p-5 secondary segment raised m-auto mt-5 ">
         <div className="col-md-7">
-          <h4>Create a gift they'll reach for each day.</h4>
+          <h3>Create a gift they'll reach for each day.</h3>
           <p>
             Welcome to Javascript, creating custom mugs that hold your favourite
-            memories  within arms reach.
+            memories within arms reach.
           </p>
           <ul>
             <li>Standard 11-oz capacity mugs</li>
@@ -38,7 +38,7 @@ const Home = () => {
           </p>
           <div className="d-flex flex-wrap flex-row">
             <Link to="/create">
-              <button className="rounded yellow ui button m-2">
+              <button className="rounded teal ui button m-2">
                 Design A Mug
               </button>
             </Link>
@@ -52,9 +52,11 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-5">
+        <div className="col-md-5 ">
           <div>
-            <Styleddiv src="./assets/images/paintingmug.jpg"></Styleddiv>
+            <Link to="/create">
+              <Styleddiv src="./assets/images/paintingmug.jpg"></Styleddiv>
+            </Link>
           </div>
         </div>
       </div>
@@ -64,20 +66,3 @@ const Home = () => {
 
 export default Home;
 
-{
-  /* <div className="container d-flex w-50  m-auto mt-5 align-items-center ">
-  <Link to="/create">
-    {" "}
-    <S
-      className=" ui image shadow rounded medium m-5"
-      src="./assets/images/paintingmug.jpg"
-      alt="someone painting on aa mug"
-    />
-  </Link>
-  <Link to="/profile">
-    <button className="massive rounded yellow ui button m-2">
-      Go to your dashboard
-    </button>
-  </Link>
-</div>; */
-}

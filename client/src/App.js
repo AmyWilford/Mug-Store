@@ -8,6 +8,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 // import background from "./assets/background.jpg";
+import "./App.css";
 
 import { StoreProvider } from "./utils/GlobalState";
 
@@ -24,12 +25,9 @@ import Cart from "./components/Cart";
 
 import UpdateUser from "./pages/UpdateUser";
 
-
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
-
-
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
@@ -49,13 +47,13 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App" >
+      <div className="App">
         <StoreProvider>
           <Router>
             <Nav />
             <Cart />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<About />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/profile" element={<UserDashboard />} />
@@ -63,12 +61,7 @@ function App() {
               <Route path="/success" element={<Success />} />
               <Route path="/updateuser" element={<UpdateUser />} />
 
-              {/*<Route 
-
-              {/*  <Route 
-        path="/orderHistory" 
-        element={<OrderHistory />} 
-      /> */}
+              <Route path="/orderHistory" element={<OrderHistory />} />
             </Routes>
           </Router>
         </StoreProvider>

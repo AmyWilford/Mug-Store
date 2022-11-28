@@ -16,7 +16,6 @@
 .main-content {
   height: 100vh;
   width: 100vw;
-  /* background-color: lightgrey; */
   background-image: url("../assets/background.jpg"); 
   background-size:auto;
 }
@@ -31,4 +30,6 @@
     background-position: top;
     background-repeat: no-repeat;
   }
+
+
 }

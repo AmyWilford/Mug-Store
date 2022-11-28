@@ -2,11 +2,18 @@ import React from "react";
 import PrevOrder from "../components/PrevOrder";
 import UserInfo from "../components/UserInfo";
 import { useQuery } from "@apollo/client";
+import styled from "styled-components";
 
 // import Auth from "../utils/auth";
-import "../styles/home.css";
+// import "../styles/home.css";
 import { Link } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";
+
+const Styleddiv = styled.img`
+  box-shadow: 1rem 1rem #fdd846, -1rem -1rem #d5f0f1;
+  max-width: 300px;
+  margin: 3rem 0 0 1rem;
+`;
 
 const UserDashboard = () => {
   const { data } = useQuery(QUERY_USER);
@@ -20,11 +27,11 @@ const UserDashboard = () => {
 
     <div className="main-content d-flex ">
       <div
-        className="container d-flex flex-column white m-auto mt-5 "
+        className="d-flex flex-column white m-auto mt-5  align-items-center"
         id="user-dash">
-        <div className="container d-flex flex-column align-items-center  m-auto animate__animated animate__fadeIn ">
+        
           {user ? (
-            <div className=" d-flex  ui horizontal  segments p-2" id="userdetails">
+            <div className=" d-flex ui horizontal mx-5 segments p-2 " id="userdetails">
               <div className="ui raised   segment ">
                 <UserInfo />
               </div>
@@ -39,16 +46,10 @@ const UserDashboard = () => {
             </Link>
           )}
           <Link to="/create">
-            {" "}
-            <img
-              className=" ui image rounded shadow  medium m-2"
-              src="./assets/images/paintingmug.jpg"
-
-              alt="handing painting on a mg"></img>
-          </Link>
+              <Styleddiv src="./assets/images/paintingmug.jpg"></Styleddiv>
+            </Link>
         </div>
       </div>
-    </div>
   );
 };
 
