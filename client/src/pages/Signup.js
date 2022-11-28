@@ -29,6 +29,8 @@ function Signup(props) {
     const token = mutationResponse.data.addUser.token;
     console.log('Got token');
     Auth.login(token);
+    console.log(token);
+
   };
 
   const handleChange = (event) => {
@@ -41,43 +43,50 @@ function Signup(props) {
   };
 
   return (
+    
     <div className=" d-flex flex-column main-content ">
-      <div className="container ui raised segment  mt-5 w-25">
-        <Link to="/login">← Go to Login</Link>
+      <div className="container ui raised 
+  segment  mt-5 w-25 animate__animated animate__fadeIn">
+      <div>Already have an account?</div>
 
-        <h2>Signup</h2>
+        <Link to="/login">← Login</Link>
+
+        <h2 className='mt-3'>Signup</h2>
         <form onSubmit={handleFormSubmit}>
-          <div className="flex-row space-between my-2">
+          <div className="d-flex flex-column">
             <label htmlFor="firstName">First Name:</label>
             <input
-              placeholder="First"
+              placeholder="Enter first name here"
               name="firstName"
               type="firstName"
               id="firstName"
               onChange={handleChange}
+              className="w-75 rounded form-control"
             />
           </div>
-          <div className="flex-row space-between my-2">
+          <div className="d-flex flex-column">
             <label htmlFor="lastName">Last Name:</label>
             <input
-              placeholder="Last"
+              placeholder="Enter last name here"
               name="lastName"
               type="lastName"
               id="lastName"
               onChange={handleChange}
-            />
+              className="w-75 rounded form-control"
+              />
           </div>
-          <div className="flex-row space-between my-2">
+          <div className="d-flex flex-column">
             <label htmlFor="email">Email:</label>
             <input
-              placeholder="youremail@test.com"
+              placeholder="address@domain.com"
               name="email"
               type="email"
               id="email"
               onChange={handleChange}
-            />
+              className="w-50 rounded form-control"
+              />
           </div>
-          <div className="flex-row space-between my-2">
+          <div className="d-flex flex-column">
             <label htmlFor="pwd">Password:</label>
             <input
               placeholder="******"
@@ -85,50 +94,55 @@ function Signup(props) {
               type="password"
               id="pwd"
               onChange={handleChange}
-            />
+              className="w-50 rounded form-control"
+              />
           </div>
-          <div className="flex-row space-between my-2">
+          <div className="d-flex flex-column">
             <label htmlFor="pwd">City:</label>
             <input
-              placeholder="Toronto"
+              placeholder="Enter city name here"
               name="city"
               type="text"
               id="city"
               onChange={handleChange}
-            />
+              className="w-50 rounded form-control"
+              />
           </div>
-          <div className="flex-row space-between my-2">
+          <div className="d-flex flex-column">
             <label htmlFor="pwd">Address:</label>
             <input
-              placeholder="123 street st."
+              placeholder="Street address and #"
               name="address"
               type="text"
               id="address"
               onChange={handleChange}
+              className="w-50 rounded form-control"
             />
           </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="pwd">Province:</label>
+          <div className="d-flex flex-column">
+            <label htmlFor="pwd">Province/State:</label>
             <input
-              placeholder="ON"
+              placeholder="Enter state or province here"
               name="province"
               type="text"
               id="province"
               onChange={handleChange}
-            />
-            <div className="flex-row space-between my-2">
+              className="w-50 rounded form-control"
+              />
+            <div className="d-flex flex-column">
               <label htmlFor="pwd">Country:</label>
               <input
-                placeholder="country"
+                placeholder="Enter country name here"
                 name="country"
                 type="text"
                 id="country"
                 onChange={handleChange}
-              />
+                className="w-50 rounded form-control"
+                />
             </div>
           </div>
           <div className="flex-row flex-end">
-            <button type="submit">Signup</button>
+            <button type="submit"  className="btn btn-secondary mt-2">Signup</button>
           </div>
         </form>
       </div>

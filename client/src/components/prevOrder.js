@@ -15,8 +15,8 @@ function PrevOrder() {
 
   return (
     <>
-      <div className="container ui segment raised">
-        <h2>Your order History:</h2>
+      <div className="container ui stacked secondary segment  ">
+        <h4 className= "ui header">Your order History:</h4>
         {user ? (
           <>
             {orderSummary.map((order) => (
@@ -33,7 +33,7 @@ function PrevOrder() {
             ))}
 
             <Link to="/orderhistory">
-              <button>See more orders </button>
+              <button  className="btn btn-primary" >See more orders </button>
             </Link>
           </>
         ) : null}
