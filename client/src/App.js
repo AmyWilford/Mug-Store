@@ -64,10 +64,6 @@ function App() {
               <Route path="/create" element={<Create />} />
               <Route path="/success" element={<Success />} />
               <Route path="/updateuser" element={<UpdateUser />} />
-<<<<<<< HEAD
-
-=======
->>>>>>> 4d91c5fbd31dbbdd978d6d46a72427303abde9ca
               <Route path="/orderHistory" element={<OrderHistory />} />
             </Routes>
           </Router>
