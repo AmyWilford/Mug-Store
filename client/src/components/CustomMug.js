@@ -1,8 +1,8 @@
 // Import required components and dependencies
-import React, { useState, useEffect } from "react";
-import WhiteMug from "../assets/whitemug.jpg";
-import BlackMug from "../assets/blackmug.jpg";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import WhiteMug from '../assets/whitemug.jpg';
+import BlackMug from '../assets/blackmug.jpg';
+import styled from 'styled-components';
 
 // Styled components for overlay text and text container
 const StyledOverlay = styled.p`
@@ -34,13 +34,13 @@ function CustomMug({ mugText, mugSrc, color, font }) {
   const [mugcolour, setMugColour] = useState(WhiteMug);
   // Depending on mugsrc from props set image color
   useEffect(() => {
-    if (mugSrc === "black") {
+    if (mugSrc === 'black') {
       setMugColour(BlackMug);
     } else {
       setMugColour(WhiteMug);
     }
-  });
-// Rendered custom image
+  }, [mugSrc]);
+  // Rendered custom image
   return (
     <div className="d-flex justify-content-center">
       <ImageContainer className="image-container">

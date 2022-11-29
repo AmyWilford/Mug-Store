@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useStoreContext } from "../utils/GlobalState";
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../utils/actions"; //import correct mutations
-import { idbPromise, pluralize } from "../utils/helpers";
-import styled from "styled-components";
+import React from 'react';
+import { useStoreContext } from '../utils/GlobalState';
+import { REMOVE_FROM_CART } from '../utils/actions'; //import correct mutations
+import { idbPromise, pluralize } from '../utils/helpers';
+import styled from 'styled-components';
 
 const StyledItem = styled.div`
   padding: 1.25rem;
@@ -28,7 +28,7 @@ const CartItem = ({ item }) => {
       type: REMOVE_FROM_CART,
       _id: item._id,
     });
-    idbPromise("cart", "delete", { ...item });
+    idbPromise('cart', 'delete', { ...item });
   };
 
   // const onChange = (e) => {
@@ -54,7 +54,7 @@ const CartItem = ({ item }) => {
       <StyledItem key={item._id}>
         <div className="d-flex flex-row justify-content-between">
           <ItemTitle>
-            {item.count} {item.mugColor} custom {pluralize("mug", item.count)}
+            {item.count} {item.mugColor} custom {pluralize('mug', item.count)}
           </ItemTitle>
           <Remove
             role="button"
