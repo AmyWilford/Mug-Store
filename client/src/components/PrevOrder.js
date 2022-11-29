@@ -23,9 +23,7 @@ function PrevOrder() {
             {orderSummary.map((order) => (
               <div key={order._id} className="my-2">
                 <div className="flex-row ">
-                <Link to="/orderhistory">
                     <p className="text-break ">Order# {order._id} </p>
-                  </Link>
                  </div>
               </div>
             ))}

@@ -17,6 +17,9 @@
 height: 100vh;
   background-image: url("./assets/background.jpg"); 
   background-size:auto;
+  background-repeat: no-repeat;
+  background-color: white;
+
 }
 
 @media (max-width:600px) {
