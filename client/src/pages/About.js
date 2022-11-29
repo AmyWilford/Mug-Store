@@ -55,7 +55,7 @@ const Home = () => {
         <div className="col-md-5 ">
           <div>
             <Link to="/create">
-              <Styleddiv src="./assets/images/paintingmug.jpg"></Styleddiv>
+              <Styleddiv className="animate__animated animate__bounceInRight" src="./assets/images/paintingmug.jpg"></Styleddiv>
             </Link>
           </div>
         </div>
