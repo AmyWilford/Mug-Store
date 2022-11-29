@@ -21,11 +21,22 @@ When customizing a mug, there are inputs for text, colour of mug, typeface, colo
 
 
 ## Technologies Used:
-1. React
-2. MongoDB
-3. GraphQL
-4. Stripe
-5. Heroku
+- MongoDB
+- Mongoose
+- GraphQL
+- Node.js
+- Express.js
+- Apollo Server Express
+- Stripe
+- JsonWebToken
+- Bcrypt
+- Dotenv
+- React
+- React-Color
+- Font-Awesome
+- Bootstrap
+- Semantic UI
+
 
 ## Usage
 
@@ -34,6 +45,7 @@ When customizing a mug, there are inputs for text, colour of mug, typeface, colo
 ## Link:
 - [Deployed Page](https://github.com/AmyWilford/Word-Play)
 - [Github Repo](https://github.com/AmyWilford/Mug-Store)
+- [Presentation](https://docs.google.com/presentation/d/15fR0ASyKuoGQ0e0zYT1TwHECnxQ7CLcbyvlfWAgaoHs/edit#slide=id.g19b43ecdc85_0_33)
 
 ## Installation
 N/A

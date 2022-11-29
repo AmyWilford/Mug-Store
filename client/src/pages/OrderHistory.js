@@ -30,7 +30,7 @@ function OrderHistory() {
                     ({ _id, mugColor, customText, count, price }, index) => (
                       <div className="ui segments m-1">
                         <div key={index} className="ui segment secondary ">
-                          <p>
+                          <p >
                             <b>Mug Colour:</b> {mugColor}{" "}
                           </p>
                           <p>

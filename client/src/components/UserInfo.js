@@ -13,14 +13,16 @@ function UserInfo() {
     <>
       {user ? (
         <>
-          <h2>{user.firstName}'s dashboard</h2>
-          <h3>Email Address</h3>
-          <p>{user.email}</p>
+          <h2 className="text-break ">{user.firstName}'s dashboard</h2>
+          <h3 >Email Address</h3>
+          <p className="text-break ">{user.email}</p>
           <h3>Shipping Address</h3>
-          <p> {user.address}</p>
-          <p>{user.city}</p>
-          <p>{user.province}</p>
-          <p>{user.country}</p>
+        <ul className="list-unstyled">
+          <li>{user.address}</li>
+          <li>{user.city}</li>
+          <li>{user.province}</li>
+          <li>{user.country}</li>
+          </ul>
         <Link to="/updateuser">  <button
             type="button"
             className="btn btn-primary"
