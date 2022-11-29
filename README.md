@@ -43,7 +43,7 @@ When customizing a mug, there are inputs for text, colour of mug, typeface, colo
 ![Screenshot of the page for customizing mugs](./client/public/assets/images/Readme.jpg)
 
 ## Link:
-- [Deployed Page](https://github.com/AmyWilford/Word-Play)
+- [Deployed Page](https://whispering-inlet-47426.herokuapp.com/)
 - [Github Repo](https://github.com/AmyWilford/Mug-Store)
 - [Presentation](https://docs.google.com/presentation/d/15fR0ASyKuoGQ0e0zYT1TwHECnxQ7CLcbyvlfWAgaoHs/edit#slide=id.g19b43ecdc85_0_33)
 
