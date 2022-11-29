@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 // import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
+
+// Declare UserInfo element
 function UserInfo() {
+  // Get user information and pull specific user details 
   const { data } = useQuery(QUERY_USER);
   let user;
   if (data) {

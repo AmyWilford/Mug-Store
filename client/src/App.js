@@ -1,3 +1,4 @@
+// Import required dependencies
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
@@ -9,8 +10,8 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import './App.css';
 import Auth from './utils/auth';
-
 import { StoreProvider } from './utils/GlobalState';
+// Import all pages for routes
 
 import Nav from './components/Nav';
 import Login from './pages/Login';
@@ -42,7 +43,7 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-// import UserDashboard from './pages/UserDashboard';
+// Return app layout with different routes linked to different pages
 function App() {
   return (
     <ApolloProvider client={client}>

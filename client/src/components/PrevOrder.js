@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
+// Declare PrevOrder element
 function PrevOrder() {
   const { data } = useQuery(QUERY_USER);
   let user;

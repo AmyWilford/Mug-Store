@@ -3,12 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-// const Flexcontainer = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
 
+// Styled components to style image on home page
 const Styleddiv = styled.img`
   box-shadow: 1rem 1rem #fdd846, -1rem -1rem #d5f0f1;
   max-width: 300px;

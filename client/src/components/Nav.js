@@ -3,7 +3,9 @@ import React from "react";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
+// Declare navigation element
 function Nav() {
+  // Function to show different nav elements based on login status
   function showNavigation() {
     return (
       <nav className="navbar navbar-light bg-light ">

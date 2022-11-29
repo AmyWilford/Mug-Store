@@ -1,3 +1,4 @@
+/* Cart styles (for open cart)  */
 .cart {
     position: fixed;
     top: 0;
@@ -14,7 +15,7 @@
     border-bottom-left-radius: .5rem;
   }
   
-  
+  /* Cart and close class styles */
   .cart .close {
     position: absolute;
     top: .5rem;
@@ -25,7 +26,7 @@
   .cart .close:hover {
     text-decoration: underline;
   }
-  
+  /* Styles for closed cart icon */
   .cart-closed {
     position: fixed;
     top: 2%;
@@ -40,7 +41,7 @@
     transform: scale(1.1);
   }
   
-  
+  /* Cart class changes for responsiveness */
   @media screen and (max-width: 768px) {
     .cart {
       position: relative;

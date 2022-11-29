@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import CustomizeProduct from "../components/CustomizeProduct";
-
 import "../styles/home.css";
 
+// Create a mug page which pulls in the CustomizeProduct element
 function Create() {
   return (
     <div className="main-content d-flex " >

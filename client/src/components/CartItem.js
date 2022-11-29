@@ -4,6 +4,7 @@ import { REMOVE_FROM_CART } from '../utils/actions'; //import correct mutations
 import { idbPromise, pluralize } from '../utils/helpers';
 import styled from 'styled-components';
 
+// Styled elements for cart item styling
 const StyledItem = styled.div`
   padding: 1.25rem;
   margin: 1rem;
@@ -19,10 +20,12 @@ const ItemTitle = styled.span`
   padding-bottom: 1rem;
 `;
 
+// Declart Cart Item with inputted item as argument
 const CartItem = ({ item }) => {
   const color = item.customizedColor;
   const [, dispatch] = useStoreContext();
 
+  // Function to remove item from the cart
   const removeFromCart = (item) => {
     dispatch({
       type: REMOVE_FROM_CART,
@@ -31,24 +34,7 @@ const CartItem = ({ item }) => {
     idbPromise('cart', 'delete', { ...item });
   };
 
-  // const onChange = (e) => {
-  //   const value = e.target.value;
-  //   if (value === "0") {
-  //     dispatch({
-  //       type: REMOVE_FROM_CART,
-  //       _id: item._id,
-  //     });
-  //     idbPromise("cart", "delete", { ...item });
-  //   } else {
-  //     dispatch({
-  //       type: UPDATE_CART_QUANTITY,
-  //       _id: item._id,
-  //       purchaseQuantity: parseInt(value),
-  //     });
-  //     idbPromise("cart", "put", { ...item, purchaseQuantity: parseInt(value) });
-  //   }
-  // };
-
+  // Render individual cart items
   return (
     <div className="flex-row bg-light">
       <StyledItem key={item._id}>

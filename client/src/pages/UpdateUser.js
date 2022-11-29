@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-// import "../styles/home.css";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";
 import { UPDATE_USER } from "../utils/mutations";
 
+//Declare component to update user 
 const UpdateUser = () => {
   const { data } = useQuery(QUERY_USER);
   let user;
@@ -14,6 +14,7 @@ const UpdateUser = () => {
   }
   console.log(user)
   console.log(data)
+  // Set initial form state to current user details
   const [formState, setFormState] = useState({
     firstName: `${user.firstName}`,
     lastName: `${user.lastName}`,
@@ -25,8 +26,10 @@ const UpdateUser = () => {
     password: `${user.password}`,
   });
   console.log(formState);
+  // Declare updateUser using mutation
   const [updateUser] = useMutation(UPDATE_USER);
 
+  // Function to handle form submit with inputted variables
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("update user button clicked");
@@ -44,9 +47,8 @@ const UpdateUser = () => {
     });
     const token = mutationResponse.data.updateUser.token;
     Auth.update(token);
-    // window.location.reload();
   };
-
+// Function to setFormState Variables upon input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -54,7 +56,7 @@ const UpdateUser = () => {
       [name]: value,
     });
   };
-
+// Return form to view and update user details
   return (
     <div className="main-content d-flex ">
       <div className="container d-flex flex-column ui segment align-items-center w-25 m-auto animate__animated animate__fadeIn mt-5">

@@ -5,11 +5,14 @@ import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 import '../styles/home.css'
 
-
+// Declare Login Component
 function Login(props) {
+  // Declare formstate variables
   const [formState, setFormState] = useState({ email: '', password: '' });
+  // Declare login mutation
   const [login, { error }] = useMutation(LOGIN);
 
+  // Function to handle form submit and check for user authentification
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -23,6 +26,7 @@ function Login(props) {
     }
   };
 
+  // Handle change function to manage form state change on input change
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -31,6 +35,7 @@ function Login(props) {
     });
   };
 
+  // Return login form
   return (
     <div className=" d-flex flex-column main-content">
             <div className="container ui raised segment  mt-5 w-25 animate__animated animate__fadeIn">

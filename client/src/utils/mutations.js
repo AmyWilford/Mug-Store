@@ -1,5 +1,7 @@
+// Import gqp from apollo client
 import { gql } from '@apollo/client';
 
+// Declare all mutations
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -10,7 +12,6 @@ export const LOGIN = gql`
     }
   }
 `;
-
 export const ADD_ORDER = gql`
   mutation addOrder($products: [ID]!) {
     addOrder(products: $products) {
@@ -28,7 +29,6 @@ export const ADD_ORDER = gql`
     }
   }
 `;
-
 export const ADD_PRODUCT = gql`
   mutation Mutation(
     $mugColor: String

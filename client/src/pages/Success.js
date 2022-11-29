@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_ORDER } from '../utils/mutations'; //import correct mutation
+import { ADD_ORDER } from '../utils/mutations'; 
 import { idbPromise } from '../utils/helpers';
 
+// Declare success component
 function Success() {
   const [addOrder] = useMutation(ADD_ORDER);
 
+  // Get items form cart and save to order - empty cart once order is processed
   useEffect(() => {
     async function saveOrder() {
       const cart = await idbPromise('cart', 'get');
@@ -19,7 +21,7 @@ function Success() {
           idbPromise('cart', 'delete', item);
         });
       }
-
+      // redirect to userprofile after payment compelte
       setTimeout(() => {
         window.location.assign('/profile');
       }, 3000);
@@ -28,6 +30,7 @@ function Success() {
     saveOrder();
   }, [addOrder]);
 
+  // Render success message 
   return (
     <div className="main-content d-flex ">
       <div className=" ui raised segment m-auto m-5 text-center mt-4">

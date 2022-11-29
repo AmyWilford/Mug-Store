@@ -5,10 +5,14 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 import '../styles/home.css';
 
+// Declare signup component
 function Signup(props) {
+  // declare formstate variables
   const [formState, setFormState] = useState({ email: '', password: '' });
+  // Declare variables for addUser mutation
   const [addUser] = useMutation(ADD_USER);
 
+  // Function to handle form submit and addUser via mutation
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log('event prevent default');
@@ -25,7 +29,7 @@ function Signup(props) {
         password: formState.password,
       },
     });
-
+    // Create token holding user credentials
     const token = mutationResponse.data.addUser.token;
     console.log('Got token');
     Auth.login(token);
@@ -33,6 +37,7 @@ function Signup(props) {
 
   };
 
+  // Function to handleChange and setFormstate variables upon input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -42,6 +47,7 @@ function Signup(props) {
     console.log('change handled');
   };
 
+  // Return 
   return (
     
     <div className=" d-flex flex-column main-content ">

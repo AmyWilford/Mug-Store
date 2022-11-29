@@ -1,3 +1,5 @@
+
+// Function to pluralize product depending on quantity order
 export function pluralize(name, count) {
   if (count === 1) {
     return name;
@@ -5,6 +7,7 @@ export function pluralize(name, count) {
   return name + 's';
 }
 
+// IDBPromise helper used for stripe integration
 export function idbPromise(storeName, method, object) {
   console.log(object);
   return new Promise((resolve, reject) => {
@@ -75,6 +78,7 @@ export function idbPromise(storeName, method, object) {
   });
 }
 
+// Function to validateCustomText input to max 25 characters on custom mug page
 export function validateCustomText(input) {
   if (input.length > 25) {
     return false;
