@@ -18,7 +18,7 @@ const Styleddiv = styled.img`
 const Home = () => {
   return (
     <div className="main-content d-flex ">
-      <div className="row d-flex align-items-center ui p-5 secondary segment raised m-auto mt-5 ">
+      <div className="row d-flex align-items-center ui p-5 secondary segment raised m-auto mt-5 animate__animated animate__fadeIn">
         <div className="col-md-7">
           <h3>Create a gift they'll reach for each day.</h3>
           <p>
