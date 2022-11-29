@@ -6,7 +6,6 @@ function Nav() {
   function showNavigation() {
     return (
       <nav className="navbar navbar-light bg-light ">
-       
         <div className="navbar " id="navbarNav">
           <ul className="navbar-nav">
             {Auth.loggedIn() ? (
@@ -54,7 +53,7 @@ function Nav() {
 
   return (
     <header>
-      <nav className="navbar m-auto navbar-expand-lg shadow  navbar-light bg-light ">
+      <nav className="navbar justify-content-left m-auto navbar-expand shadow  navbar-light bg-light ">
         <Link to="/">
           <img
             className="animate__bounceIn "
