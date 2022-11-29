@@ -5,9 +5,8 @@ import { idbPromise, pluralize } from "../utils/helpers";
 import styled from "styled-components";
 
 const StyledItem = styled.div`
-  border-bottom: 1px solid grey;
   padding: 1.25rem;
-  line-height: 2rem;
+  margin: 1rem;
 `;
 const Remove = styled.span`
   color: lightgrey;
@@ -17,6 +16,7 @@ const Remove = styled.span`
 `;
 const ItemTitle = styled.span`
   text-transform: uppercase;
+  padding-bottom: 1rem;
 `;
 
 const CartItem = ({ item }) => {
@@ -50,12 +50,12 @@ const CartItem = ({ item }) => {
   };
 
   return (
-    <div className="flex-row">
+    <div className="flex-row bg-light">
       <StyledItem key={item._id}>
         <div className="d-flex flex-row justify-content-between">
           <ItemTitle>
             {item.count} {item.mugColor} custom {pluralize("mug", item.count)}
-          </ItemTitle>{" "}
+          </ItemTitle>
           <Remove
             role="button"
             aria-label="remove"
@@ -64,18 +64,11 @@ const CartItem = ({ item }) => {
             <i className="fa fa-times" aria-hidden="true"></i>
           </Remove>
         </div>
-
-        <div className="d-flex flex-row">
-          <div>
-            custom text:{" "}
-            <span style={{ color: color, fontStyle: "italic" }}>
-              {item.customText}
-            </span>
+        <div className="">
+          <div>custom message:</div>
+          <div style={{ color: color }} className="text-right">
+            {item.customText}
           </div>
-        </div>
-
-        <div className="d-flex justify-content-end">
-          <p>order total: $ {item.price}</p>
         </div>
       </StyledItem>
     </div>
