@@ -22,13 +22,12 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       if (context.user) {
-
         const user = await User.findById(context.user._id).populate({
           path: 'orders',
-          model: 'Order',
+          populate: {
+            path: 'products',
+          },
         });
-        console.log(user);
-        console.log(user.orders);
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
         return user;
@@ -39,7 +38,7 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate('orders');
-
+        console.log('Im user: ', user);
         return user.orders.id(_id);
       }
 

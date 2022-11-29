@@ -15,7 +15,7 @@ export const QUERY_PRODUCT = gql`
 `;
 
 export const QUERY_ORDER = gql`
-  query getProduct($orderId: ID) {
+  query getOrder($orderId: ID) {
     order(_id: $orderId) {
       _id
       orderStatus
