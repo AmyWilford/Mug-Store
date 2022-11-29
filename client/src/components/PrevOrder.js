@@ -16,20 +16,17 @@ function PrevOrder() {
 
   return (
     <>
-      <div className="container ui stacked secondary segment  ">
+      <div className="container-fluid ui stacked secondary segment ">
         <h4 className= "ui header">Your order History:</h4>
         {user ? (
           <>
             {orderSummary.map((order) => (
               <div key={order._id} className="my-2">
-                <div className="flex-row">
+                <div className="flex-row ">
                 <Link to="/orderhistory">
-                    <p>Order# {order._id} </p>
+                    <p className="text-break ">Order# {order._id} </p>
                   </Link>
-                  <p>{order.status}</p>
-                  <p>{order.date}</p>
-                  <p>{order.total}</p>
-                </div>
+                 </div>
               </div>
             ))}
 

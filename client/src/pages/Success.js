@@ -30,7 +30,8 @@ function Success() {
   }, [addOrder]);
 
   return (
-    <div className="container text-center mt-4">
+    <div className="main-content d-flex ">
+    <div className=" ui raised segment m-auto m-5 text-center mt-4">
       <h5 className="display-6">Cheers!</h5>
       <h5>
         We cannot <i>espresso</i> how much we appreciate your business.
@@ -42,6 +43,7 @@ function Success() {
       ></img>
       <p>Please keep an eye out on your email for your order confirmation.</p>
       <p>Hang tight - we're redirecting you to your profile dashboard.</p>
+    </div>
     </div>
   );
 }

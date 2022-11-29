@@ -21,11 +21,22 @@ When customizing a mug, there are inputs for text, colour of mug, typeface, colo
 
 
 ## Technologies Used:
-1. React
-2. MongoDB
-3. GraphQL
-4. Stripe
-5. Heroku
+- MongoDB
+- Mongoose
+- GraphQL
+- Node.js
+- Express.js
+- Apollo Server Express
+- Stripe
+- JsonWebToken
+- Bcrypt
+- Dotenv
+- React
+- React-Color
+- Font-Awesome
+- Bootstrap
+- Semantic UI
+
 
 ## Usage
 
