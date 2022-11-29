@@ -13,6 +13,7 @@ function PrevOrder() {
   }
   const orderSummary = user.orders.slice(0, 3);
 
+
   return (
     <>
       <div className="container ui stacked secondary segment  ">
@@ -22,8 +23,8 @@ function PrevOrder() {
             {orderSummary.map((order) => (
               <div key={order._id} className="my-2">
                 <div className="flex-row">
-                  <Link to={`/orders/${order._id}`}>
-                    <p>#{order._id} </p>
+                <Link to="/orderhistory">
+                    <p>Order# {order._id} </p>
                   </Link>
                   <p>{order.status}</p>
                   <p>{order.date}</p>

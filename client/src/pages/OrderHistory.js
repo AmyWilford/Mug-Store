@@ -1,29 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_USER, QUERY_ORDER, QUERY_PRODUCT } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
-  
   if (data) {
     user = data.user;
   }
-console.log(user)
-console.log("NOW THE PRODUCTS")
-console.log(user.orders)
-const userOrders = []
-user.orders.map(
-  ({ _id:_id }) => (
-userOrders.push(_id)
-    ))
-  console.log(userOrders)
+    console.log(user.orders);
 
   return (
     <div className="main-content d-flex ">
-      <div className=" ui segment w-75 raised m-auto mt-5 animate__animated animate__fadeInDown">
+      <div className=" ui segment w-50 raised m-auto mt-5 animate__animated animate__fadeInDown">
         <Link to="/profile">← Back to Dashboard</Link>
 
         {user ? (
@@ -33,16 +24,25 @@ userOrders.push(_id)
             </h2>
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
-               
-                <div className="flex-column">
-                <h4>Order # {order._id} </h4>
+                <div className="flex-column ui raised horizontal segments">
+                  <h4 className="m-2" key= {order}>Order # {order._id}  </h4>
                   {order.products.map(
                     ({ _id, mugColor, customText, count, price }, index) => (
-                      <div key={index} className="card px-1 py-1">
-                        <p>Mug Colour: {mugColor} </p>
-                        <p>Custom Text: {customText} </p>
-                        <p>Quantity: {count} </p>
-                        <p>Total Order Price: ${price}</p>
+                      <div className="ui segments m-1">
+                        <div key={index} className="ui segment secondary ">
+                          <p>
+                            <b>Mug Colour:</b> {mugColor}{" "}
+                          </p>
+                          <p>
+                            <b>Custom Text:</b> {customText}{" "}
+                          </p>
+                          <p>
+                            <b>Quantity:</b> {count}{" "}
+                          </p>
+                          <p>
+                            <b>Total Price:</b> ${price}
+                          </p>
+                        </div>
                       </div>
                     )
                   )}
@@ -57,5 +57,3 @@ userOrders.push(_id)
 }
 
 export default OrderHistory;
-
-

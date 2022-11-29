@@ -46,7 +46,7 @@ const UserDashboard = () => {
             </Link>
           )}
           <Link to="/create">
-              <Styleddiv src="./assets/images/paintingmug.jpg"></Styleddiv>
+              <Styleddiv className="animate__animated animate__bounceInUp" src="./assets/images/paintingmug.jpg"></Styleddiv>
             </Link>
         </div>
       </div>
