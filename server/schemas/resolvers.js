@@ -72,7 +72,7 @@ const resolvers = {
 
         line_items.push({
           price: price.id,
-          quantity: element.count,
+          quantity: 1,
         });
       }
 

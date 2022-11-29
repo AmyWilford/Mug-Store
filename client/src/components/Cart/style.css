@@ -5,9 +5,9 @@
     min-width: 30%;
     background-color: white;
   z-index: 1;
-    /* min-width: 20%;
-    max-width: 40%;
-    max-height: 80%; */
+    min-width: 30%;
+    /* max-width: 40%; */
+    max-height: 80%;
     overflow: auto;
     padding: .5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
@@ -33,6 +33,8 @@
     font-size: 2rem;
     cursor: pointer;
     padding: .25rem;
+    z-index: 1;
+
   }
   .cart-closed:hover {
     transform: scale(1.1);

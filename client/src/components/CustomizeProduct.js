@@ -1,3 +1,4 @@
+// Import required components and dependencies
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
@@ -5,11 +6,11 @@ import { ADD_PRODUCT } from "../utils/mutations";
 import { validateCustomText, pluralize } from "../utils/helpers";
 import CustomMug from "../components/CustomMug";
 import { CirclePicker } from "react-color";
-
 import { useStoreContext } from "../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 
+// Determine if two products are the same 
 function AreProductsSame(product1, product2) {
   console.log("product one:", product1, "product two", product2);
   if (
@@ -26,20 +27,24 @@ function AreProductsSame(product1, product2) {
   }
 }
 
+// Function to customize product
 function CustomizeProduct(item) {
   const [blockPickerColor, setBlockPickerColor] = useState("black");
   const [errorMessage, setErrorMessage] = useState("");
   const [confirmationMessage, setconfirmationMessage] = useState("");
 
+  // Set default state of products to default custom form values
   const [newProduct, setNewProduct] = useState({
     mugColor: "White",
-    customizedColor: "",
+    customizedColor: "black",
     customText: "",
     customFont: "Trebuchet MS",
     count: "",
   });
 
+  // Declare ADD_PRODUCT mutation in a variable
   const [addProduct, { error }] = useMutation(ADD_PRODUCT);
+  // Set state variables for required mug components
   const [mugText, setMugText] = useState("");
   const [mugSrc, setMugSrc] = useState("");
   const [mugFont, setMugFont] = useState("");
@@ -49,7 +54,7 @@ function CustomizeProduct(item) {
   const [state, dispatch] = useStoreContext();
 
   const { cart } = state;
-
+  // Function to add completed product to cart
   const addToCart = async (product) => {
     const itemInCart = cart.find((cartItem) => {
       return AreProductsSame(cartItem, product);
@@ -58,10 +63,10 @@ function CustomizeProduct(item) {
       type: ADD_TO_CART,
       product: { ...product },
     });
-    idbPromise('cart', 'put', { ...product });
-
+    idbPromise("cart", "put", { ...product });
   };
 
+  // Function to handle change of form input values and adjust value of newProduct
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "mugColor") {
@@ -84,8 +89,10 @@ function CustomizeProduct(item) {
     }
   };
 
+  // Function to handle form submit. 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    // Validate text to make sure all fields have been completed
     if (
       !newProduct.customText ||
       !newProduct.customizedColor ||
@@ -94,6 +101,7 @@ function CustomizeProduct(item) {
       setErrorMessage(
         "Something is missing. Please review and make sure your custom choices have been selected"
       );
+      // Create new product and add to cart
     } else {
       try {
         const { data } = await addProduct({
@@ -108,19 +116,19 @@ function CustomizeProduct(item) {
         );
 
         addToCart(data.addProduct);
-        let mugselector = document.getElementById('mugselector');
-        let fontselector = document.getElementById('fontselector');
-        fontselector.value = 'Trebuchet MS';
-        mugselector.value = 'white';
-        setBlockPickerColor('black');
-        setMugSrc('');
-        setMugFont('Trebuchet MS');
-        setMugText('');
-        setErrorMessage('');
-        setCharacterCount('0');
+        let mugselector = document.getElementById("mugselector");
+        let fontselector = document.getElementById("fontselector");
+        fontselector.value = "Trebuchet MS";
+        mugselector.value = "white";
+        setBlockPickerColor("black");
+        setMugSrc("");
+        setMugFont("Trebuchet MS");
+        setMugText("");
+        setErrorMessage("");
+        setCharacterCount("0");
         setNewProduct({
           mugColor: "white",
-          customizedColor: "",
+          customizedColor: "black",
           customText: "",
           customFont: "",
           count: "",
@@ -130,13 +138,13 @@ function CustomizeProduct(item) {
       }
     }
   };
-
+// Function to clearconfirmationmessage
   const clearConfirmation = (event) => {
     event.preventDefault();
-
     setconfirmationMessage("");
     setNewButton("");
   };
+  // Rendered input form to customize product
   return (
     <div>
       <div className="container">
@@ -187,6 +195,7 @@ function CustomizeProduct(item) {
                 <label htmlFor="exampleInputEmail1">
                   *Select a text colour:
                 </label>
+                {/* Imported react-color circle picker */}
                 <CirclePicker
                   className="pt-3 w-100"
                   name="customizedColor"
@@ -261,6 +270,7 @@ function CustomizeProduct(item) {
             </form>
           </div>
           <div className="col-md-7">
+          {/* Pass props to custom mug component for rendered image */}
             <CustomMug
               mugText={mugText}
               mugSrc={mugSrc}
