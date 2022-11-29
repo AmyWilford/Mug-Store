@@ -14,6 +14,8 @@ module.exports = {
     if (product.customFont != null) {
       price += 1;
     }
-    return price * product.count;
+    return price 
+    // return price * product.count;
+
   },
 };

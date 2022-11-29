@@ -31,23 +31,23 @@ const CartItem = ({ item }) => {
     idbPromise("cart", "delete", { ...item });
   };
 
-  const onChange = (e) => {
-    const value = e.target.value;
-    if (value === "0") {
-      dispatch({
-        type: REMOVE_FROM_CART,
-        _id: item._id,
-      });
-      idbPromise("cart", "delete", { ...item });
-    } else {
-      dispatch({
-        type: UPDATE_CART_QUANTITY,
-        _id: item._id,
-        purchaseQuantity: parseInt(value),
-      });
-      idbPromise("cart", "put", { ...item, purchaseQuantity: parseInt(value) });
-    }
-  };
+  // const onChange = (e) => {
+  //   const value = e.target.value;
+  //   if (value === "0") {
+  //     dispatch({
+  //       type: REMOVE_FROM_CART,
+  //       _id: item._id,
+  //     });
+  //     idbPromise("cart", "delete", { ...item });
+  //   } else {
+  //     dispatch({
+  //       type: UPDATE_CART_QUANTITY,
+  //       _id: item._id,
+  //       purchaseQuantity: parseInt(value),
+  //     });
+  //     idbPromise("cart", "put", { ...item, purchaseQuantity: parseInt(value) });
+  //   }
+  // };
 
   return (
     <div className="flex-row bg-light">
@@ -64,10 +64,13 @@ const CartItem = ({ item }) => {
             <i className="fa fa-times" aria-hidden="true"></i>
           </Remove>
         </div>
-        <div className="">
-          <div>custom message:</div>
-          <div style={{ color: color }} className="text-right">
-            {item.customText}
+        <div className="row d-flex align-items-end">
+          <div className="col-6">
+            <div>custom message:</div>
+            <div style={{ color: color }}>{item.customText}</div>
+          </div>
+          <div className="col-6 d-flex justify-content-end">
+            <div>${(item.price * item.count).toFixed(2)}</div>
           </div>
         </div>
       </StyledItem>
