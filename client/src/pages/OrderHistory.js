@@ -10,8 +10,6 @@ function OrderHistory() {
   if (data) {
     user = data.user;
   }
-    console.log(user.orders);
-
   return (
     <div className="main-content d-flex ">
       <div className=" ui segment w-50 raised m-auto mt-5 animate__animated animate__fadeInDown">
@@ -25,22 +23,21 @@ function OrderHistory() {
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
                 <div className="flex-column ui raised horizontal segments">
-                  <h4 className="m-2" key= {order}>Order # {order._id}  </h4>
+                  <h4 className="m-2" key={order}>
+                    Order # {order._id} - {order.products.length} items
+                  </h4>
                   {order.products.map(
-                    ({ _id, mugColor, customText, count, price }, index) => (
+                    ({ mugColor, customText, price }, index) => (
                       <div className="ui segments m-1">
                         <div key={index} className="ui segment secondary ">
-                          <p >
-                            <b>Mug Colour:</b> {mugColor}{" "}
+                          <p>
+                            <b>Mug Colour:</b> {mugColor}
                           </p>
                           <p>
-                            <b>Custom Text:</b> {customText}{" "}
+                            <b>Custom Text:</b> {customText}
                           </p>
                           <p>
-                            <b>Quantity:</b> {count}{" "}
-                          </p>
-                          <p>
-                            <b>Total Price:</b> ${price}
+                            <b>Price:</b> ${price}
                           </p>
                         </div>
                       </div>
