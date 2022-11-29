@@ -7,8 +7,8 @@ import "../styles/home.css";
 
 function Create() {
   return (
-    <div>
-      <div className="mt-5 p-4">
+    <div className="main-content d-flex " >
+      <div className="row d-flex align-items-center ui p-5 secondary segment raised m-auto mt-5 animate__animated animate__fadeIn">
         <CustomizeProduct />
         <div className="mt-3">
           <Link to="/profile">← Back to profile</Link>

@@ -27,7 +27,7 @@ const UserDashboard = () => {
 
     <div className="main-content d-flex ">
       <div
-        className="d-flex flex-column white m-auto mt-5  align-items-center"
+        className="d-flex flex-column white m-auto mt-5  align-items-center animate__animated animate__fadeIn"
         id="user-dash">
         
           {user ? (

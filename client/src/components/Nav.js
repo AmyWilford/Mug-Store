@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 function Nav() {
   function showNavigation() {
     return (
-      <nav className="navbar navbar-expand-sm   navbar-light bg-light ">
+      <nav className="navbar navbar-light bg-light ">
        
-        <div className="navbar " id="navbarNav">
-          <ul className="navbar-nav align-items-left">
+        <div className="navbar  " id="navbarNav">
+          <ul className="navbar-nav ">
             {Auth.loggedIn() ? (
               <>
                 <li className="nav-item">
@@ -31,7 +31,7 @@ function Nav() {
                       type="button"
                     >
                       Sign up
-                    </button>{" "}
+                    </button>
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -41,7 +41,7 @@ function Nav() {
                       type="button"
                     >
                       Login
-                    </button>{" "}
+                    </button>
                   </Link>
                 </li>
               </>

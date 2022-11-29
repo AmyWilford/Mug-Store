@@ -38,7 +38,7 @@ function CustomMug({ mugText, mugSrc, color, font }) {
     <div className="d-flex justify-content-center">
       <div className="image-container">
         <img
-          className="ui image align-middle"
+          className="ui image align-middle shadow"
           src={mugcolour}
           alt="custom mug with text"
         />
