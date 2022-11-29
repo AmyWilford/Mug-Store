@@ -45,6 +45,7 @@ When customizing a mug, there are inputs for text, colour of mug, typeface, colo
 ## Link:
 - [Deployed Page](https://github.com/AmyWilford/Word-Play)
 - [Github Repo](https://github.com/AmyWilford/Mug-Store)
+- [Presentation](https://docs.google.com/presentation/d/15fR0ASyKuoGQ0e0zYT1TwHECnxQ7CLcbyvlfWAgaoHs/edit#slide=id.g19b43ecdc85_0_33)
 
 ## Installation
 N/A
