@@ -7,14 +7,12 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-// import background from "./assets/background.jpg";
 import './App.css';
 import Auth from './utils/auth';
 
 import { StoreProvider } from './utils/GlobalState';
 
 import Nav from './components/Nav';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import UserDashboard from './pages/UserDashboard';

@@ -2,7 +2,7 @@ const { getProductPrice } = require('../utils/getPrice');
 
 const mongoose = require('mongoose');
 
-const { Schema, ObjectId } = mongoose;
+const { Schema } = mongoose;
 
 const productSchema = new Schema({
   mugColor: {

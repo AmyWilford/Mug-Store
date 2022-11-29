@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
 
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
@@ -10,7 +10,7 @@ function OrderHistory() {
   if (data) {
     user = data.user;
   }
-    console.log(user.orders);
+  console.log(user.orders);
 
   return (
     <div className="main-content d-flex ">
@@ -25,19 +25,21 @@ function OrderHistory() {
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
                 <div className="flex-column ui raised horizontal segments">
-                  <h4 className="m-2" key= {order}>Order # {order._id}  </h4>
+                  <h4 className="m-2" key={order}>
+                    Order # {order._id}{' '}
+                  </h4>
                   {order.products.map(
                     ({ _id, mugColor, customText, count, price }, index) => (
                       <div className="ui segments m-1">
                         <div key={index} className="ui segment secondary ">
-                          <p >
-                            <b>Mug Colour:</b> {mugColor}{" "}
+                          <p>
+                            <b>Mug Colour:</b> {mugColor}{' '}
                           </p>
                           <p>
-                            <b>Custom Text:</b> {customText}{" "}
+                            <b>Custom Text:</b> {customText}{' '}
                           </p>
                           <p>
-                            <b>Quantity:</b> {count}{" "}
+                            <b>Quantity:</b> {count}{' '}
                           </p>
                           <p>
                             <b>Total Price:</b> ${price}
