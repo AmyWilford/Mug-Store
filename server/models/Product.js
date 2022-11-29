@@ -2,6 +2,7 @@ const { getProductPrice } = require('../utils/getPrice');
 
 const mongoose = require('mongoose');
 
+// Declare Product Schema
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
@@ -27,6 +28,7 @@ const productSchema = new Schema({
   },
 });
 
+// Virtual to calculate price depending on custom options (imported from helpers)
 productSchema.virtual('price').get(function () {
   return getProductPrice(this);
 });

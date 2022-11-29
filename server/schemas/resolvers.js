@@ -4,6 +4,7 @@ const { signToken } = require('../utils/auth');
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
+// Declare GQL resolvers
 const resolvers = {
   Query: {
     products: async (parent, args, context) => {

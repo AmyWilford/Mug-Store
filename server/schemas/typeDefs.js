@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server-express");
 
+// Declare all GQL typeDefs
 const typeDefs = gql`
   type Product {
     _id: ID

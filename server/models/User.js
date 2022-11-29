@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+// Import bcrypt for password hashing
 const bcrypt = require('bcrypt');
 
+// Declare userSchema
 const userSchema = new Schema({
   lastName: {
     type: String,

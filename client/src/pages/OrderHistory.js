@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
+// Declare OrderHitory Component
 function OrderHistory() {
+  // Establish use of Query_User query - and confirm user to pull relevent order history
   const { data } = useQuery(QUERY_USER);
   let user;
 
   if (data) {
     user = data.user;
   }
+  // Render styled order history
   return (
     <div className="main-content d-flex ">
       <div className=" ui segment w-50 raised m-auto mt-5 animate__animated animate__fadeInDown">
@@ -26,6 +29,7 @@ function OrderHistory() {
                   <h4 className="m-2" key={order}>
                     Order # {order._id} - {order.products.length} items
                   </h4>
+                  {/* Map over all products within an order and display details */}
                   {order.products.map(
                     ({ mugColor, customText, price }, index) => (
                       <div className="ui segments m-1">

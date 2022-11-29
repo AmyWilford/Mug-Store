@@ -15,11 +15,14 @@ require("dotenv").config();
 const stripePromise = loadStripe(
   "pk_test_51M7jaMGxD4OrUtXm9cQzCEcbza6gddGVeNiLI1aiDbwEuKAAhYbQghQtrrplOt3LhKE7WQpXaviQOnnbpwB6n9Bw009o7VZavU"
 );
-
+// Establish Cart function
 function Cart() {
+  // declare state and dispatch from useStoreContext imported from global tate
   const [state, dispatch] = useStoreContext();
+  // Establish get checkeout function from query
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
+  // Redirect to stripe on checkout
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
@@ -37,11 +40,11 @@ function Cart() {
       getCart();
     }
   }, [state.cart.length, dispatch]);
-
+// Function to togglecart
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
   }
-
+// Function to calculate total of cart
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
@@ -50,6 +53,7 @@ function Cart() {
     return sum.toFixed(2);
   }
 
+  // Function to submit Checkout and push items to stripe 
   async function submitCheckout() {
     const productIds = [];
 
@@ -65,7 +69,7 @@ function Cart() {
 
     console.log(data);
   }
-
+// If the cart is closed - display cart icon and text
   if (!state.cartOpen) {
     return (
       <div className="cart-closed" onClick={toggleCart}>
@@ -74,7 +78,7 @@ function Cart() {
       </div>
     );
   }
-
+// If cart is open show full cart with populated cart items
   return (
     <div className="cart p-4">
       <div className="close text-secondary" onClick={toggleCart}>

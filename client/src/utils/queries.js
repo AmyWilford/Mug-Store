@@ -1,5 +1,7 @@
+// Import gql from apollo client
 import { gql } from '@apollo/client';
 
+// Declare all queries
 export const QUERY_PRODUCT = gql`
   query getProduct($productId: ID) {
     products(_id: $productId) {

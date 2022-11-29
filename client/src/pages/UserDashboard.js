@@ -3,24 +3,26 @@ import PrevOrder from '../components/PrevOrder';
 import UserInfo from '../components/UserInfo';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
 import { QUERY_USER } from '../utils/queries';
 
+// Styled component to style image
 const Styleddiv = styled.img`
   box-shadow: 1rem 1rem #fdd846, -1rem -1rem #d5f0f1;
   max-width: 300px;
   margin: 3rem 0 0 1rem;
 `;
 
+// Declare userdashboard component
 const UserDashboard = () => {
+  // Query user to get sepcific user data
   const { data } = useQuery(QUERY_USER);
   let user;
 
   if (data) {
     user = data.user;
   }
-
+// Return UserDashboard which pulls in UserInfo and PrevOrder Components
   return (
     <div className="main-content d-flex ">
       <div
