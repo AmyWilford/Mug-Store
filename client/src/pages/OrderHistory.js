@@ -21,17 +21,6 @@ userOrders.push(_id)
     ))
   console.log(userOrders)
 
-// const orderQuery(_id) = useQuery(QUERY_ORDER,{
-//   variables:{_id:_id}
-// })
-
-// user.orders.map((order) => (
-//   const [ products ] = useQuery(QUERY_ORDER,{
-//     variables : {_id: order._id}
-//         })
-//         console.log(products)
-// ))
-
   return (
     <div className="main-content d-flex ">
       <div className=" ui segment w-75 raised m-auto mt-5 animate__animated animate__fadeInDown">

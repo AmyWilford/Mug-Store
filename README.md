@@ -29,7 +29,7 @@ When customizing a mug, there are inputs for text, colour of mug, typeface, colo
 
 ## Usage
 
-![Screenshot of the page for customizing mugs](assets/img/wordplay.jpg)
+![Screenshot of the page for customizing mugs](./client/public/assets/images/Readme.jpg)
 
 ## Link:
 - [Deployed Page](https://github.com/AmyWilford/Word-Play)

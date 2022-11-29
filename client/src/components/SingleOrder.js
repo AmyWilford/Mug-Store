@@ -2,10 +2,10 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import {  QUERY_ORDER } from "../utils/queries";
 
-function SingleOrder(id) {
+function SingleOrder(_id) {
 
     const { data } = useQuery(QUERY_ORDER,{
-        variables= : {_id: id}
+        variables= : {_id:_id}
     });
     let product;
   
