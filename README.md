@@ -9,15 +9,15 @@
 - [License](#license)
 
 ## About This Project
-Java script is e-commerce website where users can cstomize mugs with text and purchase them.
+Java script is an e-commerce website where users can customize mugs with text and purchase them.
 
-Customers can add custom text to a selection of different coloured mugs. The text can be different colours of different typefaces as chosen by the customer.
+Customers can add custom text to a selection of different colored mugs. The text can be different colors of different typefaces as chosen by the customer.
 
 ### How to Shop:
 
-On landing, the customer is given the choice of customizng a mug or going to their profile where shipping information and previous orders can be seen.
+On landing, the customer is given the choice of customizing a mug or going to their profile where shipping information and previous orders can be seen.
 
-When customizing a mug, there are inputs for text, colour of mug, typeface, colour of text, and quantity. Once all are chosen, the item can be added to the cart which generated the price. on checkout the Stripe integration takes over and processes the payment.
+When customizing a mug, there are inputs for text, the color of the mug, typeface, color of text, and quantity. Once all are chosen, the item can be added to the cart which generates the price. on checkout, the Stripe integration takes over and processes the payment.
 
 
 ## Technologies Used:
